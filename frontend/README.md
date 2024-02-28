@@ -253,7 +253,245 @@ Claro, vamos prosseguir:
       npm install react-toastify@^9.1.3
       ```
 
+Claro, vamos continuar com as descrições e comandos de instalação:
 
+36. **react-transition-group**:
+    - Descrição: Biblioteca para criar animações de transição em aplicações React.
+    - Comando de instalação:
+      ```bash
+      npm install react-transition-group@^4.4.5
+      ```
+
+37. **reactstrap**:
+    - Descrição: Biblioteca de componentes Bootstrap 5 para React.
+    - Comando de instalação:
+      ```bash
+      npm install reactstrap@^9.2.0
+      ```
+
+38. **redux-store**:
+    - Descrição: Biblioteca para criar e gerenciar o estado global da aplicação usando Redux.
+    - Comando de instalação:
+      ```bash
+      npm install redux-store@^0.0.0
+      ```
+
+39. **semantic-ui-react**:
+    - Descrição: Conjunto de componentes React para o framework Semantic UI.
+    - Comando de instalação:
+      ```bash
+      npm install semantic-ui-react@^2.1.4
+      ```
+
+40. **sequelize**:
+    - Descrição: ORM (Object-Relational Mapping) para Node.js, compatível com bancos de dados SQL.
+    - Comando de instalação:
+      ```bash
+      npm install sequelize@^6.33.0
+      ```
+
+41. **slick-carousel**:
+    - Descrição: Biblioteca jQuery para criar carrosséis de imagens ou conteúdo.
+    - Comando de instalação:
+      ```bash
+      npm install slick-carousel@^1.8.1
+      ```
+
+42. **store**:
+    - Descrição: Biblioteca para armazenamento de dados no navegador (localStorage e sessionStorage) com uma API de fácil uso.
+    - Comando de instalação:
+      ```bash
+      npm install store@^2.0.12
+      ```
+
+43. **sweetalert2**:
+    - Descrição: Biblioteca para criar modais (popups) personalizados com suporte a promessas.
+    - Comando de instalação:
+      ```bash
+      npm install sweetalert2@^11.7.32
+      ```
+
+44. **text-encoding-utf-8**:
+    - Descrição: Biblioteca para codificação e decodificação de texto usando o UTF-8.
+    - Comando de instalação:
+      ```bash
+      npm install text-encoding-utf-8@^1.0.2
+      ```
+
+45. **yup**:
+    - Descrição: Biblioteca para validação de dados em JavaScript usando esquemas.
+    - Comando de instalação:
+      ```bash
+      npm install yup@^1.3.2
+      ```
+
+Claro, vamos continuar:
+
+46. **@types/nprogress**:
+    - Descrição: Tipos TypeScript para a biblioteca NProgress, que exibe uma barra de progresso durante carregamentos de página.
+    - Comando de instalação:
+      ```bash
+      npm install @types/nprogress@^0.2.2
+      ```
+
+47. **@types/react-beautiful-dnd**:
+    - Descrição: Tipos TypeScript para a biblioteca React Beautiful DnD, utilizada para criar interfaces de arrastar e soltar.
+    - Comando de instalação:
+      ```bash
+      npm install @types/react-beautiful-dnd@^13.1.8
+      ```
+
+48. **@types/react-slick**:
+    - Descrição: Tipos TypeScript para a biblioteca React Slick, utilizada para criar carrosséis em aplicações React.
+    - Comando de instalação:
+      ```bash
+      npm install @types/react-slick@^0.23.12
+      ```
+
+49. **@types/uuid**:
+    - Descrição: Tipos TypeScript para a biblioteca UUID, utilizada para gerar identificadores únicos universalmente.
+    - Comando de instalação:
+      ```bash
+      npm install @types/uuid@^9.0.7
+      ```
+
+Claro, vamos prosseguir:
+
+50. **@types/jest**, **@types/node**, **@types/react** e **@types/react-dom**:
+    - Descrição: Definições de tipos TypeScript para as bibliotecas Jest, Node.js, React e ReactDOM, respectivamente. Essas definições de tipos ajudam no desenvolvimento TypeScript ao fornecer informações sobre as estruturas e tipos de dados utilizados por essas bibliotecas.
+    - Comando de instalação:
+      ```bash
+      npm install @types/jest@^27.5.2 @types/node@^16.18.58 @types/react@^18.2.28 @types/react-dom@^18.2.14
+      ```
+
+51. **@types/jquery**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca jQuery, que facilitam o uso do jQuery em projetos TypeScript, fornecendo informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/jquery@^3.5.29
+      ```
+
+52. **@types/lodash**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca Lodash, que facilitam o uso do Lodash em projetos TypeScript, fornecendo informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/lodash@^4.14.202
+      ```
+
+53. **@types/react-router-dom**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca React Router DOM, que facilitam o uso do React Router em projetos TypeScript, fornecendo informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/react-router-dom@^5.3.3
+      ```
+
+Claro, vamos continuar:
+
+54. **css-loader** e **style-loader**:
+    - Descrição: Loaders para Webpack que permitem importar arquivos CSS diretamente nos arquivos JavaScript. O css-loader interpreta os arquivos CSS e os transforma em módulos JavaScript, enquanto o style-loader injeta os estilos CSS no documento HTML.
+    - Comando de instalação:
+      ```bash
+      npm install css-loader@^6.8.1 style-loader@^3.3.3
+      ```
+
+55. **@types/nprogress**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca NProgress, que exibe uma barra de progresso durante carregamentos de página. Essas definições de tipos ajudam no desenvolvimento TypeScript ao fornecer informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/nprogress@^0.2.2
+      ```
+
+Claro, vamos continuar:
+
+56. **@types/react-beautiful-dnd**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca React Beautiful DnD, utilizada para criar interfaces de arrastar e soltar. Essas definições de tipos ajudam no desenvolvimento TypeScript ao fornecer informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/react-beautiful-dnd@^13.1.8
+      ```
+
+57. **@types/react-slick**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca React Slick, utilizada para criar carrosséis em aplicações React. Essas definições de tipos ajudam no desenvolvimento TypeScript ao fornecer informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/react-slick@^0.23.12
+      ```
+
+58. **@types/uuid**:
+    - Descrição: Definições de tipos TypeScript para a biblioteca UUID, utilizada para gerar identificadores únicos universalmente. Essas definições de tipos ajudam no desenvolvimento TypeScript ao fornecer informações sobre os tipos de dados e métodos disponíveis.
+    - Comando de instalação:
+      ```bash
+      npm install @types/uuid@^9.0.7
+      ```
+
+### Todos
+
+```bash
+npm install @casl/ability@^6.5.0
+npm install @casl/react@^3.1.0
+npm install @craco/craco@^7.1.0
+npm install @mui/icons-material@^5.14.14 @mui/material@^5.14.14
+npm install @testing-library/jest-dom@^5.17.0 @testing-library/react@^13.4.0 @testing-library/user-event@^13.5.0 @types/jest@^27.5.2 @types/react@^18.2.28 @types/react-dom@^18.2.14
+npm install admin-bro@^4.0.1 admin-bro-expressjs@^2.1.1 admin-bro-sequelizejs@^0.5.1
+npm install body-parser@^1.20.2
+npm install bootstrap@^5.3.2
+npm install formik@^2.4.5
+npm install express@^4.18.2
+npm install font-awesome@^4.7.0
+npm install history@^5.3.0
+npm install jsdom@^22.1.0
+npm install json-server@^0.17.4 json-server-auth@^2.1.0
+npm install matchmedia-polyfill@^0.3.2
+npm install nprogress@^0.2.0
+npm install prop-types@^15.8.1
+npm install ra-data-json-server@^4.15.0 ra-data-simple-rest@^4.15.0
+npm install react@^18.2.0 react-dom@^18.2.0
+npm install react-acl@^2.0.0
+npm install react-admin@^4.15.0
+npm install react-beautiful-dnd@^13.1.1
+npm install react-bootstrap@^2.9.0
+npm install react-cssfx-loading@^2.1.0
+npm install react-final-form@^6.5.9
+npm install react-loading@^2.0.3
+npm install react-modal@^3.16.1
+npm install react-redux@^8.1.3 redux@^4.2.1
+npm install react-router-dom@^6.18.0
+npm install react-scripts@5.0.1
+npm install react-slick@^0.29.0
+npm install react-spinner-overlay@^0.1.33 react-spinners@^0.13.8
+npm install react-toastify@^9.1.3
+npm install react-transition-group@^4.4.5
+npm install reactstrap@^9.2.0
+npm install redux-store@^0.0.0
+npm install semantic-ui-react@^2.1.4
+npm install sequelize@^6.33.0
+npm install slick-carousel@^1.8.1
+npm install store@^2.0.12
+npm install sweetalert2@^11.7.32
+npm install text-encoding-utf-8@^1.0.2
+npm install yup@^1.3.2
+npm install @types/nprogress@^0.2.2
+npm install @types/react-beautiful-dnd@^13.1.8
+npm install @types/react-slick@^0.23.12
+npm install @types/uuid@^9.0.7
+npm install @types/jest@^27.5.2 @types/node@^16.18.58 @types/react@^18.2.28 @types/react-dom@^18.2.14
+npm install @types/jquery@^3.5.29
+npm install @types/lodash@^4.14.202
+npm install @types/react-router-dom@^5.3.3
+npm install css-loader@^6.8.1 style-loader@^3.3.3
+npm install @types/nprogress@^0.2.2
+npm install @types/react-beautiful-dnd@^13.1.8
+npm install @types/react-slick@^0.23.12
+npm install @types/uuid@^9.0.7
+npm install react react-dom react-router-dom react-scripts
+npm install axios@^1.6.7
+npm install dayjs@^1.11.10
+npm install jquery@^3.2.1
+npm install jwt-decode@^4.0.0
+npm install styled-components@^6.1.8
+npm install typescript@^4.9.5
+npm install uuid@^9.0.1
+```
 
 ## Available Scripts
 
