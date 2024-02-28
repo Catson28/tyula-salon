@@ -157,3 +157,60 @@ Para instalar React com TypeScript, você pode seguir estes passos:
    # ou
    yarn start
    ```
+
+
+# Backend
+
+Claro, aqui está a resposta com os comandos para criação do ambiente virtual adicionados:
+
+```bash
+# Crie uma pasta chamada "backend"
+mkdir backend
+
+# Navegue até a pasta "backend"
+cd backend
+```
+
+1. **Crie um ambiente virtual**: Antes de instalar o Django, é uma boa prática criar um ambiente virtual para o seu projeto. Isso isola as dependências do seu projeto das do sistema. No terminal, navegue até o diretório onde você deseja criar o ambiente virtual e execute o seguinte comando:
+   ```
+   python -m venv env
+   ```
+
+   Isso criará um ambiente virtual com o nome `env`.
+
+2. **Ative o ambiente virtual**: Após criar o ambiente virtual, você precisa ativá-lo. No Windows, você pode fazer isso com o comando:
+   ```
+   env\Scripts\activate
+   ```
+   No macOS e Linux:
+   ```
+   source env/bin/activate
+   ```
+
+3. **Instale o Django**: Com o ambiente virtual ativado, você pode instalar o Django:
+   ```
+   pip install django
+   ```
+
+4. **Crie um novo projeto Django**: Agora que o Django está instalado, você pode criar um novo projeto Django. No terminal, navegue até o diretório onde você deseja criar seu projeto e execute o seguinte comando:
+   ```
+   django-admin startproject core .
+   ```
+
+   Isso criará uma pasta chamada `core` com a estrutura inicial do seu projeto Django.
+
+5. **Navegue até a pasta do seu projeto**: Use o comando `cd` para entrar na pasta do seu projeto recém-criado:
+   ```
+   cd core
+   ```
+
+6. **Execute o servidor de desenvolvimento**: Para testar se seu projeto foi criado corretamente, você pode iniciar o servidor de desenvolvimento do Django. Use o seguinte comando:
+   ```
+   python manage.py runserver
+   ```
+
+   Isso iniciará um servidor de desenvolvimento local que você pode acessar no seu navegador.
+
+A partir daí, você pode começar a desenvolver seu projeto Django, criando aplicativos, modelos, visualizações, etc. Para criar um aplicativo dentro do seu projeto, você pode usar o comando `python manage.py startapp users` e `python manage.py startapp authentication`.
+
+Lembre-se de consultar a documentação oficial do Django (https://docs.djangoproject.com) para obter mais informações detalhadas sobre como iniciar e desenvolver projetos Django.

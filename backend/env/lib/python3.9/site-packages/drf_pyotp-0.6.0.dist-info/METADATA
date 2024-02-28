@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: drf-pyotp
+Version: 0.6.0
+Summary: Rest extension of PyOTP python library, Here OTP generation and Verification is done via DRF APIs.
+Home-page: https://github.com/inforian/drf-pyotp
+Author: Neeraj Dhiman
+Author-email: ndhiman08@gmail.com
+License: GPL
+Download-URL: https://github.com/inforian/drf-pyotp/archive/v0.5.5.tar.gz
+Keywords: otp,pyotp,totp,hotp,drf-pyotp
+Platform: UNKNOWN
+Requires-Dist: Django (>=2.2.28)
+Requires-Dist: djangorestframework (>=3.11.2)
+Requires-Dist: pyotp (>=2.2.4)
+
+UNKNOWN
+
+
