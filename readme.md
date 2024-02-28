@@ -1,6 +1,245 @@
 #	In English
 
-aaa
+Here's the translation and Django models for the given entities:
+
+### Entities and their attributes:
+
+1. **Product:**
+   - Name
+   - Description
+   - Price
+   - Raw material
+   - Category
+   - Subcategory
+
+2. **Category:**
+   - Name
+   - Description
+
+3. **Subcategory:**
+   - Name
+   - Description
+   - Belongs to Category
+
+4. **Raw material:**
+   - Name
+   - Description
+   - Category
+
+5. **Professional:**
+   - Name
+   - Position
+   - Email
+   - Phone
+   - Address
+
+6. **Sale:**
+   - Selected products
+   - Responsible professional
+   - Customer
+   - Payment type
+   - Date and time
+   - Alternative price
+
+7. **Image:**
+   - URL
+   - Description
+   - Type (Product or Raw material)
+
+8. **Customer:**
+   - Name
+   - Email
+   - Phone
+   - Address
+
+### Functional Requirements:
+
+1. **Product:**
+   - Add product
+   - Edit product
+   - Delete product
+   - Show product
+   - Upload product images
+   - Delete product image
+   - Select product cover image
+   - Select or upload raw material
+   - Select or upload categories or subcategories
+
+2. **Category:**
+   - List categories
+   - Add category
+   - Update category
+   - Read category
+   - Delete category
+
+3. **Subcategory:**
+   - List subcategories
+   - Add subcategory
+   - Update subcategory
+   - Read subcategory
+   - Delete subcategory
+
+4. **Raw material:**
+   - List raw materials
+   - Add raw material
+   - Update raw material
+   - Read raw material
+   - Delete raw material
+   - Upload raw material images
+   - Delete raw material image
+   - Upload raw material cover image
+
+5. **Professional:**
+   - Create professional
+   - Edit professional
+   - Delete professional
+   - Show professional
+   - List professionals
+
+6. **Sale:**
+   - Create sale
+   - Select or register professional
+   - Select or register customer
+   - Select payment type
+   - Search product
+   - List product with cover
+
+7. **Image:**
+   - Add image
+   - View image
+   - Delete image
+   - Associate image with product
+   - Associate image with raw material
+   - List images by type (Product or Raw material)
+   - Update image description
+
+8. **Customer:**
+   - Add customer
+   - Edit customer
+   - Delete customer
+   - Show customer
+   - List customers
+   - Search customer
+   - Associate customer with sale
+
+### Django Models:
+
+```python
+from django.db import models
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+class Subcategory(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+class RawMaterial(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    raw_material = models.ForeignKey(RawMaterial, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
+
+class Professional(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+
+class Sale(models.Model):
+    products = models.ManyToManyField(Product)
+    professional = models.ForeignKey(Professional, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    payment_type = models.CharField(max_length=100)
+    date_time = models.DateTimeField()
+    alternative_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Image(models.Model):
+    url = models.URLField()
+    description = models.TextField()
+    IMAGE_TYPES = (
+        ('Product', 'Product'),
+        ('Raw material', 'Raw material')
+    )
+    type = models.CharField(max_length=20, choices=IMAGE_TYPES)
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+class RawMaterialImage(models.Model):
+    raw_material = models.ForeignKey(RawMaterial, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+class Sale(models.Model):
+    products = models.ManyToManyField(Product)
+    professional = models.ForeignKey(Professional, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    payment_type = models.CharField(max_length=100)
+    date_time = models.DateTimeField()
+    alternative_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+class ClientSale(models.Model):
+    client = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
+
+class ProductSale(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+class Subcategory(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+class RawMaterial(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    raw_material = models.ForeignKey(RawMaterial, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
+
+class Professional(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+```
+
+These models should cover the remaining functionalities and associations between entities in the Django app. Let me know if you need further assistance!
 
 
 
