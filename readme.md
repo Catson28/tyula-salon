@@ -128,4 +128,32 @@ Claro, aqui está a lista completa de entidades e seus atributos, juntamente com
    - Procurar cliente
    - Associar cliente a venda
 
-Esta lista oferece uma visão abrangente das entidades, seus atributos e os requisitos funcionais associados ao sistema proposto.
+
+#  Instalacao do react tsx
+
+Para instalar React com TypeScript, você pode seguir estes passos:
+
+1. **Criar um novo projeto React**:
+   Você pode iniciar um novo projeto React com TypeScript usando o `create-react-app`, que é uma ferramenta oficial para criar rapidamente projetos React.
+
+   ```bash
+   npx create-react-app frontend --template typescript
+   ```
+
+   Este comando cria um novo projeto React chamado `frontend` com o template TypeScript.
+
+2. **Navegar para o diretório do projeto**:
+   Depois que o projeto for criado, navegue para o diretório recém-criado:
+
+   ```bash
+   cd frontend
+   ```
+
+3. **Iniciar o aplicativo**:
+   Inicie o aplicativo usando npm ou yarn:
+
+   ```bash
+   npm start
+   # ou
+   yarn start
+   ```
