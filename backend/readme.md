@@ -37,3 +37,53 @@ pip install typing-extensions==4.8.0
 ```
 
 Isso instalará todas as dependências listadas para o seu projeto Django. Certifique-se de executar esses comandos no ambiente virtual do seu projeto, se estiver usando um.
+
+
+#   script para criar os aplicativos dentro da pasta "apps" 
+
+E fornecer instruções sobre como executá-lo.
+
+Aqui está o script:
+
+```python
+import os
+import subprocess
+
+apps_names = ['product', 'category', 'subcategory', 'material', 'professional', 'sale', 'image', 'customer']  # Lista de nomes de aplicativos
+
+# Diretório onde o script está localizado
+diretorio_script = os.path.dirname(os.path.abspath(__file__))
+print(diretorio_script)
+
+# Diretório onde o projeto Django está localizado
+# diretorio_projeto = os.path.dirname(diretorio_script)
+diretorio_projeto = diretorio_script
+print(diretorio_projeto)
+
+# Diretório onde a pasta "apps" será criada
+diretorio_apps = os.path.join(diretorio_projeto, 'apps')
+
+# Cria a pasta "apps" se não existir
+if not os.path.exists(diretorio_apps):
+    os.mkdir(diretorio_apps)
+
+# Navega para o diretório "apps" para criar os aplicativos dentro dela
+os.chdir(diretorio_apps)
+
+# Cria os aplicativos
+for app_name in apps_names:
+    subprocess.run(['python', '../manage.py', 'startapp', app_name])
+```
+
+Para executar este script, siga estes passos:
+
+1. Salve o script em um arquivo Python, por exemplo, `create_apps.py`.
+2. Coloque o script na raiz do seu projeto Django.
+3. Abra um terminal ou prompt de comando na raiz do projeto.
+4. Execute o script usando o comando:
+
+```
+python create_apps.py
+```
+
+Isso criará os aplicativos dentro da pasta "apps" do seu projeto Django, com os nomes especificados na lista `apps_names`. Certifique-se de ajustar os nomes dos aplicativos conforme necessário.
