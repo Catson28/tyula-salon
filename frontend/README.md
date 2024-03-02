@@ -535,3 +535,78 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+```bash
+
+
+mkdir category
+touch category/ListCategories.tsx
+touch category/AddCategory.tsx
+touch category/UpdateCategory.tsx
+touch category/ReadCategory.tsx
+touch category/DeleteCategory.tsx
+
+mkdir customer
+touch customer/AddCustomer.tsx
+touch customer/EditCustomer.tsx
+touch customer/DeleteCustomer.tsx
+touch customer/ShowCustomer.tsx
+touch customer/ListCustomers.tsx
+touch customer/SearchCustomer.tsx
+touch customer/AssociateCustomerWithSale.tsx
+
+mkdir image
+touch image/AddImage.tsx
+touch image/ViewImage.tsx
+touch image/DeleteImage.tsx
+touch image/AssociateImageWithProduct.tsx
+touch image/AssociateImageWithRawMaterial.tsx
+touch image/ListImagesByType.tsx
+touch image/UpdateImageDescription.tsx
+
+mkdir material
+touch material/ListRawMaterials.tsx
+touch material/AddRawMaterial.tsx
+touch material/UpdateRawMaterial.tsx
+touch material/ReadRawMaterial.tsx
+touch material/DeleteRawMaterial.tsx
+touch material/UploadRawMaterialImage.tsx
+touch material/DeleteRawMaterialImage.tsx
+touch material/UploadRawMaterialCoverImage.tsx
+
+mkdir product
+touch product/AddProduct.tsx
+touch product/EditProduct.tsx
+touch product/DeleteProduct.tsx
+touch product/ShowProduct.tsx
+touch product/UploadProductImage.tsx
+touch product/DeleteProductImage.tsx
+touch product/SelectProductCoverImage.tsx
+touch product/SelectOrUploadRawMaterial.tsx
+touch product/SelectOrUploadCategories.tsx
+
+mkdir professional
+touch professional/CreateProfessional.tsx
+touch professional/EditProfessional.tsx
+touch professional/DeleteProfessional.tsx
+touch professional/ShowProfessional.tsx
+touch professional/ListProfessionals.tsx
+
+mkdir sale
+touch sale/CreateSale.tsx
+touch sale/SelectOrRegisterProfessional.tsx
+touch sale/SelectOrRegisterCustomer.tsx
+touch sale/SelectPaymentType.tsx
+touch sale/SearchProduct.tsx
+touch sale/ListProductWithCover.tsx
+
+mkdir subcategory
+touch subcategory/ListSubcategories.tsx
+touch subcategory/AddSubcategory.tsx
+touch subcategory/UpdateSubcategory.tsx
+touch subcategory/ReadSubcategory.tsx
+touch subcategory/DeleteSubcategory.tsx
+
+
+```
