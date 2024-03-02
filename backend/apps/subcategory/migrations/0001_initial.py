@@ -9,14 +9,12 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("subcategory", "__first__"),
         ("category", "0001_initial"),
-        ("material", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name="Product",
+            name="Subcategory",
             fields=[
                 (
                     "id",
@@ -29,29 +27,12 @@ class Migration(migrations.Migration):
                 ),
                 ("name", models.CharField(max_length=100)),
                 ("description", models.TextField()),
-                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
                 (
                     "category",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="cat_prod",
+                        related_name="category_child",
                         to="category.category",
-                    ),
-                ),
-                (
-                    "raw_material",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="mat_prod",
-                        to="material.rawmaterial",
-                    ),
-                ),
-                (
-                    "subcategory",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="subcat_prod",
-                        to="subcategory.subcategory",
                     ),
                 ),
             ],
