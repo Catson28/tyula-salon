@@ -602,4 +602,82 @@ cd backend
 
 A partir daí, você pode começar a desenvolver seu projeto Django, criando aplicativos, modelos, visualizações, etc. Para criar um aplicativo dentro do seu projeto, você pode usar o comando `python manage.py startapp users` e `python manage.py startapp authentication`.
 
-Lembre-se de consultar a documentação oficial do Django (https://docs.djangoproject.com) para obter mais informações detalhadas sobre como iniciar e desenvolver projetos Django.
+Claro, abaixo estão os exemplos de como você pode definir as requisições Axios para cada uma dessas rotas usando React com TypeScript:
+
+```typescript
+import axios from 'axios';
+
+const API_URL = 'http://localhost:8000/';
+
+// Rotas relacionadas aos produtos
+export const addProduct = (productData: any) => axios.post(`${API_URL}product/add/`, productData);
+export const editProduct = (productId: number, productData: any) => axios.put(`${API_URL}product/edit/${productId}/`, productData);
+export const deleteProduct = (productId: number) => axios.delete(`${API_URL}product/delete/${productId}/`);
+export const showProduct = (productId: number) => axios.get(`${API_URL}product/show/${productId}/`);
+export const uploadProductImage = (imageData: any) => axios.post(`${API_URL}product/upload-image/`, imageData);
+export const deleteProductImage = (imageId: number) => axios.delete(`${API_URL}product/delete-image/${imageId}/`);
+export const selectProductCoverImage = (imageId: number) => axios.put(`${API_URL}product/select-cover-image/${imageId}/`);
+export const selectOrUploadRawMaterial = (materialData: any) => axios.post(`${API_URL}product/select-or-upload-raw-material/`, materialData);
+export const selectOrUploadCategories = (categoryData: any) => axios.post(`${API_URL}product/select-or-upload-categories/`, categoryData);
+
+// Rotas relacionadas às categorias
+export const listCategories = () => axios.get(`${API_URL}category/list/`);
+export const addCategory = (categoryData: any) => axios.post(`${API_URL}category/add/`, categoryData);
+export const updateCategory = (categoryId: number, categoryData: any) => axios.put(`${API_URL}category/update/${categoryId}/`, categoryData);
+export const readCategory = (categoryId: number) => axios.get(`${API_URL}category/read/${categoryId}/`);
+export const deleteCategory = (categoryId: number) => axios.delete(`${API_URL}category/delete/${categoryId}/`);
+
+// Rotas relacionadas às subcategorias
+export const listSubcategories = () => axios.get(`${API_URL}subcategory/list/`);
+export const addSubcategory = (subcategoryData: any) => axios.post(`${API_URL}subcategory/add/`, subcategoryData);
+export const updateSubcategory = (subcategoryId: number, subcategoryData: any) => axios.put(`${API_URL}subcategory/update/${subcategoryId}/`, subcategoryData);
+export const readSubcategory = (subcategoryId: number) => axios.get(`${API_URL}subcategory/read/${subcategoryId}/`);
+export const deleteSubcategory = (subcategoryId: number) => axios.delete(`${API_URL}subcategory/delete/${subcategoryId}/`);
+
+// Rotas relacionadas aos materiais brutos
+export const listRawMaterials = () => axios.get(`${API_URL}raw-material/list/`);
+export const addRawMaterial = (materialData: any) => axios.post(`${API_URL}raw-material/add/`, materialData);
+export const updateRawMaterial = (materialId: number, materialData: any) => axios.put(`${API_URL}raw-material/update/${materialId}/`, materialData);
+export const readRawMaterial = (materialId: number) => axios.get(`${API_URL}raw-material/read/${materialId}/`);
+export const deleteRawMaterial = (materialId: number) => axios.delete(`${API_URL}raw-material/delete/${materialId}/`);
+export const uploadRawMaterialImage = (imageData: any) => axios.post(`${API_URL}raw-material/upload-image/`, imageData);
+export const deleteRawMaterialImage = (imageId: number) => axios.delete(`${API_URL}raw-material/delete-image/${imageId}/`);
+export const uploadRawMaterialCoverImage = (imageData: any) => axios.post(`${API_URL}raw-material/upload-cover-image/`, imageData);
+
+// Rotas relacionadas aos profissionais
+export const createProfessional = (professionalData: any) => axios.post(`${API_URL}professional/create/`, professionalData);
+export const editProfessional = (professionalId: number, professionalData: any) => axios.put(`${API_URL}professional/edit/${professionalId}/`, professionalData);
+export const deleteProfessional = (professionalId: number) => axios.delete(`${API_URL}professional/delete/${professionalId}/`);
+export const showProfessional = (professionalId: number) => axios.get(`${API_URL}professional/show/${professionalId}/`);
+export const listProfessionals = () => axios.get(`${API_URL}professional/list/`);
+
+// Rotas relacionadas às vendas
+export const createSale = (saleData: any) => axios.post(`${API_URL}sale/create/`, saleData);
+export const selectOrRegisterProfessional = (professionalData: any) => axios.post(`${API_URL}sale/select-or-register-professional/`, professionalData);
+export const selectOrRegisterCustomer = (customerData: any) => axios.post(`${API_URL}sale/select-or-register-customer/`, customerData);
+export const selectPaymentType = (paymentData: any) => axios.post(`${API_URL}sale/select-payment-type/`, paymentData);
+export const searchProduct = (query: string) => axios.get(`${API_URL}sale/search-product/?q=${query}`);
+export const listProductWithCover = () => axios.get(`${API_URL}sale/list-product-with-cover/`);
+
+// Rotas relacionadas às imagens
+export const addImage = (imageData: any) => axios.post(`${API_URL}image/add/`, imageData);
+export const viewImage = (imageId: number) => axios.get(`${API_URL}image/view/${imageId}/`);
+export const deleteImage = (imageId: number) => axios.delete(`${API_URL}image/delete/${imageId}/`);
+export const associateImageWithProduct = (imageData: any) => axios.post(`${API_URL}image/associate-with-product/`, imageData);
+export const associateImageWithRawMaterial = (imageData: any) => axios.post(`${API_URL}image/associate-with-raw-material/`, imageData);
+export const listImagesByType = (type: string) => axios.get(`${API_URL}image/list-by-type/?type=${type}`);
+export const updateImageDescription = (imageId: number, description: string) => axios.put(`${API_URL}image/update-description/${imageId}/`, { description });
+
+// Rotas relacionadas aos clientes
+export const addCustomer = (customerData: any) => axios.post(`${API_URL}customer/add/`, customerData);
+export const editCustomer = (customerId: number, customerData: any) => axios.put(`${API_URL}customer/edit/${customerId}/`, customerData);
+export const deleteCustomer = (customerId: number) => axios.delete(`${API_URL}customer/delete/${customerId}/`);
+export const showCustomer = (customerId: number) => axios.get(`${API_URL}customer/show/${customerId}/`);
+export const listCustomers = () => axios.get(`${API_URL}customer/list/`);
+export const searchCustomer = (query: string) => axios.get(`${API_URL}customer/search/?q=${query}`);
+export const associateCustomerWithSale = (customerId: number, saleId: number) => axios.post(`${API_URL}customer/associate-with-sale/`, { customerId, saleId });
+```
+
+Isso deve criar funções Axios para cada rota especificada na sua API Django, permitindo que
+
+ você faça solicitações HTTP a esses endpoints a partir do seu aplicativo React com TypeScript.
