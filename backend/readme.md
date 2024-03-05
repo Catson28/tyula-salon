@@ -87,3 +87,50 @@ python create_apps.py
 ```
 
 Isso criará os aplicativos dentro da pasta "apps" do seu projeto Django, com os nomes especificados na lista `apps_names`. Certifique-se de ajustar os nomes dos aplicativos conforme necessário.
+
+
+Para reduzir a resolução de uma imagem enviada através de uma API Django, você pode usar a biblioteca Python PIL (Python Imaging Library), que é uma biblioteca de processamento de imagem bastante popular em Python. Aqui está um exemplo de como você pode fazer isso:
+
+1. Instale a biblioteca `Pillow`, que é um fork atualizado da PIL:
+
+```bash
+pip install Pillow
+```
+
+2. Em sua view Django, onde você recebe a imagem, você pode manipulá-la da seguinte maneira:
+
+```python
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
+def sua_view(request):
+    if request.method == 'POST':
+        # Supondo que a imagem seja enviada como parte do formulário com o nome 'imagem'
+        imagem = request.FILES['imagem']
+
+        # Abre a imagem usando PIL
+        img = Image.open(imagem)
+
+        # Define a nova largura e altura desejada (resolução reduzida)
+        nova_largura = 800
+        nova_altura = 600
+
+        # Redimensiona a imagem
+        img_resized = img.resize((nova_largura, nova_altura), Image.ANTIALIAS)
+
+        # Salva a imagem redimensionada em um BytesIO para que possa ser usada como um arquivo de upload
+        img_io = BytesIO()
+        img_resized.save(img_io, format='JPEG')
+
+        # Cria um arquivo de upload Django InMemoryUploadedFile
+        img_file = InMemoryUploadedFile(
+            img_io, None, 'image.jpg', 'image/jpeg', img_io.tell(), None
+        )
+
+        # Agora você pode usar img_file onde precisar, como salvá-lo no banco de dados ou no sistema de arquivos
+
+    # Lógica adicional da sua view
+```
+
+Este exemplo redimensiona a imagem para uma largura máxima de 800 pixels e uma altura máxima de 600 pixels, mantendo a proporção original. Você pode ajustar `nova_largura` e `nova_altura` conforme necessário para atender aos requisitos específicos do seu aplicativo. Além disso, este exemplo salva a imagem redimensionada em formato JPEG; você pode alterar o formato conforme necessário.

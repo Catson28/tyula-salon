@@ -539,7 +539,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ```bash
 
-
 mkdir category
 touch category/ListCategories.tsx
 touch category/AddCategory.tsx
@@ -607,6 +606,5 @@ touch subcategory/AddSubcategory.tsx
 touch subcategory/UpdateSubcategory.tsx
 touch subcategory/ReadSubcategory.tsx
 touch subcategory/DeleteSubcategory.tsx
-
 
 ```

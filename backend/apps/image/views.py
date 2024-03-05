@@ -7,6 +7,7 @@ from .serializers import ImageSerializer, ProductImageSerializer, RawMaterialIma
 @api_view(['POST'])
 def add_image(request):
     serializer = ImageSerializer(data=request.data)
+    print(request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
