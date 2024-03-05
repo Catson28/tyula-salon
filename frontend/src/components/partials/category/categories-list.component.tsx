@@ -5,7 +5,9 @@ import ICategoryData from '../../../services/types/category.type';
 
 type Props = {
   onClose: () => void;
+  onEditCategory: (category: ICategoryData) => void; // Adicionando propriedade para manipular a edição da categoria no pai
 };
+
 
 type State = {
   categories: Array<ICategoryData>,
@@ -168,13 +170,19 @@ export default class CategoriesList extends Component<Props, State>{
                 </label>{" "}
                 {currentCategory.description}
               </div>
-
-              <Link
+                  {/* Botão para editar a categoria */}
+                  <button
+                    className="btn btn-sm badge badge-warning btn-warning ml-2"
+                    onClick={() => this.props.onEditCategory(currentCategory)}
+                  >
+                    Edit
+                  </button>
+              {/*<Link
                 to={"/categories/" + currentCategory.id}
                 className="m-3 btn btn-sm badge badge-warning btn-warning"
-              >
+          >
                 Edit
-              </Link>
+              </Link>*/}
             </div>
           ) : (
             <div>

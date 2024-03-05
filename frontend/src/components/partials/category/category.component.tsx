@@ -8,7 +8,11 @@ interface RouterProps {
   id?: string;
 }
 
-type Props = {};
+type Props = {
+  id: string; // Adicione a propriedade id ao tipo Props
+  onEdit: (updatedCategory: ICategoryData) => void;
+};
+
 
 const Category: React.FC<Props> = () => {
   const { id } = useParams<{ id: string }>();

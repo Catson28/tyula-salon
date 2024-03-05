@@ -5,10 +5,14 @@ import TutorialsList from './../../partials/tutorial/tutorials-list.component';
 
 import AddCategory from './../../partials/category/add-category.component';
 import CategoriesList from './../../partials/category/categories-list.component';
+import Category from './../../partials/category/category.component';
+import CategoryDataService from "../../../services/net/category.service";
+import ICategoryData from "../../../services/types/category.type";
 
 const AllBeauty: React.FC = () => {
   const [showTutorialForm, setShowTutorialForm] = useState<boolean>(false);
   const [showTutorialsList, setShowTutorialsList] = useState<boolean>(false);
+  const [currentCategory, setCurrentCategory] = useState<ICategoryData | null>(null);
 
 
   const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
@@ -54,6 +58,22 @@ const AllBeauty: React.FC = () => {
     setShowCategoryForm(false);
   };
 
+  const handleEditCategory = (category: ICategoryData) => {
+    setCurrentCategory(category);
+  };
+
+  const handleUpdateCategory = (updatedCategory: ICategoryData) => {
+    CategoryDataService.update(updatedCategory, updatedCategory.id)
+      .then((response: any) => {
+        // Atualize a lista de categorias ou faça qualquer outra ação necessária
+        // Aqui você pode definir o estado do currentCategory de volta para null
+        setCurrentCategory(null);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
+
   return (
     <div className="container-fluid">
       <div className="container">
@@ -72,12 +92,23 @@ const AllBeauty: React.FC = () => {
           <h2 id="vertical-variation">Lista de Categorias<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
           <button type="button" className="btn btn-primary" onClick={handleCategoriesListClick}>Abrir</button>
           <button type="button" className="btn btn-primary" onClick={handleAddCategoryClick}>Adicionar</button>
-        </div>
+        </div>{/*
         {showCategoryForm && (
           <AddCategory onClose={handleCategoryClose} />
         )}
         {showCategoriesList && (
           <CategoriesList onClose={handleCategoryClose} />
+        )}
+         */}
+        {showCategoryForm && (
+          <AddCategory onClose={() => setShowCategoryForm(false)} />
+        )}
+        {showCategoriesList && (
+          <CategoriesList onClose={() => setShowCategoriesList(false)} onEditCategory={handleEditCategory} />
+        )}
+
+        {currentCategory && (
+          <Category id={currentCategory.id} onEdit={handleUpdateCategory} />
         )}
       </div>
     </div>
