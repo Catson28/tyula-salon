@@ -1,6 +1,5 @@
 import React, { Component, ChangeEvent } from "react";
 import CategoryDataService from "../../../services/net/category.service";
-import { Link } from "react-router-dom";
 import ICategoryData from '../../../services/types/category.type';
 
 type Props = {
@@ -177,17 +176,12 @@ export default class CategoriesList extends Component<Props, State>{
                   >
                     Edit
                   </button>
-              {/*<Link
-                to={"/categories/" + currentCategory.id}
-                className="m-3 btn btn-sm badge badge-warning btn-warning"
-          >
-                Edit
-              </Link>*/}
+
             </div>
           ) : (
             <div>
               <br />
-              <p>Please click on a Category...</p>
+              <p>(Lista) --- Please click on a Category...</p>
             </div>
           )}
           <button className="btn btn-primary" onClick={this.props.onClose}>Fechar</button>

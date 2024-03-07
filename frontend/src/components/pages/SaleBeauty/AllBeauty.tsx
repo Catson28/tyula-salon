@@ -59,10 +59,17 @@ const AllBeauty: React.FC = () => {
   };
 
   const handleEditCategory = (category: ICategoryData) => {
-    setCurrentCategory(category);
+    if (category) {
+      setCurrentCategory(category);
+      // alert(JSON.stringify(currentCategory));
+      // alert(JSON.stringify(setCurrentCategory(category)));
+    }
+    // setCurrentCategory(category);
+    // alert(JSON.stringify(category));
   };
 
   const handleUpdateCategory = (updatedCategory: ICategoryData) => {
+    // alert(JSON.stringify(currentCategory));
     CategoryDataService.update(updatedCategory, updatedCategory.id)
       .then((response: any) => {
         // Atualize a lista de categorias ou faça qualquer outra ação necessária
@@ -108,6 +115,7 @@ const AllBeauty: React.FC = () => {
         )}
 
         {currentCategory && (
+          /*<Category id={currentCategory.id} onEdit={handleUpdateCategory} />*/
           <Category id={currentCategory.id} onEdit={handleUpdateCategory} />
         )}
       </div>

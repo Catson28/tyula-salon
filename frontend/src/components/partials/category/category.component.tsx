@@ -23,7 +23,9 @@ const Category: React.FC<Props> = () => {
     description: "",
   });
   const [message, setMessage] = useState<string>("");
+  // alert(JSON.stringify("currentCategory"));
 
+  // alert(JSON.stringify(currentCategory));
   useEffect(() => {
     if (id) {
       getCategory(id);
@@ -79,6 +81,8 @@ const Category: React.FC<Props> = () => {
       });
   };
 
+  
+  // alert(JSON.stringify(c cxdrefurrentCategory));
   return (
     <div>
       {id && currentCategory ? (
@@ -127,7 +131,7 @@ const Category: React.FC<Props> = () => {
       ) : (
         <div>
           <br />
-          <p>Please click on a Category...</p>
+          <p>({JSON.stringify(currentCategory)}) --- Please click on a Category...</p>
         </div>
       )}
     </div>
