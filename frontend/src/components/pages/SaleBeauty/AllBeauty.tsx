@@ -17,6 +17,8 @@ const AllBeauty: React.FC = () => {
 
   const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
   const [showCategoriesList, setShowCategoriesList] = useState<boolean>(false);
+  const categoriesButtonViewText = showCategoriesList ? "Fechar" : "Abrir";
+  const categoriesButtonAddText = showCategoryForm ? "Fechar" : "Adicionar";
 
 
   const handleTutorialClose = () => {
@@ -40,20 +42,21 @@ const AllBeauty: React.FC = () => {
   };
 
   const handleCategoriesListClick = () => {
-    handleCategoryClose();
-    setShowCategoriesList(true);
+    if (showCategoriesList) {
+      handleCategoryClose();
+    } else {
+      handleCategoryClose();
+      setShowCategoriesList(true);
+    }
   };
   
   const handleAddCategoryClick = () => {
-    if (setShowCategoryForm) {
-      handleCategoryClose();
-      setShowCategoryForm(true);
-      console.log("setShowCategoryForm está definido como true");
-  } else {
-      console.log("setShowCategoryForm não está definido como true");
-      handleCategoryClose();
-  }
-  
+      if (showCategoryForm) {
+        handleCategoryClose();
+      } else {
+        handleCategoryClose();
+        setShowCategoryForm(true);
+      }
   };
 
   const handleEditCategory = (category: ICategoryData) => {
@@ -65,17 +68,12 @@ const AllBeauty: React.FC = () => {
   const handleUpdateCategory = (updatedCategory: ICategoryData) => {
     CategoryDataService.update(updatedCategory, updatedCategory.id)
       .then((response: any) => {
-        // Atualize a lista de categorias ou faça qualquer outra ação necessária
-        // Aqui você pode definir o estado do currentCategory de volta para null
-        // setCurrentCategory(null);
-        setCurrentCategory(currentCategory);
+        // setCurrentCategory(currentCategory);
       })
       .catch((e: Error) => {
         console.log(e);
       });
   };
-
-
 
   useEffect(() => {
     if (!currentCategory) {
@@ -83,8 +81,6 @@ const AllBeauty: React.FC = () => {
       console.log("Categoria atualizada:", currentCategory);
       JSON.stringify(currentCategory)
       setCurrentCategory(currentCategory);
-      // Exemplo de como fazer uma solicitação de API com base na categoria atual
-      // fetchDataBasedOnCategory(currentCategory);
     }
   }, [currentCategory]);
   
@@ -105,8 +101,9 @@ const AllBeauty: React.FC = () => {
         )}
         <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
           <h2 id="vertical-variation">Lista de Categorias<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
-          <button type="button" className="btn btn-primary" onClick={handleCategoriesListClick}>Abrir</button>
-          <button type="button" className="btn btn-primary" onClick={handleAddCategoryClick}>Adicionar</button>
+          <button type="button" className="btn btn-primary" onClick={handleCategoriesListClick}>{categoriesButtonViewText}</button>
+
+          <button type="button" className="btn btn-primary" onClick={handleAddCategoryClick}>{categoriesButtonAddText}</button>
         </div>
         {showCategoryForm && (
           <AddCategory onClose={() => setShowCategoryForm(false)} />

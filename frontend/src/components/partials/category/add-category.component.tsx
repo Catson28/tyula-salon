@@ -111,7 +111,6 @@ export default class AddCategory extends Component<Props, State> {
             <button onClick={this.saveCategory} className="btn btn-success">
               Submit
             </button>
-            <button className="btn btn-primary" onClick={this.props.onClose}>Fechar</button>
           </div>
         )}
       </div>

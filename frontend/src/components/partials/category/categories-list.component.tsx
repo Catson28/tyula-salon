@@ -184,7 +184,6 @@ export default class CategoriesList extends Component<Props, State>{
               <p>(Lista) --- Please click on a Category...</p>
             </div>
           )}
-          <button className="btn btn-primary" onClick={this.props.onClose}>Fechar</button>
         </div>
       </div>
     );
