@@ -4,18 +4,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import CategoryDataService from "../../../services/net/category.service";
 import ICategoryData from "../../../services/types/category.type";
 
-interface RouterProps {
-  id?: string;
-}
-
-type Props = {
+interface Props {
   id: string; // Adicione a propriedade id ao tipo Props
   onEdit: (updatedCategory: ICategoryData) => void;
 };
 
+const Category: React.FC<Props> = ({ id, onEdit }) => {
 
-const Category: React.FC<Props> = () => {
-  const { id } = useParams<{ id: string }>();
+// const Category: React.FC<Props> = () => {
+  // const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [currentCategory, setCurrentCategory] = useState<ICategoryData>({
     id: "",
@@ -23,7 +21,7 @@ const Category: React.FC<Props> = () => {
     description: "",
   });
   const [message, setMessage] = useState<string>("");
-  // alert(JSON.stringify("currentCategory"));
+  // alert(JSON.stringify(onEdit));
 
   // alert(JSON.stringify(currentCategory));
   useEffect(() => {

@@ -7,7 +7,7 @@ class CategoryDataService {
   }
 
   get(id: string) {
-    return http.get<ICategoryData>(`api/categories/${id}`);
+    return http.get<ICategoryData>(`api/categories/read/${id}/`);
   }
 
   create(data: ICategoryData) {
@@ -15,19 +15,19 @@ class CategoryDataService {
   }
 
   update(data: ICategoryData, id: any) {
-    return http.put<any>(`api/categories/${id}`, data);
+    return http.put<any>(`api/categories/update/${id}/`, data);
   }
 
   delete(id: any) {
-    return http.delete<any>(`api/categories/delete/${id}`);
+    return http.delete<any>(`api/categories/delete/${id}/`);
   }
 
   deleteAll() {
-    return http.delete<any>(`api/categories`);
+    return http.delete<any>(`api/categories/deleteAll/`);
   }
 
   findByName(name: string) {
-    return http.get<Array<ICategoryData>>(`api/categories?name=${name}`);
+    return http.get<Array<ICategoryData>>(`api/categories/search?name=${name}`);
   }
 }
 
