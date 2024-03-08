@@ -1,5 +1,5 @@
-import { useState, useEffect, ChangeEvent } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, ChangeEvent } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import CategoryDataService from "../../../services/net/category.service";
 import ICategoryData from "../../../services/types/category.type";
@@ -7,13 +7,10 @@ import ICategoryData from "../../../services/types/category.type";
 interface Props {
   id: string; // Adicione a propriedade id ao tipo Props
   onEdit: (updatedCategory: ICategoryData) => void;
+  onDelete: (categoryId: string) => void; // Adicione a propriedade onDelete ao tipo Props
 };
 
-const Category: React.FC<Props> = ({ id, onEdit }) => {
-
-// const Category: React.FC<Props> = () => {
-  // const { id } = useParams<{ id: string }>();
-  // const { id } = useParams<{ id: string }>();
+const Category: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   const navigate = useNavigate();
   const [currentCategory, setCurrentCategory] = useState<ICategoryData>({
     id: "",
@@ -21,9 +18,7 @@ const Category: React.FC<Props> = ({ id, onEdit }) => {
     description: "",
   });
   const [message, setMessage] = useState<string>("");
-  // alert(JSON.stringify(onEdit));
 
-  // alert(JSON.stringify(currentCategory));
   useEffect(() => {
     if (id) {
       getCategory(id);
@@ -63,6 +58,7 @@ const Category: React.FC<Props> = ({ id, onEdit }) => {
     )
       .then((response: any) => {
         setMessage("The category was updated successfully!");
+        onEdit(currentCategory);
       })
       .catch((e: Error) => {
         console.log(e);
@@ -72,15 +68,14 @@ const Category: React.FC<Props> = ({ id, onEdit }) => {
   const deleteCategory = () => {
     CategoryDataService.delete(currentCategory.id)
       .then((response: any) => {
-        navigate("/categories");
+        setMessage("The category was deleted successfully!");
+        onDelete(currentCategory.id); // Chama a função onDelete com o ID da categoria
       })
       .catch((e: Error) => {
         console.log(e);
       });
   };
-
   
-  // alert(JSON.stringify(c cxdrefurrentCategory));
   return (
     <div>
       {id && currentCategory ? (
@@ -108,15 +103,12 @@ const Category: React.FC<Props> = ({ id, onEdit }) => {
               />
             </div>
           </form>
-
-
           <button
             className="badge badge-danger mr-2"
             onClick={deleteCategory}
           >
             Delete
           </button>
-
           <button
             type="button"
             className="badge badge-success"

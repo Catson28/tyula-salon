@@ -1,4 +1,4 @@
-import http from "../../http-common";
+import http from "./base/http-common";
 
 const upload = (file: File, contentType: string, objectId: number, onUploadProgress: any): Promise<any> => {
   let formData = new FormData();

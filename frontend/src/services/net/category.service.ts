@@ -1,4 +1,4 @@
-import http from "../../http-common";
+import http from "./base/http-common";
 import ICategoryData from "../types/category.type"
 
 class CategoryDataService {
