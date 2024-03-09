@@ -1,10 +1,10 @@
 from django.db import models
-from apps.product.models import Product
+from apps.service.models import Service
 from apps.professional.models import Professional
 from apps.customer.models import Customer
 
 class Sale(models.Model):
-    products = models.ManyToManyField(Product)
+    services = models.ManyToManyField(Service)
     professional = models.ForeignKey(Professional, on_delete=models.CASCADE, related_name="profess_sale")
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="cust_sale")
     payment_type = models.CharField(max_length=100)
@@ -15,6 +15,6 @@ class ClientSale(models.Model):
     client = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="sale_clisal")
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name="clisal_sale")
 
-class ProductSale(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="sale_prodsal")
-    sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name="prodsal_sale")
+class ServiceSale(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="sale_servsal")
+    sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name="servsal_sale")

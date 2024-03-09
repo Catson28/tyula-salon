@@ -17,9 +17,10 @@ const HomePage: React.FC = () => {
             <Link to={"/items" } className="p-3 border bg-light">CRUDS CONTEXT API</Link>
           </div>
           <div className="col">
-            <div className="p-3 border bg-light">Row column</div>
+            <Link to={"/TestAllBeauty" } className="p-3 border bg-light">CRUDS Test</Link>
           </div>
           <div className="col">
+            <Link to={"/estilo" } className="p-3 border bg-light">estilos</Link>
             <div className="p-3 border bg-light">Row column</div>
           </div>
           <div className="col">

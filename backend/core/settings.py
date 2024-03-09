@@ -28,10 +28,10 @@ INSTALLED_APPS = [
     # Django REST framework 
     'rest_framework',
     'corsheaders',
-    "apps.product",
+    "apps.service",
     "apps.category",
     "apps.subcategory",
-    "apps.material",
+    "apps.product",
     "apps.professional",
     "apps.sale",
     "apps.image",

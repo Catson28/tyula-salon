@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-apps_names = ['product', 'category', 'subcategory', 'material', 'professional', 'sale', 'image', 'customer', 'authentication', 'users']  # Lista de nomes de aplicativos
+apps_names = ['product', 'category', 'subcategory', 'service', 'professional', 'sale', 'image', 'customer', 'authentication', 'users']  # Lista de nomes de aplicativos
 
 # Diretório onde o script está localizado
 diretorio_script = os.path.dirname(os.path.abspath(__file__))

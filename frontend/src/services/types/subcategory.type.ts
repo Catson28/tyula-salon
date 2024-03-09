@@ -1,8 +1,7 @@
-// subcategory.type.ts
-
 export default interface ISubcategoryData {
     id?: any | null,
-    name: string;
-    // outras propriedades, se houver
-}
+    name: string,
+    description: string,
+    category: string // Suponho que o campo "category" seja uma referência ao ID da categoria
+  }
   

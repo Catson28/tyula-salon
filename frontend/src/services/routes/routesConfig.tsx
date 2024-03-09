@@ -7,6 +7,9 @@ import LumeIt from '../../components/pages/LumeIt';
 import HomePage from '../../components/pages/AllRoutes/HomePage';
 import SaleBeauty from '../../components/pages/SaleBeauty';
 import AllBeauty from '../../components/pages/SaleBeauty/AllBeauty';
+import TestAllBeauty from '../../components/pages/SaleBeauty/TestAllBeauty';
+import NavbarComponent from '../../components/pages/SaleBeauty/NavbarComponent';
+
 // import AboutPage from '../../components/pages/AboutPage';
 // import ContactPage from '../../components/pages/ContactPage';
 
@@ -41,6 +44,14 @@ const routes: RouteConfig[] = [
   {
     path: '/AllBeauty',
     element: <AllBeauty />,
+  },
+  {
+    path: '/TestAllBeauty',
+    element: <TestAllBeauty />,
+  },
+  {
+    path: '/estilo',
+    element: <NavbarComponent />,
   }/*,
   {
     path: '/contact',

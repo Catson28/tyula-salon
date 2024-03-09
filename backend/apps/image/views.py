@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Image, ProductImage, RawMaterialImage
-from .serializers import ImageSerializer, ProductImageSerializer, RawMaterialImageSerializer
+from .models import Image, ServiceImage, Product
+from .serializers import ImageSerializer, ServiceImageSerializer, ProductSerializer
 
 @api_view(['POST'])
 def add_image(request):
@@ -26,8 +26,8 @@ def delete_image(request, image_id):
     return Response(status=204)
 
 @api_view(['POST'])
-def associate_image_with_product(request):
-    serializer = ProductImageSerializer(data=request.data)
+def associate_image_with_service(request):
+    serializer = ServiceImageSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
@@ -35,7 +35,7 @@ def associate_image_with_product(request):
 
 @api_view(['POST'])
 def associate_image_with_raw_material(request):
-    serializer = RawMaterialImageSerializer(data=request.data)
+    serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)

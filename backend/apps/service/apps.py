@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MaterialConfig(AppConfig):
+class ServiceConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.material"
+    name = "apps.service"

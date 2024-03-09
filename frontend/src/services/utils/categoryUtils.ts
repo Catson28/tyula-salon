@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
-import ICategoryData from "../types/category.type";
+import { useState } from 'react';
+import CategoryDataService from "./..//net/category.service";
+import ICategoryData from "./../types/category.type";
 
 export const useCategoryState = () => {
   const [currentCategory, setCurrentCategory] = useState<ICategoryData | null>(null);
   const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
   const [showCategory, setShowCategory] = useState<boolean>(false);
   const [showCategoriesList, setShowCategoriesList] = useState<boolean>(false);
-  const categoriesButtonViewText = showCategory || showCategoriesList ? "Fechar" : "Abrir";
-  const categoriesButtonAddText = showCategoryForm ? "Fechar" : "Adicionar";
   const [deletedCategoryId, setDeletedCategoryId] = useState<string | null>(null);
 
   const handleCategoryClose = () => {
@@ -24,14 +23,14 @@ export const useCategoryState = () => {
       setShowCategoriesList(true);
     }
   };
-
+  
   const handleAddCategoryClick = () => {
-    if (showCategoryForm) {
-      handleCategoryClose();
-    } else {
-      handleCategoryClose();
-      setShowCategoryForm(true);
-    }
+      if (showCategoryForm) {
+        handleCategoryClose();
+      } else {
+        handleCategoryClose();
+        setShowCategoryForm(true);
+      }
   };
 
   const handleEditCategory = (category: ICategoryData) => {
@@ -41,30 +40,43 @@ export const useCategoryState = () => {
       setShowCategory(true);
     }
   };
+  
+  const handleDeleteCategory = (categoryId: string) => {
+    CategoryDataService.delete(categoryId)
+      .then((response: any) => {
+        handleCategoryClose();
+        setDeletedCategoryId(categoryId);
+        setCurrentCategory(null);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
 
-  useEffect(() => {
-    if (!currentCategory && deletedCategoryId) {
-      setShowCategory(false);
-      setShowCategoriesList(false);
-    }
-  }, [currentCategory, deletedCategoryId]);
+  const handleUpdateCategory = (updatedCategory: ICategoryData) => {
+    CategoryDataService.update(updatedCategory, updatedCategory.id)
+      .then((response: any) => {
+        // setCurrentCategory(currentCategory);
+        handleCategoryClose();
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
 
   return {
     currentCategory,
-    setCurrentCategory,
     showCategoryForm,
-    setShowCategoryForm,
     showCategory,
-    setShowCategory,
     showCategoriesList,
-    setShowCategoriesList,
-    categoriesButtonViewText,
-    categoriesButtonAddText,
     deletedCategoryId,
-    setDeletedCategoryId,
-    handleCategoryClose,
+    setShowCategoryForm,
+    setShowCategory,
+    setShowCategoriesList,
     handleCategoriesListClick,
     handleAddCategoryClick,
-    handleEditCategory
+    handleEditCategory,
+    handleDeleteCategory,
+    handleUpdateCategory
   };
 };
