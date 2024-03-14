@@ -1,13 +1,17 @@
 import React, { Component, ChangeEvent } from "react";
 import SubcategoryDataService from "../../../services/net/subcategory.service";
 import ISubcategoryData from '../../../services/types/subcategory.type';
+import ICategoryData from '../../../services/types/category.type';
+import CategoryDataService from "../../../services/net/category.service";
 
 type Props = {
   onClose: () => void;
 };
 
 type State = ISubcategoryData & {
-  submitted: boolean
+  submitted: boolean;
+  categories: Array<ICategoryData>;
+  selectedCategory: string;
 };
 
 export default class AddSubcategory extends Component<Props, State> {
@@ -15,6 +19,7 @@ export default class AddSubcategory extends Component<Props, State> {
     super(props);
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
     this.saveSubcategory = this.saveSubcategory.bind(this);
     this.newSubcategory = this.newSubcategory.bind(this);
 
@@ -22,9 +27,24 @@ export default class AddSubcategory extends Component<Props, State> {
       id: null,
       name: "",
       description: "",
-      category: "", // Adicionando a propriedade de categoria
-      submitted: false
+      category: "",
+      submitted: false,
+      categories: [],
+      selectedCategory: ""
     };
+  }
+
+  componentDidMount() {
+    CategoryDataService.getAll()
+      .then((response: any) => {
+        this.setState({
+          categories: response.data
+        });
+        console.log(response.data);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
   }
 
   onChangeName(e: ChangeEvent<HTMLInputElement>) {
@@ -39,11 +59,17 @@ export default class AddSubcategory extends Component<Props, State> {
     });
   }
 
+  onChangeCategory(e: ChangeEvent<HTMLSelectElement>) {
+    this.setState({
+      selectedCategory: e.target.value
+    });
+  }
+
   saveSubcategory() {
     const data: ISubcategoryData = {
       name: this.state.name,
       description: this.state.description,
-      category: "" // Defina aqui o ID da categoria associada à subcategoria
+      category: this.state.selectedCategory
     };
 
     SubcategoryDataService.create(data)
@@ -73,7 +99,7 @@ export default class AddSubcategory extends Component<Props, State> {
   }
 
   render() {
-    const { submitted, name, description } = this.state;
+    const { submitted, name, description, categories, selectedCategory } = this.state;
 
     return (
       <div className="submit-form">
@@ -110,6 +136,23 @@ export default class AddSubcategory extends Component<Props, State> {
                 onChange={this.onChangeDescription}
                 name="description"
               />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="category">Category</label>
+              <select
+                className="form-control"
+                id="category"
+                required
+                value={selectedCategory}
+                onChange={this.onChangeCategory}
+                name="category"
+              >
+                <option value="">Select a category</option>
+                {categories.map((category: ICategoryData, index: number) => (
+                  <option key={index} value={category.id}>{category.name}</option>
+                ))}
+              </select>
             </div>
 
             <button onClick={this.saveSubcategory} className="btn btn-success">

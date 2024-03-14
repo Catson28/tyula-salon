@@ -418,3 +418,8 @@ export default interface ICategoryData {
   }
 ```
 
+category.service
+
+```tsx
+```
+

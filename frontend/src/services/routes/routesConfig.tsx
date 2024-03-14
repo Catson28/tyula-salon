@@ -8,7 +8,9 @@ import HomePage from '../../components/pages/AllRoutes/HomePage';
 import SaleBeauty from '../../components/pages/SaleBeauty';
 import AllBeauty from '../../components/pages/SaleBeauty/AllBeauty';
 import TestAllBeauty from '../../components/pages/SaleBeauty/TestAllBeauty';
+import Palavras from '../../components/pages/Palavras/Palavras';
 import NavbarComponent from '../../components/pages/SaleBeauty/NavbarComponent';
+// import ComponentSlider from '../../components/partials/carrocel/ComponentSlider';
 
 // import AboutPage from '../../components/pages/AboutPage';
 // import ContactPage from '../../components/pages/ContactPage';
@@ -52,6 +54,10 @@ const routes: RouteConfig[] = [
   {
     path: '/estilo',
     element: <NavbarComponent />,
+  },
+  {
+    path: '/palavras',
+    element: <Palavras  />,
   }/*,
   {
     path: '/contact',

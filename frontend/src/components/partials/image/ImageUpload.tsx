@@ -125,9 +125,9 @@ const ImageUpload: React.FC = () => {
             {imageInfos.map((img, index) => (
               <li className="list-group-item" key={index}>
                 <p>
-                  <a href={img.url}>{img.name}</a>
+                  <a href={img.url}>{img.url}</a>
                 </p>
-                <img src={img.url} alt={img.name} height="80px" />
+                <img src={'http://localhost:8000'+img.Path} alt={img.url} height="80px" />
               </li>
             ))}
           </ul>

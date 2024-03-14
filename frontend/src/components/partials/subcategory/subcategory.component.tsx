@@ -1,8 +1,9 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-
 import SubcategoryDataService from "../../../services/net/subcategory.service";
+import CategoryDataService from "../../../services/net/category.service";
 import ISubcategoryData from "../../../services/types/subcategory.type";
+import ICategoryData from "../../../services/types/category.type";
 
 interface Props {
   id: string;
@@ -18,13 +19,37 @@ const Subcategory: React.FC<Props> = ({ id, onEdit, onDelete }) => {
     description: "",
     category: "",
   });
+  const [categories, setCategories] = useState<ICategoryData[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     if (id) {
       getSubcategory(id);
+      fetchCategories();
     }
   }, [id]);
+
+  const fetchCategories = () => {
+    CategoryDataService.getAll()
+      .then((response: any) => {
+        setCategories(response.data);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
+
+  const getSubcategory = (id: string) => {
+    SubcategoryDataService.get(id)
+      .then((response: any) => {
+        setCurrentSubcategory(response.data);
+        setSelectedCategory(response.data.category);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
@@ -42,24 +67,20 @@ const Subcategory: React.FC<Props> = ({ id, onEdit, onDelete }) => {
     }));
   };
 
-  const getSubcategory = (id: string) => {
-    SubcategoryDataService.get(id)
-      .then((response: any) => {
-        setCurrentSubcategory(response.data);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
+  const onChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value);
   };
-  
+
   const updateSubcategory = () => {
-    SubcategoryDataService.update(
-      currentSubcategory,
-      currentSubcategory.id
-    )
+    const updatedSubcategory: ISubcategoryData = {
+      ...currentSubcategory,
+      category: selectedCategory,
+    };
+
+    SubcategoryDataService.update(updatedSubcategory, currentSubcategory.id)
       .then((response: any) => {
         setMessage("The subcategory was updated successfully!");
-        onEdit(currentSubcategory);
+        onEdit(updatedSubcategory);
       })
       .catch((e: Error) => {
         console.log(e);
@@ -102,6 +123,20 @@ const Subcategory: React.FC<Props> = ({ id, onEdit, onDelete }) => {
                 value={currentSubcategory.description}
                 onChange={onChangeDescription}
               />
+            </div>
+            <div className="form-group">
+              <label htmlFor="category">Category</label>
+              <select
+                className="form-control"
+                id="category"
+                value={selectedCategory}
+                onChange={onChangeCategory}
+              >
+                <option value="">Select a category</option>
+                {categories.map((category: ICategoryData) => (
+                  <option key={category.id} value={category.id}>{category.name}</option>
+                ))}
+              </select>
             </div>
           </form>
           <button
