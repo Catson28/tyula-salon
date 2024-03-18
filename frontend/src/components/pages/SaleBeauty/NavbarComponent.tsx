@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaUser, FaSignOutAlt, FaChevronRight } from 'react-icons/fa';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -35,6 +36,8 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.a`
+  display: block;
+  align-items: center;
   padding: 10px 20px;
   color: white;
   text-decoration: none;
@@ -106,9 +109,32 @@ const NavbarComponent = () => {
         <SidebarHeader>Logo</SidebarHeader>
         <SidebarNav>
           <Nav>
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/contacts">Contacts</NavLink>
+            <NavLink href="/">
+              <FaHome /> Home
+            </NavLink>
+            <NavLink href="/contacts">
+              <FaAddressBook /> Contacts
+            </NavLink>
+            <NavLink href="/works">
+              <FaBriefcase /> Works <FaChevronRight />
+              {collapsed ? null : (
+                <Nav>
+                  <NavLink href="/works/sublink1">Sublink 1</NavLink>
+                  <NavLink href="/works/sublink2">Sublink 2</NavLink>
+                  <NavLink href="/works/sublink3">Sublink 3</NavLink>
+                </Nav>
+              )}
+            </NavLink>
             <NavLink href="/allfuncs">All Functions</NavLink>
+            <NavLink href="/servicos">
+              <FaCogs /> Servicos <FaChevronRight />
+              {collapsed ? null : (
+                <Nav>
+                  <NavLink href="/servicos/sublink1">Sublink 1</NavLink>
+                  <NavLink href="/servicos/sublink2">Sublink 2</NavLink>
+                </Nav>
+              )}
+            </NavLink>
           </Nav>
         </SidebarNav>
       </Sidebar>

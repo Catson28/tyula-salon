@@ -1,8 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
+import Navbar from "../../partials/Navbar";
 import NavbarComponent from "../../partials/NavbarComponent";
 import Carousel from "../../partials/Carousel";
+
+import TelaDoNavegador from '../../partials/HelperResposnve/TelaDoNavegador';
 
 import styled from 'styled-components';
 
@@ -64,6 +67,8 @@ const HomePage: React.FC = () => {
     <>
       <NavbarComponent />
       <Carousel />
+      <Navbar />
+
       <ContainerFluid>
         <Container>
           <Row>
@@ -90,7 +95,9 @@ const HomePage: React.FC = () => {
             {/* Repita conforme necessário */}
           </Row>
         </Container>
-      </ContainerFluid>   
+      </ContainerFluid> 
+      <TelaDoNavegador />
+
     </>
 
   );

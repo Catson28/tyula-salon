@@ -37,10 +37,10 @@ const Container = styled.div`
   margin: 0 auto;
 
   ${media.xs('width: 100%;')}
-  ${media.sm('width: 540px;')}
-  ${media.md('width: 720px;')}
-  ${media.lg('width: 960px;')}
-  ${media.xl('width: 1140px;')}
+  ${media.sm('width: 690px;')}
+  ${media.md('width: 860px;')}
+  ${media.lg('width: 1080px;')}
+  ${media.xl('width: 1240px;')}
 `;
 
 const Logo = styled.div`
