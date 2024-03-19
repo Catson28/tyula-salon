@@ -5,7 +5,7 @@ import SubcategoriesList from './subcategories-list.component'; // Importando o 
 import Subcategory from './subcategory.component'; // Importando o componente de exibição de subcategoria
 import { useSubcategoryState } from '../../../services/utils/subcategoryUtils'; // Importando o hook de estado para subcategorias
 
-const AboutSubcategory: React.FC = () => {
+const WholeSubcategory: React.FC = () => {
   const {
     currentSubcategory,
     showSubcategoryForm,
@@ -53,4 +53,4 @@ const AboutSubcategory: React.FC = () => {
   );
 };
 
-export default AboutSubcategory;
+export default WholeSubcategory;

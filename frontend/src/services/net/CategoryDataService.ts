@@ -1,5 +1,5 @@
 import http from "./base/http-common";
-import ICategoryData from "../types/category.type"
+import ICategoryData from "../types/category.type";
 
 class CategoryDataService {
   getAll() {
@@ -10,8 +10,27 @@ class CategoryDataService {
     return http.get<ICategoryData>(`api/categories/read/${id}/`);
   }
 
+  uploadImg(file: File, contentType: string, objectId: number, categoryId: number, onUploadProgress: any) {
+    let formData = new FormData();
+    formData.append("Path", file);
+    formData.append("content_type", contentType);
+    formData.append("object_id", objectId.toString());
+    formData.append("category_id", categoryId.toString());
+
+    return http.post<any>("api/images/upload-image/category/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      onUploadProgress,
+    });
+  }
+
   create(data: ICategoryData) {
     return http.post<ICategoryData>("api/categories/add/", data);
+  }
+
+  getImgAll(id: any) {
+    return http.get<Array<ICategoryData>>(`api/categories/${id}/list/img/`);
   }
 
   update(data: ICategoryData, id: any) {

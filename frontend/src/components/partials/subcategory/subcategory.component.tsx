@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-import SubcategoryDataService from "../../../services/net/subcategory.service";
-import CategoryDataService from "../../../services/net/category.service";
+import SubcategoryDataService from "../../../services/net/SubcategoryDataService";
+import CategoryDataService from "../../../services/net/CategoryDataService";
 import ISubcategoryData from "../../../services/types/subcategory.type";
 import ICategoryData from "../../../services/types/category.type";
 

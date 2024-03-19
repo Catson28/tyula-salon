@@ -1,8 +1,8 @@
 import React, { Component, ChangeEvent } from "react";
-import SubcategoryDataService from "../../../services/net/subcategory.service";
+import SubcategoryDataService from "../../../services/net/SubcategoryDataService";
 import ISubcategoryData from '../../../services/types/subcategory.type';
 import ICategoryData from '../../../services/types/category.type';
-import CategoryDataService from "../../../services/net/category.service";
+import CategoryDataService from "../../../services/net/CategoryDataService";
 
 type Props = {
   onClose: () => void;

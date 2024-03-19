@@ -1,27 +1,28 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import CategoryDataService from "../../../services/net/category.service";
+import CategoryDataService from "../../../services/net/CategoryDataService";
 import ICategoryData from "../../../services/types/category.type";
 
 interface Props {
-  id: string; // Adicione a propriedade id ao tipo Props
+  id: number;
   onEdit: (updatedCategory: ICategoryData) => void;
-  onDelete: (categoryId: string) => void; // Adicione a propriedade onDelete ao tipo Props
-};
+  onDelete: (categoryId: string) => void;
+}
 
-const Category: React.FC<Props> = ({ id, onEdit, onDelete }) => {
+const CategoryEdit: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   const navigate = useNavigate();
   const [currentCategory, setCurrentCategory] = useState<ICategoryData>({
-    id: "",
+    id: 0,
     name: "",
     description: "",
+    images: [], // Adicione a propriedade images ao objeto
   });
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     if (id) {
-      getCategory(id);
+      getCategory(String(id));
     }
   }, [id]);
 
@@ -54,7 +55,7 @@ const Category: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   const updateCategory = () => {
     CategoryDataService.update(
       currentCategory,
-      currentCategory.id
+      String(currentCategory.id)
     )
       .then((response: any) => {
         setMessage("The category was updated successfully!");
@@ -66,10 +67,10 @@ const Category: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   };
 
   const deleteCategory = () => {
-    CategoryDataService.delete(currentCategory.id)
+    CategoryDataService.delete(String(currentCategory.id))
       .then((response: any) => {
         setMessage("The category was deleted successfully!");
-        onDelete(currentCategory.id); // Chama a função onDelete com o ID da categoria
+        onDelete(String(currentCategory.id));
       })
       .catch((e: Error) => {
         console.log(e);
@@ -128,4 +129,4 @@ const Category: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   );
 };
 
-export default Category;
+export default CategoryEdit;

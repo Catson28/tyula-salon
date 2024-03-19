@@ -2,19 +2,17 @@ import React from 'react';
 import Body from '../../partials/Body';
 import { CrudProvider } from '../../../services/context/CrudContext'; // Ajuste a importação aqui
 import ItemList from '../../partials/CRUD-Context/ItemList';
-import Layout from '../../partials/CRUD-Context/Layout';
+import NavbarComponent from './../../pages/SaleBeauty/NavbarComponent'
 
 const ItemsPage: React.FC = () => {
   return (
-    <CrudProvider>
-      <div> {/* Use uma tag que aceite children */}
-        <Layout>
+      <NavbarComponent>
+        <CrudProvider>
           <Body>
             <ItemList />
           </Body>
-        </Layout>
-      </div>
-    </CrudProvider>
+        </CrudProvider>
+     </NavbarComponent> 
   );
 };
 

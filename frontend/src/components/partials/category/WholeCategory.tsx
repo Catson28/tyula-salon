@@ -1,24 +1,28 @@
 import React, { useEffect } from 'react';
 
 import AddCategory from './add-category.component';
-import CategoriesList from './categories-list.component';
-import Category from './category.component';
+import CategoriesList from './CategoriesList';
+import CategoryEdit from './CategoryEdit';
 import { useCategoryState } from '../../../services/utils/categoryUtils';
+import ImgUpdateCategory from './ImgUpdateCategory';
 
-const AboutCategory: React.FC = () => {
+const WholeCategory: React.FC = () => {
   const {
     currentCategory,
     showCategoryForm,
     showCategory,
+    showImgCategory,
     showCategoriesList,
     deletedCategoryId,
 
     setShowCategoryForm, // Adicione as funções de configuração ao objeto de retorno
     setShowCategory,
+    setShowImgCategory,
     setShowCategoriesList,
     handleCategoriesListClick,
     handleAddCategoryClick,
     handleEditCategory,
+    handleImageCategory,
     handleDeleteCategory,
     handleUpdateCategory
   } = useCategoryState();
@@ -44,13 +48,17 @@ const AboutCategory: React.FC = () => {
           <AddCategory onClose={() => setShowCategoryForm(false)} />
         )}
         {showCategoriesList && (
-          <CategoriesList onClose={() => setShowCategoriesList(false)} onEditCategory={handleEditCategory} />
+          <CategoriesList onClose={() => setShowCategoriesList(false)}  onEditCategory={handleEditCategory} onImgCategory={handleImageCategory} />
         )}
         {showCategory && currentCategory && (
-          <Category id={currentCategory.id} onEdit={handleUpdateCategory}  onDelete={handleDeleteCategory} />
+          <CategoryEdit id={currentCategory.id} onEdit={handleUpdateCategory}  onDelete={handleDeleteCategory} />
         )}
+        {showImgCategory && currentCategory && (
+          <ImgUpdateCategory id={currentCategory.id}  />
+        )}
+
       </>
   );
 };
 
-export default AboutCategory;
+export default WholeCategory;

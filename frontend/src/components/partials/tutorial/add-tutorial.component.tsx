@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from "react";
-import TutorialDataService from "../../../services/net/tutorial.service";
+import TutorialDataService from "../../../services/net/TutorialDataService";
 import ITutorialData from '../../../services/types/tutorial.type';
 
 type Props = {

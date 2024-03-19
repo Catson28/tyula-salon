@@ -1,8 +1,8 @@
 import React, { Component, ChangeEvent } from "react";
-import ProductDataService from "../../../services/net/product.service";
+import ProductDataService from "../../../services/net/ProductDataService";
 import IProductData from '../../../services/types/product.type';
 import ICategoryData from '../../../services/types/category.type';
-import CategoryDataService from "../../../services/net/category.service";
+import CategoryDataService from "../../../services/net/CategoryDataService";
 
 type Props = {
   onClose: () => void;

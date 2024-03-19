@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from "react";
-import CategoryDataService from "../../../services/net/category.service";
+import CategoryDataService from "../../../services/net/CategoryDataService";
 import ICategoryData from '../../../services/types/category.type';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 };
 
 type State = ICategoryData & {
-  submitted: boolean
+  submitted: boolean;
 };
 
 export default class AddCategory extends Component<Props, State> {
@@ -19,9 +19,10 @@ export default class AddCategory extends Component<Props, State> {
     this.newCategory = this.newCategory.bind(this);
 
     this.state = {
-      id: null,
+      id: 0, // Assuming id is of type number
       name: "",
       description: "",
+      images: [], // Add the images property here
       submitted: false
     };
   }
@@ -40,8 +41,10 @@ export default class AddCategory extends Component<Props, State> {
 
   saveCategory() {
     const data: ICategoryData = {
+      id: this.state.id,
       name: this.state.name,
-      description: this.state.description
+      description: this.state.description,
+      images: this.state.images // Assuming images is of type array
     };
 
     CategoryDataService.create(data)
@@ -61,9 +64,10 @@ export default class AddCategory extends Component<Props, State> {
 
   newCategory() {
     this.setState({
-      id: null,
+      id: 0, // Assuming id is of type number
       name: "",
       description: "",
+      images: [], // Reset the images array
       submitted: false
     });
   }

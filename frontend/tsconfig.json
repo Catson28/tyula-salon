@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "lixo/categoryListUtils.ts"  ]
+, "lixo/categoryListUtils.ts", "lixo/AllBeauty.tsx"  ]
 }

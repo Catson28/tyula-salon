@@ -1,9 +1,6 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
-from apps.service.models import Service
-from apps.product.models import Product
-
 
 class Image(models.Model):
     ImageID = models.AutoField(primary_key=True)
@@ -16,16 +13,38 @@ class Image(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type", "object_id")
 
+class CategoryImage(models.Model):
+    category = models.ForeignKey(
+        'category.Category',  # Corrigido para usar string para referenciar o modelo
+        on_delete=models.CASCADE,
+        related_name="prd_img"
+    )
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="img_cat"
+    )
 
 class ServiceImage(models.Model):
     service = models.ForeignKey(
-        Service, on_delete=models.CASCADE, related_name="prd_img"
+        'service.Service',  # Corrigido para usar string para referenciar o modelo
+        on_delete=models.CASCADE,
+        related_name="srv_img"
     )
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="img_prd")
-
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="img_srv"
+    )
 
 class ProductImage(models.Model):
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name="prod_img"
+        'product.Product',  # Corrigido para usar string para referenciar o modelo
+        on_delete=models.CASCADE,
+        related_name="prod_img"
     )
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="img_prod")
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="img_prod"
+    )

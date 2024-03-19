@@ -1,16 +1,14 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Category
-from .serializers import CategorySerializer
-
+from .models import Category, CategoryImage
+from .serializers import CategorySerializer, ImagesSerializer
 
 @api_view(["GET"])
 def list_categories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
-
 
 @api_view(["POST"])
 def add_category(request):
@@ -19,7 +17,6 @@ def add_category(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
-
 
 @api_view(["PUT"])
 def update_category(request, category_id):
@@ -34,7 +31,6 @@ def update_category(request, category_id):
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
 
-
 @api_view(["GET"])
 def read_category(request, category_id):
     try:
@@ -44,7 +40,6 @@ def read_category(request, category_id):
 
     serializer = CategorySerializer(category)
     return Response(serializer.data)
-
 
 @api_view(["DELETE"])
 def delete_category(request, category_id):
@@ -56,12 +51,10 @@ def delete_category(request, category_id):
     category.delete()
     return Response(status=204)
 
-
 @api_view(["DELETE"])
 def delete_categories(request):
     Category.objects.all().delete()
     return Response(status=204)
-
 
 @api_view(["GET"])
 def search_category_by_name(request):
@@ -69,3 +62,9 @@ def search_category_by_name(request):
     categories = Category.objects.filter(name__icontains=name)
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
+
+class CategoryImageViewSet(viewsets.ViewSet):
+    def list(self, request, category_id=None):
+        queryset = CategoryImage.objects.filter(category_id=category_id)
+        serializer = ImagesSerializer(queryset, many=True)
+        return Response(serializer.data)

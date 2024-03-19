@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SubcategoryDataService from "./../net/subcategory.service";
+import SubcategoryDataService from "../net/SubcategoryDataService";
 import ISubcategoryData from "./../types/subcategory.type";
 
 export const useSubcategoryState = () => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import UploadService from "../../../services/net/FileUploadService";
+import UploadService from "../../../services/net/FileUploadDataService";
 import IFile from "../../../services/types/File";
 import React from 'react';
 

@@ -5,7 +5,7 @@ import ProductsList from './products-list.component'; // Importando o componente
 import Product from './product.component'; // Importando o componente de exibição de produto
 import { useProductState } from '../../../services/utils/productUtils'; // Importando o hook de estado para produtos
 
-const AboutProduct: React.FC = () => {
+const WholeProduct: React.FC = () => {
   const {
     currentProduct,
     showProductForm,
@@ -53,4 +53,4 @@ const AboutProduct: React.FC = () => {
   );
 };
 
-export default AboutProduct;
+export default WholeProduct;

@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaUser, FaSignOutAlt, FaChevronRight } from 'react-icons/fa';
+import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaChevronRight } from 'react-icons/fa';
 
+import DynamicContent from '../../partials/DynamicContent';
 interface SidebarProps {
   collapsed: boolean;
 }
+
+const SkeletonLoader = styled.div`
+  /* Estilos para o esqueleto de carregamento */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+`;
 
 const Sidebar = styled.div<SidebarProps>`
   height: 100%;
@@ -48,6 +58,29 @@ const NavLink = styled.a`
   }
 `;
 
+const NavSubLink = styled.a<{ visible: boolean }>`
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #555;
+  }
+`;
+
+const IconDiv = styled.div`
+  margin-right: 10px;
+`;
+
+const TitleDiv = styled.div``;
+
+const NavTitle = styled.span<{ collapsed: boolean }>`
+  display: ${({ collapsed }) => (collapsed ? 'none' : 'inline')};
+`;
+
 const Navbar = styled.nav`
   background-color: #303;
   color: white;
@@ -83,61 +116,112 @@ const AuthLink = styled.a`
   margin-left: 20px;
 `;
 
-const NavbarComponent = () => {
+const NavbarComponent = ({  children }: React.PropsWithChildren) => {
   const [collapsed, setCollapsed] = useState(false);
+  // const [sublinkVisible, setSublinkVisible] = useState(false);
+  const sidebarWidth = collapsed ? '80px' : '200px';
+  const [sublinkVisible, setSublinkVisible] = useState({
+    works: false,
+    services: false,
+  });
+  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
+
+  useEffect(() => {
+    // Simulação de carregamento com um timer
+    const timer = setTimeout(() => {
+      setLoading(false); // Define o carregamento como concluído após o tempo especificado
+    }, 2000); // Tempo de simulação em milissegundos
+
+    return () => clearTimeout(timer); // Limpa o timer ao desmontar o componente
+  }, []);
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
   };
 
+  /*
+  const handleSublinkHover = (isVisible: boolean) => {
+    setSublinkVisible(isVisible);
+  };  
+  */
+  const handleSublinkHover = (section: string, isVisible: boolean) => {
+    setSublinkVisible((prevState) => ({
+      ...prevState,
+      [section]: isVisible,
+    }));
+  };
+
   return (
     <>
-      <Navbar>
-        <Logo>Logo</Logo>
-        <Links>
-          <NavbarLink href="/">Home</NavbarLink>
-          <NavbarLink href="/contacts">Contacts</NavbarLink>
-          <NavbarLink href="/allfuncs">All Functions</NavbarLink>
-        </Links>
-        <AuthLinks>
-          <AuthLink href="#">Login / Signup</AuthLink>
-          <AuthLink href="#">Logout</AuthLink>
-        </AuthLinks>
-        <button onClick={toggleSidebar}>Toggle Sidebar</button>
-      </Navbar>
-      <Sidebar collapsed={collapsed}>
-        <SidebarHeader>Logo</SidebarHeader>
-        <SidebarNav>
-          <Nav>
-            <NavLink href="/">
-              <FaHome /> Home
-            </NavLink>
-            <NavLink href="/contacts">
-              <FaAddressBook /> Contacts
-            </NavLink>
-            <NavLink href="/works">
-              <FaBriefcase /> Works <FaChevronRight />
-              {collapsed ? null : (
+      {loading ? (
+        <SkeletonLoader>
+          {/* Conteúdo do esqueleto de carregamento */}
+          <h1>Loading...</h1>
+        </SkeletonLoader>
+      ) : (<>
+            <Navbar>
+              <Logo>Logo</Logo>
+              <Links>
+                <NavbarLink href="/">Home</NavbarLink>
+                <NavbarLink href="/contacts">Contacts</NavbarLink>
+                <NavbarLink href="/allfuncs">All Functions</NavbarLink>
+              </Links>
+              <AuthLinks>
+                <AuthLink href="#">Login / Signup</AuthLink>
+                <AuthLink href="#">Logout</AuthLink>
+              </AuthLinks>
+              <button onClick={toggleSidebar}>Toggle Sidebar</button>
+            </Navbar>
+            <Sidebar collapsed={collapsed}>
+              <SidebarHeader>Logo</SidebarHeader>
+              <SidebarNav>
                 <Nav>
-                  <NavLink href="/works/sublink1">Sublink 1</NavLink>
-                  <NavLink href="/works/sublink2">Sublink 2</NavLink>
-                  <NavLink href="/works/sublink3">Sublink 3</NavLink>
+                  <NavLink href="/">
+                    <FaHome /> <NavTitle collapsed={collapsed}>Home</NavTitle>
+                  </NavLink>
+                  <NavLink href="/contacts">
+                    <FaAddressBook /> <NavTitle collapsed={collapsed}>Contacts</NavTitle>
+                  </NavLink>
+                  <NavLink
+                    href="/works"
+                    onMouseEnter={() => handleSublinkHover('works',true)}
+                    onMouseLeave={() => handleSublinkHover('works',false)}
+                  >
+                    <FaBriefcase /> <NavTitle collapsed={collapsed}>Works <FaChevronRight /></NavTitle>
+                    {!collapsed && (
+                      <Nav>
+                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink1">Sublink 1</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink2">Sublink 2</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink3">Sublink 3</NavSubLink>
+                      </Nav>
+                    )}
+                  </NavLink>
+                  <NavLink href="/allfuncs">
+                    <FaCogs /> <NavTitle collapsed={collapsed}>All Functions</NavTitle>
+                  </NavLink>
+                  <NavLink
+                    href="/services"
+                    onMouseEnter={() => handleSublinkHover('services',true)}
+                    onMouseLeave={() => handleSublinkHover('services',false)}
+                    >
+                    <FaBriefcase /><NavTitle collapsed={collapsed}>Services <FaChevronRight /></NavTitle>
+                    {!collapsed && (
+                      <Nav>
+                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink1">Sublink 1</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink2">Sublink 2</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink3">Sublink 3</NavSubLink>
+                      </Nav>
+                    )}
+                  </NavLink>
                 </Nav>
-              )}
-            </NavLink>
-            <NavLink href="/allfuncs">All Functions</NavLink>
-            <NavLink href="/servicos">
-              <FaCogs /> Servicos <FaChevronRight />
-              {collapsed ? null : (
-                <Nav>
-                  <NavLink href="/servicos/sublink1">Sublink 1</NavLink>
-                  <NavLink href="/servicos/sublink2">Sublink 2</NavLink>
-                </Nav>
-              )}
-            </NavLink>
-          </Nav>
-        </SidebarNav>
-      </Sidebar>
+              </SidebarNav>
+            </Sidebar>
+
+            <DynamicContent sidebarWidth={sidebarWidth} >
+            {children} {/* Renderizando o conteúdo dinâmico aqui */}
+            </DynamicContent>
+            </>
+            )}
     </>
   );
 };

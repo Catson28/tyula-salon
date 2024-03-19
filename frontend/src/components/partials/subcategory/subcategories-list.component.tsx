@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from "react";
-import SubcategoryDataService from "../../../services/net/subcategory.service";
+import SubcategoryDataService from "../../../services/net/SubcategoryDataService";
 import ISubcategoryData from '../../../services/types/subcategory.type';
 
 type Props = {

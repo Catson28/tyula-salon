@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AddCategory from './../../partials/category/add-category.component';
-import CategoriesList from './../../partials/category/categories-list.component';
-import Category from './../../partials/category/category.component';
-import CategoryDataService from "../../../services/net/category.service";
-import ICategoryData from "../../../services/types/category.type";
+import AddCategory from '../src/components/partials/category/add-category.component';
+import CategoriesList from '../src/components/partials/category/CategoriesList';
+import Category from '../src/components/partials/category/CategoryEdit';
+import CategoryDataService from "../src/services/net/CategoryDataService";
+import ICategoryData from "../src/services/types/category.type";
 
 const AllBeauty: React.FC = () => {
   const [currentCategory, setCurrentCategory] = useState<ICategoryData | null>(null);
   const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
   const [showCategory, setShowCategory] = useState<boolean>(false);
+  const [showImgCategory, setShowImgCategory] = useState<boolean>(false);
   const [showCategoriesList, setShowCategoriesList] = useState<boolean>(false);
   const categoriesButtonViewText = showCategory || showCategoriesList ? "Fechar" : "Abrir";
   const categoriesButtonAddText = showCategoryForm ? "Fechar" : "Adicionar";
@@ -46,6 +47,14 @@ const AllBeauty: React.FC = () => {
       setCurrentCategory(category);
       handleCategoryClose();
       setShowCategory(true);
+    }
+  };
+
+  const handleImgCategory = (category: ICategoryData) => {
+    if (category) {
+      setCurrentCategory(category);
+      handleCategoryClose();
+      setShowImgCategory(true);
     }
   };
   
@@ -96,7 +105,7 @@ const AllBeauty: React.FC = () => {
           <AddCategory onClose={() => setShowCategoryForm(false)} />
         )}
         {showCategoriesList && (
-          <CategoriesList onClose={() => setShowCategoriesList(false)} onEditCategory={handleEditCategory} />
+          <CategoriesList onClose={() => setShowCategoriesList(false)} onImgCategory={handleImgCategory} onEditCategory={handleEditCategory} />
         )}
 
         {showCategory && currentCategory && (

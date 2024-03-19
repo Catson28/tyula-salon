@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import CategoryDataService from "./..//net/category.service";
+import CategoryDataService from "../net/CategoryDataService";
 import ICategoryData from "./../types/category.type";
 
 export const useCategoryState = () => {
   const [currentCategory, setCurrentCategory] = useState<ICategoryData | null>(null);
   const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
   const [showCategory, setShowCategory] = useState<boolean>(false);
+  const [showImgCategory, setShowImgCategory] = useState<boolean>(false);
   const [showCategoriesList, setShowCategoriesList] = useState<boolean>(false);
   const [deletedCategoryId, setDeletedCategoryId] = useState<string | null>(null);
 
@@ -40,6 +41,14 @@ export const useCategoryState = () => {
       setShowCategory(true);
     }
   };
+
+  const handleImageCategory = (category: ICategoryData) => {
+    if (category) {
+      setCurrentCategory(category);
+      handleCategoryClose();
+      setShowImgCategory(true);
+    }
+  };
   
   const handleDeleteCategory = (categoryId: string) => {
     CategoryDataService.delete(categoryId)
@@ -68,14 +77,17 @@ export const useCategoryState = () => {
     currentCategory,
     showCategoryForm,
     showCategory,
+    showImgCategory,
     showCategoriesList,
     deletedCategoryId,
     setShowCategoryForm,
     setShowCategory,
+    setShowImgCategory,
     setShowCategoriesList,
     handleCategoriesListClick,
     handleAddCategoryClick,
     handleEditCategory,
+    handleImageCategory,
     handleDeleteCategory,
     handleUpdateCategory
   };

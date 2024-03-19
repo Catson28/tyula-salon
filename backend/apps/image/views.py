@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Image, ServiceImage, Product
+from rest_framework import status
+from .models import Image, ServiceImage, CategoryImage
 from .serializers import ImageSerializer, ServiceImageSerializer, ProductSerializer
 from django.contrib.contenttypes.models import ContentType
-from .models import Product
-
+from apps.product.models import Product
+from apps.category.models import Category
+from rest_framework.views import APIView
 
 """
 @api_view(['POST'])
@@ -50,6 +52,48 @@ def add_image(request):
         return Response(serializer.errors, status=400)
     # Se a solicitação não for do tipo POST, retorne uma resposta de erro
     return Response({"erro": "Método não permitido"}, status=405)
+
+
+'''
+@api_view(["POST"])
+def UploadImageView(request):
+        serializer = ImageSerializer(data=request.data)
+        print(request.data)
+        if serializer.is_valid():
+            image = serializer.save()
+            
+            # Supondo que o ID da categoria seja passado no corpo da requisição
+            category_id = request.data.get('category_id')
+            category = Category.objects.get(pk=category_id)
+            
+            # Criando a relação entre a imagem e a categoria
+            CategoryImage.objects.create(category=category, image=image)
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+'''
+
+@api_view(["POST"])
+def UploadImageView(request):
+    serializer = ImageSerializer(data=request.data)
+    if serializer.is_valid():
+        image = serializer.save()
+        
+        # Verifique se o ID da categoria foi fornecido na requisição
+        category_id = request.data.get('category_id')
+        if category_id is not None:
+            # Tente obter a categoria com o ID fornecido
+            category = get_object_or_404(Category, pk=category_id)
+            
+            # Criando a relação entre a imagem e a categoria
+            CategoryImage.objects.create(category=category, image=image)
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            # Caso não tenha sido fornecido um ID de categoria, retorne um erro
+            return Response({"error": "Category ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(["GET"])

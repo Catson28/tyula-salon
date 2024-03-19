@@ -18,9 +18,9 @@ const getFiles = () : Promise<any> => {
   return http.get("/api/images/list-by-type/");
 };
 
-const FileUploadService = {
+const FileUploadDataService = {
   upload,
   getFiles,
 };
 
-export default FileUploadService;
+export default FileUploadDataService;

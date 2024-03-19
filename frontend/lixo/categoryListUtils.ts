@@ -1,5 +1,5 @@
 // categoryListUtils.ts
-import CategoryDataService from "../src/services/net/category.service";
+import CategoryDataService from "../src/services/net/CategoryDataService";
 import ICategoryData from "../src/services/types/category.type";
 
 export function retrieveCategories() {

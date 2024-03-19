@@ -18,4 +18,5 @@ urlpatterns = [
     path(
         "update-description/<int:image_id>/", views.update_image_description
     ),  # Atualiza a descrição de uma imagem
+    path('upload-image/category/', views.UploadImageView, name='upload_image'),
 ]

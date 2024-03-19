@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ProductDataService from "./../net/product.service";
+import ProductDataService from "../net/ProductDataService";
 import IProductData from "./../types/product.type";
 
 export const useProductState = () => {

@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from "react";
-import ProductDataService from "../../../services/net/product.service";
+import ProductDataService from "../../../services/net/ProductDataService";
 import IProductData from '../../../services/types/product.type';
 
 type Props = {

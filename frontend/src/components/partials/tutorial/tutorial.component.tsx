@@ -1,7 +1,7 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 
-import TutorialDataService from "../../../services/net/tutorial.service";
+import TutorialDataService from "../../../services/net/TutorialDataService";
 import ITutorialData from "../../../services/types/tutorial.type";
 
 interface RouterProps {

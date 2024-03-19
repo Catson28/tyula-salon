@@ -1,12 +1,13 @@
 import React, { Component, ChangeEvent } from "react";
-import CategoryDataService from "../../../services/net/category.service";
+import CategoryDataService from "../../../services/net/CategoryDataService";
 import ICategoryData from '../../../services/types/category.type';
+import CategoryImageGalleryComplex from "./CategoryImageGalleryComplex"; // Importe o novo componente
 
 type Props = {
   onClose: () => void;
+  onImgCategory: (category: ICategoryData) => void;
   onEditCategory: (category: ICategoryData) => void; // Adicionando propriedade para manipular a edição da categoria no pai
 };
-
 
 type State = {
   categories: Array<ICategoryData>,
@@ -169,14 +170,26 @@ export default class CategoriesList extends Component<Props, State>{
                 </label>{" "}
                 {currentCategory.description}
               </div>
-                  {/* Botão para editar a categoria */}
-                  <button
-                    className="btn btn-sm badge badge-warning btn-warning ml-2"
-                    onClick={() => this.props.onEditCategory(currentCategory)}
-                  >
-                    Edit
-                  </button>
+              {/* Nova seção para a galeria de imagens complexa */}
+              <div>
+                <label>
+                  <strong>Images:</strong>
+                </label>{" "}
+                <CategoryImageGalleryComplex images={currentCategory.images} />
+              </div>
+              <button
+                className="btn btn-sm badge badge-warning btn-warning ml-2"
+                onClick={() => this.props.onEditCategory(currentCategory)}
+              >
+                Edit
+              </button>
 
+              <button
+                  className="btn btn-sm badge btn-primary ml-2"
+                  onClick={() => this.props.onImgCategory(currentCategory)}
+                >
+                  Upload Photo
+                </button>
             </div>
           ) : (
             <div>
