@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaChevronRight } from 'react-icons/fa';
-
+import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaChevronRight, FaShoppingCart, FaCubes, FaWrench, FaUsers, FaChartLine, FaBoxes  } from 'react-icons/fa';
 import DynamicContent from '../../partials/DynamicContent';
 interface SidebarProps {
   collapsed: boolean;
@@ -45,6 +44,7 @@ const Nav = styled.nav`
   flex-direction: column;
 `;
 
+/*
 const NavLink = styled.a`
   display: block;
   align-items: center;
@@ -58,6 +58,7 @@ const NavLink = styled.a`
   }
 `;
 
+
 const NavSubLink = styled.a<{ visible: boolean }>`
   display: ${({ visible }) => (visible ? 'block' : 'none')};
   align-items: center;
@@ -70,6 +71,39 @@ const NavSubLink = styled.a<{ visible: boolean }>`
     background-color: #555;
   }
 `;
+
+*/
+
+/*
+*/
+
+const NavLink = styled.a<{ active: boolean }>`
+  display: block;
+  align-items: center;
+  padding: 10px 20px;
+  color: ${({ active }) => (active ? 'red' : 'white')}; // Estilo para rota ativa
+  text-decoration: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #555;
+  }
+`;
+
+const NavSubLink = styled.a<{ active: boolean; visible: boolean }>`
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
+  align-items: center;
+  padding: 10px 20px;
+  color: ${({ active }) => (active ? 'red' : 'white')}; // Estilo para rota ativa
+  text-decoration: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #555;
+  }
+`;
+
+
 
 const IconDiv = styled.div`
   margin-right: 10px;
@@ -117,6 +151,8 @@ const AuthLink = styled.a`
 `;
 
 const NavbarComponent = ({  children }: React.PropsWithChildren) => {
+  const [activeRoute, setActiveRoute] = useState('');
+
   const [collapsed, setCollapsed] = useState(false);
   // const [sublinkVisible, setSublinkVisible] = useState(false);
   const sidebarWidth = collapsed ? '80px' : '200px';
@@ -145,7 +181,9 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
       ...prevState,
       [section]: isVisible,
     }));
+    setActiveRoute(section); // Define a rota ativa ao entrar no sublink
   };
+  
 
   return (
     <>
@@ -160,7 +198,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
               <Links>
                 <NavbarLink href="/">Home</NavbarLink>
                 <NavbarLink href="/contacts">Contacts</NavbarLink>
-                <NavbarLink href="/allfuncs">All Functions</NavbarLink>
+                <NavbarLink href="/TestAllBeauty">All Functions</NavbarLink>
               </Links>
               <AuthLinks>
                 <AuthLink href="#">Login / Signup</AuthLink>
@@ -172,40 +210,89 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
               <SidebarHeader>Logo</SidebarHeader>
               <SidebarNav>
                 <Nav>
-                  <NavLink href="/">
+                  <NavLink href="/"
+                    active={activeRoute === 'home'} // Passa a rota ativa para NavSubLink
+                  >
                     <FaHome /> <NavTitle collapsed={collapsed}>Home</NavTitle>
                   </NavLink>
-                  <NavLink href="/contacts">
+
+                  <NavLink href="/sale" active={activeRoute === 'sale'}>
+                    <FaShoppingCart /> <NavTitle collapsed={collapsed}>Sale ou Vendas</NavTitle>
+                  </NavLink>
+
+                  <NavLink href="/products" active={activeRoute === 'products'}>
+                    <FaCubes /> <NavTitle collapsed={collapsed}>Produtos</NavTitle>
+                  </NavLink>
+
+                  <NavLink href="/services" active={activeRoute === 'services'}>
+                    <FaWrench /> <NavTitle collapsed={collapsed}>Serviços</NavTitle>
+                  </NavLink>
+
+                  <NavLink href="/employees" active={activeRoute === 'employees'}>
+                    <FaUsers /> <NavTitle collapsed={collapsed}>Funcionários</NavTitle>
+                  </NavLink>
+
+                  <NavLink href="/sales-reports" active={activeRoute === 'sales-reports'}>
+                    <FaChartLine /> <NavTitle collapsed={collapsed}>Relatórios de Vendas</NavTitle>
+                  </NavLink>
+
+                  <NavLink href="/inventory-control" active={activeRoute === 'inventory-control'}>
+                    <FaBoxes /> <NavTitle collapsed={collapsed}>Controle de Estoque</NavTitle>
+                  </NavLink>
+
+                  <NavLink href="/contacts"
+                    active={activeRoute === 'contacts'} // Passa a rota ativa para NavSubLink
+                  >
                     <FaAddressBook /> <NavTitle collapsed={collapsed}>Contacts</NavTitle>
                   </NavLink>
                   <NavLink
                     href="/works"
                     onMouseEnter={() => handleSublinkHover('works',true)}
                     onMouseLeave={() => handleSublinkHover('works',false)}
+                    active={activeRoute === 'work'} // Passa a rota ativa para NavSubLink
+                  
                   >
                     <FaBriefcase /> <NavTitle collapsed={collapsed}>Works <FaChevronRight /></NavTitle>
                     {!collapsed && (
                       <Nav>
-                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink1">Sublink 1</NavSubLink>
-                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink2">Sublink 2</NavSubLink>
-                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink3">Sublink 3</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink1"
+                    active={activeRoute === 'sublink1'} // Passa a rota ativa para NavSubLink
+                    >Sublink 1</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink2"
+                    active={activeRoute === 'sublink2'} // Passa a rota ativa para NavSubLink
+                    >Sublink 2</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.works} href="/works/sublink3"
+                    active={activeRoute === 'sublink3'} // Passa a rota ativa para NavSubLink
+                    >Sublink 3</NavSubLink>
                       </Nav>
                     )}
                   </NavLink>
-                  <NavLink href="/allfuncs">
+                  <NavLink href="/allfuncs"
+                    active={activeRoute === 'allfuncs'} // Passa a rota ativa para NavSubLink
+                  
+                  >
                     <FaCogs /> <NavTitle collapsed={collapsed}>All Functions</NavTitle>
                   </NavLink>
                   <NavLink
-                    href="/services"
+                    href="/TestAllBeauty"
                     onMouseEnter={() => handleSublinkHover('services',true)}
                     onMouseLeave={() => handleSublinkHover('services',false)}
+                    active={activeRoute === '/TestAllBeauty'} // Passa a rota ativa para NavSubLink
+                  
+                  
                     >
                     <FaBriefcase /><NavTitle collapsed={collapsed}>Services <FaChevronRight /></NavTitle>
                     {!collapsed && (
                       <Nav>
-                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink1">Sublink 1</NavSubLink>
-                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink2">Sublink 2</NavSubLink>
-                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink3">Sublink 3</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink1"
+                    active={activeRoute === 'subtile1'} // Passa a rota ativa para NavSubLink
+                    >Sublink 1</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink2"
+                    active={activeRoute === 'subtile2'} // Passa a rota ativa para NavSubLink
+                    >Sublink 2</NavSubLink>
+                        <NavSubLink visible={sublinkVisible.services} href="/works/sublink3"
+                    active={activeRoute === 'subtile3'} // Passa a rota ativa para NavSubLink
+                    >Sublink 3</NavSubLink>
                       </Nav>
                     )}
                   </NavLink>

@@ -30,13 +30,13 @@ const WholeProduct: React.FC = () => {
     }
   }, [currentProduct, deletedProductId]);
 
-  const productsButtonViewText = showProduct || showProductsList ? "Close" : "Open";
-  const productsButtonAddText = showProductForm ? "Close" : "Add";
+  const productsButtonViewText = showProduct || showProductsList ? "Fechar" : "Abrir";
+  const productsButtonAddText = showProductForm ? "Fechar" : "Adicionar";
 
   return (
       <>
         <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
-          <h2 id="vertical-variation">Products List<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
+          <h2 id="vertical-variation">Lista de Productos<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
           <button type="button" className="btn btn-primary" onClick={handleProductsListClick}>{productsButtonViewText}</button>
           <button type="button" className="btn btn-primary" onClick={handleAddProductClick}>{productsButtonAddText}</button>
         </div>

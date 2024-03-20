@@ -10,7 +10,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "price",
-            "product",
+            "products",
             "category",
             "subcategory",
         ]

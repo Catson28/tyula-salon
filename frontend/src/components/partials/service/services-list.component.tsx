@@ -1,39 +1,39 @@
 import React, { Component, ChangeEvent } from "react";
-import ProductDataService from "../../../services/net/ProductDataService";
-import IProductData from '../../../services/types/product.type';
+import ServiceDataService from "../../../services/net/ServiceDataService";
+import IServiceData from '../../../services/types/service.type';
 
 type Props = {
   onClose: () => void;
-  onEditProduct: (product: IProductData) => void; // Adding property to handle product edit in the parent
+  onEditService: (service: IServiceData) => void; // Adding property to handle service edit in the parent
 };
 
 type State = {
-  products: Array<IProductData>,
-  currentProduct: IProductData | null,
+  services: Array<IServiceData>,
+  currentService: IServiceData | null,
   currentIndex: number,
   searchName: string
 };
 
-export default class ProductsList extends Component<Props, State> {
+export default class ServicesList extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.onChangeSearchName = this.onChangeSearchName.bind(this);
-    this.retrieveProducts = this.retrieveProducts.bind(this);
+    this.retrieveServices = this.retrieveServices.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveProduct = this.setActiveProduct.bind(this);
-    this.removeAllProducts = this.removeAllProducts.bind(this);
+    this.setActiveService = this.setActiveService.bind(this);
+    this.removeAllServices = this.removeAllServices.bind(this);
     this.searchName = this.searchName.bind(this);
 
     this.state = {
-      products: [],
-      currentProduct: null,
+      services: [],
+      currentService: null,
       currentIndex: -1,
       searchName: ""
     };
   }
 
   componentDidMount() {
-    this.retrieveProducts();
+    this.retrieveServices();
   }
 
   onChangeSearchName(e: ChangeEvent<HTMLInputElement>) {
@@ -44,11 +44,11 @@ export default class ProductsList extends Component<Props, State> {
     });
   }
 
-  retrieveProducts() {
-    ProductDataService.getAll()
+  retrieveServices() {
+    ServiceDataService.getAll()
       .then((response: any) => {
         this.setState({
-          products: response.data
+          services: response.data
         });
         console.log(response.data);
       })
@@ -58,22 +58,22 @@ export default class ProductsList extends Component<Props, State> {
   }
 
   refreshList() {
-    this.retrieveProducts();
+    this.retrieveServices();
     this.setState({
-      currentProduct: null,
+      currentService: null,
       currentIndex: -1
     });
   }
 
-  setActiveProduct(product: IProductData, index: number) {
+  setActiveService(service: IServiceData, index: number) {
     this.setState({
-      currentProduct: product,
+      currentService: service,
       currentIndex: index
     });
   }
 
-  removeAllProducts() {
-    ProductDataService.deleteAll()
+  removeAllServices() {
+    ServiceDataService.deleteAll()
       .then((response: any) => {
         console.log(response.data);
         this.refreshList();
@@ -85,14 +85,14 @@ export default class ProductsList extends Component<Props, State> {
 
   searchName() {
     this.setState({
-      currentProduct: null,
+      currentService: null,
       currentIndex: -1
     });
 
-    ProductDataService.findByName(this.state.searchName)
+    ServiceDataService.findByName(this.state.searchName)
       .then((response: any) => {
         this.setState({
-          products: response.data
+          services: response.data
         });
         console.log(response.data);
       })
@@ -102,7 +102,7 @@ export default class ProductsList extends Component<Props, State> {
   }
 
   render() {
-    const { searchName, products, currentProduct, currentIndex } = this.state;
+    const { searchName, services, currentService, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -127,51 +127,57 @@ export default class ProductsList extends Component<Props, State> {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Lista de Productos</h4>
+          <h4>Lista de Servicos</h4>
 
           <ul className="list-group">
-            {products &&
-              products.map((product: IProductData, index: number) => (
+            {services &&
+              services.map((service: IServiceData, index: number) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveProduct(product, index)}
+                  onClick={() => this.setActiveService(service, index)}
                   key={index}
                 >
-                  {product.name}
+                  {service.name}
                 </li>
               ))}
           </ul>
 
           <button
             className="m-3 btn btn-sm btn-danger"
-            onClick={this.removeAllProducts}
+            onClick={this.removeAllServices}
           >
             Remove All
           </button>
         </div>
         <div className="col-md-6">
-          {currentProduct ? (
+          {currentService ? (
             <div>
-              <h4>Product</h4>
+              <h4>Service</h4>
               <div>
                 <label>
                   <strong>Name:</strong>
                 </label>{" "}
-                {currentProduct.name}
+                {currentService.name}
               </div>
               <div>
                 <label>
                   <strong>Description:</strong>
                 </label>{" "}
-                {currentProduct.description}
+                {currentService.description}
               </div>
-                  {/* Button to edit the product */}
+              <div>
+                <label>
+                  <strong>Price:</strong>
+                </label>{" "}
+                {currentService.price}
+              </div>
+                  {/* Button to edit the service */}
                   <button
                     className="btn btn-sm badge badge-warning btn-warning ml-2"
-                    onClick={() => this.props.onEditProduct(currentProduct)}
+                    onClick={() => this.props.onEditService(currentService)}
                   >
                     Edit
                   </button>
@@ -180,7 +186,7 @@ export default class ProductsList extends Component<Props, State> {
           ) : (
             <div>
               <br />
-              <p>(List) --- Please click on a Product...</p>
+              <p>(List) --- Please click on a Service...</p>
             </div>
           )}
         </div>
