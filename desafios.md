@@ -20,3 +20,5 @@ organizar a responsividade da aplicacao
 listar as imagens inspiracionais para criacao de templates futuros
 
 mexer na tranzicao do carrocel identificar como tranzitar de imagem para outra imagem com fade
+
+como movimentar uma div da esquerda para direita infinitamente como se cada margem da tela fosse continuidade da outra margem

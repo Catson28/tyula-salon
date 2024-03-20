@@ -139,11 +139,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
     setCollapsed(!collapsed);
   };
 
-  /*
-  const handleSublinkHover = (isVisible: boolean) => {
-    setSublinkVisible(isVisible);
-  };  
-  */
+
   const handleSublinkHover = (section: string, isVisible: boolean) => {
     setSublinkVisible((prevState) => ({
       ...prevState,

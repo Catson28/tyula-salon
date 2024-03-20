@@ -10,7 +10,7 @@ const slides = [
     image: 'http://localhost:8000/media/images/Screenshot_from_2022-10-28_20-20-53.png'
   },
   {
-    backgroundImage: 'url("http://localhost:8000/media/images/269927541_141002221642296_7826018103861653363_n.jpg")',
+    backgroundImage: 'url("http://localhost:8000/media/images/1668952320921.JPEG")',
     title: 'Slide 2',
     text: 'Texto do Slide 2',
     buttonText: 'Botão 2',
@@ -50,7 +50,29 @@ const fadeOut = keyframes`
   }
 `;
 
-const LeftFdeIn = keyframes`
+const RightFadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const RightFadeOut = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+`;
+
+const LeftFadeIn = keyframes`
   from {
     opacity: 0;
     transform: translateX(-100%);
@@ -61,18 +83,7 @@ const LeftFdeIn = keyframes`
   }
 `;
 
-const RightFadIn = keyframes`
-  from {
-    opacity: 0;
-    // transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    // transform: translateX(0);
-  }
-`;
-
-const LeftFdeOut = keyframes`
+const LeftFadeOut = keyframes`
   from {
     opacity: 1;
     transform: translateX(0);
@@ -82,18 +93,6 @@ const LeftFdeOut = keyframes`
     transform: translateX(-100%);
   }
 `;
-
-const RightFadOut = keyframes`
-  from {
-    opacity: 1;
-    // transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    // transform: translateX(100%);
-  }
-`;
-
 
 const Slide = styled.div<{ backgroundImage: string }>`
   position: absolute;
@@ -112,7 +111,6 @@ const Slide = styled.div<{ backgroundImage: string }>`
 `;
 
 const SlideContent = styled.div`
-//   width:100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -126,20 +124,20 @@ const SlideContent = styled.div`
 const LeftContent = styled.div`
   width: 50%;
   opacity: 0; /* Initially hidden */
-  animation: ${LeftFdeIn} 1s ease-in-out forwards;
+  animation: ${LeftFadeIn} 1s ease-in-out forwards;
 
-  &.LeftFdeOut {
-    animation: ${LeftFdeOut} 1s ease-in-out forwards;
+  &.LeftFadeOut {
+    animation: ${LeftFadeOut} 1s ease-in-out forwards;
   }
 `;
 
 const RightContent = styled.div`
   width: 50%;
   opacity: 0; /* Initially hidden */
-  animation: ${RightFadIn} 1s ease-in-out forwards;
+  animation: ${RightFadeIn} 1s ease-in-out forwards;
 
-  &.RightFadOut {
-    animation: ${RightFadOut} 1s ease-in-out forwards;
+  &.RightFadeOut {
+    animation: ${RightFadeOut} 1s ease-in-out forwards;
   }
 `;
 
@@ -171,7 +169,6 @@ const Carousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [leftVisible, setLeftVisible] = useState(false);
   const [rightVisible, setRightVisible] = useState(false);
-  const [contentVisible, setContentVisible] = useState(false);
 
 
   useEffect(() => {
@@ -183,40 +180,15 @@ const Carousel: React.FC = () => {
 
   useEffect(() => {
     console.log(`Início do slide ${currentSlide + 1}`);
-    // setContentVisible(true);
-    // setLeftVisible(true);
-  
-    const timeLeftIn = setTimeout(() => {
-      setLeftVisible(true);
-    }, 500); // Delay of 3 seconds
-  
-    const timeLeftout = setTimeout(() => {
-      setLeftVisible(false);
-    }, 7000); // Delay of 3 seconds
-  
-    const timeRightIn = setTimeout(() => {
-      setRightVisible(true);
-    }, 2000); // Delay of 3 seconds
-  
-    const timeRightout = setTimeout(() => {
-      setRightVisible(false);
-    }, 9500); // Delay of 3 seconds
-  
-    const timeContentVisible = setTimeout(() => {
-      setContentVisible(true);
-    }, 500); // Delay of 3 seconds
+    setLeftVisible(true);
+    setRightVisible(true);
   
     return () => {
-      clearTimeout(timeRightout);
-      clearTimeout(timeRightIn);
-      clearTimeout(timeLeftout);
-      clearTimeout(timeLeftIn);
-      clearTimeout(timeContentVisible);
-      setContentVisible(false);
       console.log(`Fim do slide ${currentSlide + 1}`);
+      setLeftVisible(false);
+      setRightVisible(false);
     };
   }, [currentSlide]);
-  
   
 
   return (
@@ -227,26 +199,20 @@ const Carousel: React.FC = () => {
           backgroundImage={slide.backgroundImage}
           className={index === currentSlide ? '' : 'fadeOut'}
         >
-
           <SlideContent>
-            {contentVisible && index === currentSlide && (
-              <>
-                <LeftContent className={leftVisible ? '' : 'LeftFdeOut'}>
-                  <Title>{slide.title}</Title>
-                  <Text>{slide.text}</Text>
-                  <Button>{slide.buttonText}</Button>
-                </LeftContent>
-                <RightContent className={rightVisible ? '' : 'RightFadOut'}>
-                  <SlideImage src={slide.image} alt={slide.title} />
-                </RightContent>
-              </>
-            )}
+            <LeftContent>
+              <Title>{slide.title}</Title>
+              <Text>{slide.text}</Text>
+              <Button>{slide.buttonText}</Button>
+            </LeftContent>
+            <RightContent>
+              <SlideImage src={slide.image} alt={slide.title} />
+            </RightContent>
           </SlideContent>
         </Slide>
       ))}
     </CarouselContainer>
   );
-  
 };
 
 export default Carousel;
