@@ -10,36 +10,40 @@ type Props = {
   onClose: () => void;
 };
 
-type State = IServiceData & {
-  submitted: boolean;
-  categories: Array<ICategoryData>;
+type State = {
+  id: number;
+  name: string;
+  description: string;
+  price: string | undefined;
+  category: string;
+  subcategory: string;
+  cover: string;
+  products: any[]; // Adjust the type if needed
+  images: any[]; // Adjust the type if needed
+  categories: ICategoryData[];
   selectedCategory: string;
-  subcategories: Array<ISubcategoryData>;
+  subcategories: ISubcategoryData[];
   selectedSubcategory: string;
+  submitted: boolean;
 };
 
 export default class AddService extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeSubcategory = this.onChangeSubcategory.bind(this);
-    this.saveService = this.saveService.bind(this);
-    this.newService = this.newService.bind(this);
-
     this.state = {
-      id: null,
+      id: 0,
       name: "",
       description: "",
-      price: 0,
+      price: undefined,
       category: "",
       subcategory: "",
+      cover: '',
+      products: [],
+      images: [],
       categories: [],
       selectedCategory: "",
       subcategories: [],
       selectedSubcategory: "",
-      images: [], // Add the images property here
       submitted: false,
     };
   }
@@ -56,7 +60,7 @@ export default class AddService extends Component<Props, State> {
         console.log(e);
       });
 
-      SubcategoryDataService.getAll()
+    SubcategoryDataService.getAll()
       .then((response: any) => {
         this.setState({
           subcategories: response.data
@@ -68,40 +72,42 @@ export default class AddService extends Component<Props, State> {
       });
   }
 
-  onChangeName(e: ChangeEvent<HTMLInputElement>) {
+  onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({
       name: e.target.value
     });
-  }
+  };
 
-  onChangeDescription(e: ChangeEvent<HTMLInputElement>) {
+  onChangeDescription = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({
       description: e.target.value
     });
-  }
+  };
 
-  onChangeCategory(e: ChangeEvent<HTMLSelectElement>) {
+  onChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     this.setState({
       selectedCategory: e.target.value
     });
-  }
+  };
 
-  onChangeSubcategory(e: ChangeEvent<HTMLSelectElement>) {
+  onChangeSubcategory = (e: ChangeEvent<HTMLSelectElement>) => {
     this.setState({
       selectedSubcategory: e.target.value
     });
-  }
+  };
 
-  saveService() {
+  saveService = () => {
     const data: IServiceData = {
+      id: this.state.id, // Adicione o id como null para a criação de um novo serviço
       name: this.state.name,
       description: this.state.description,
       price: this.state.price,
       category: this.state.selectedCategory,
       subcategory: this.state.selectedSubcategory,
-      images: this.state.images // Assuming images is of type array
+      images: this.state.images,
+      products: [], // Adicione uma array vazia para products
     };
-
+  
     ServiceDataService.create(data)
       .then((response: any) => {
         this.setState({
@@ -118,37 +124,22 @@ export default class AddService extends Component<Props, State> {
       .catch((e: Error) => {
         console.log(e);
       });
-  }
+  };
 
-  /* 
-
-  newService() {
+  newService = () => {
     this.setState({
-      id: null,
+      id: 0,
       name: "",
       description: "",
-      price: 0,
-      category: "", // Adjust if needed
-      selectedCategory: "", // Reset selectedCategory if needed
-      selectedSubcategory: "", // Reset selectedSubcategory
+      price: undefined,
+      category: "",
+      subcategory: "",
+      cover: '',
+      products: [],
+      images: [],
       submitted: false
     });
-  }
-  */
-  newService() {
-    this.setState({
-      id: null,
-      name: "",
-      description: "",
-      price: 0,
-      category: "", // Adjust if needed
-      subcategory: "", // Adjust if needed
-      images: [], // Reset the images array
-      submitted: false
-    });
-  } 
-  
-
+  };
 
   render() {
     const { submitted, name, description, price, categories, selectedCategory, subcategories, selectedSubcategory } = this.state;
@@ -197,8 +188,8 @@ export default class AddService extends Component<Props, State> {
                 className="form-control"
                 id="price"
                 required
-                value={price}
-                onChange={(e) => this.setState({ price: parseInt(e.target.value) })}
+                value={price || ''}
+                onChange={(e) => this.setState({ price: e.target.value })}
                 name="price"
               />
             </div>

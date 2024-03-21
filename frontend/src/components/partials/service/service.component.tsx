@@ -14,13 +14,15 @@ interface Props {
 const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   const navigate = useNavigate();
   const [currentService, setCurrentService] = useState<IServiceData>({
-    id: "",
+    id: 0, // Use null em vez de uma string vazia para id
     name: "",
     description: "",
-    price: 0,
+    price: undefined,
     category: "",
     subcategory: "",
-    images: [], // Adicione a propriedade images ao objeto
+    images: [],
+    products: [],
+    cover: null, // Use null em vez de uma string vazia para cover
   });
   const [categories, setCategories] = useState<ICategoryData[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -91,10 +93,10 @@ const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   };
 
   const deleteService = () => {
-    ServiceDataService.delete(currentService.id)
+    ServiceDataService.delete(currentService.id.toString()) // Converta id para string
       .then((response: any) => {
         setMessage("The service was deleted successfully!");
-        onDelete(currentService.id);
+        onDelete(currentService.id.toString()); // Converta id para string
       })
       .catch((e: Error) => {
         console.log(e);

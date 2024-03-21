@@ -1,13 +1,22 @@
-import { CustomImageData } from './image.type'; 
+// types/service.type.ts
+import { CustomImageData } from './image.type';
+import IProductData from './product.type';
 
 type IServiceData = {
-  id?: any | null;
+  id: number;
   name: string;
   description: string;
-  price: number;
-  category: string; // Suponho que o campo "category" seja uma referência ao ID da categoria
-  subcategory: string; // Suponho que o campo "subcategory" seja uma referência ao ID da subcategoria
-  images: CustomImageData[]; // Assuming images is an array of string URLs
+  price?: string; // Adicione o campo price opcional, caso necessário
+  category: number | string; // Altere para number se for o tipo correto
+  subcategory: number | string; // Altere para number se for o tipo correto
+  cover?: {
+    ImageID: number;
+    Path: string;
+    object_id: number;
+    content_type: number;
+  } | null;
+  images: CustomImageData[]; // Adicione a propriedade images ao tipo ICategoryData
+  products: IProductData[]; // Adicione a propriedade products ao tipo ICategoryData
 };
 
 export default IServiceData;
