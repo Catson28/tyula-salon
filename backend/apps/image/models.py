@@ -13,6 +13,8 @@ class Image(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type", "object_id")
 
+
+'''
 class CategoryImage(models.Model):
     category = models.ForeignKey(
         'category.Category',  # Corrigido para usar string para referenciar o modelo
@@ -48,3 +50,44 @@ class ProductImage(models.Model):
         on_delete=models.CASCADE,
         related_name="img_prod"
     )
+
+'''
+
+class CategoryImage(models.Model):
+    category = models.ForeignKey(
+        'category.Category',  # Corrigido para usar string para referenciar o modelo
+        on_delete=models.CASCADE,
+        related_name="prd_img"
+    )
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="img_cat"
+    )
+    cover = models.BooleanField(default=False)  # Adicionando o campo cover como booleano
+
+class ServiceImage(models.Model):
+    service = models.ForeignKey(
+        'service.Service',  # Corrigido para usar string para referenciar o modelo
+        on_delete=models.CASCADE,
+        related_name="srv_img"
+    )
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="img_srv"
+    )
+    cover = models.BooleanField(default=False)  # Adicionando o campo cover como booleano
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+        'product.Product',  # Corrigido para usar string para referenciar o modelo
+        on_delete=models.CASCADE,
+        related_name="prod_img"
+    )
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="img_prod"
+    )
+    cover = models.BooleanField(default=False)  # Adicionando o campo cover como booleano

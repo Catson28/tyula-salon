@@ -6,6 +6,7 @@ export const useServiceState = () => {
   const [currentService, setCurrentService] = useState<IServiceData | null>(null);
   const [showServiceForm, setShowServiceForm] = useState<boolean>(false);
   const [showService, setShowService] = useState<boolean>(false);
+  const [showImgService, setShowImgService] = useState<boolean>(false);
   const [showServicesList, setShowServicesList] = useState<boolean>(false);
   const [deletedServiceId, setDeletedServiceId] = useState<string | null>(null);
 
@@ -41,6 +42,14 @@ export const useServiceState = () => {
     }
   };
 
+  const handleImageService = (service: IServiceData) => {
+    if (service) {
+      setCurrentService(service);
+      handleServiceClose();
+      setShowImgService(true);
+    }
+  };
+
   const handleDeleteService = (serviceId: string) => {
     ServiceDataService.delete(serviceId)
       .then((response: any) => {
@@ -73,9 +82,11 @@ export const useServiceState = () => {
     setShowServiceForm,
     setShowService,
     setShowServicesList,
+    setShowImgService,
     handleServicesListClick,
     handleAddServiceClick,
     handleEditService,
+    handleImageService,
     handleDeleteService,
     handleUpdateService
   };

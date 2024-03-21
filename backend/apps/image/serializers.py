@@ -7,13 +7,13 @@ from apps.product.models import Product
 class ServiceImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServiceImage
-        fields = ["service", "image"]
+        fields = ["service", "image", "cover"]
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ["product", "image"]
+        fields = ["product", "image", "cover"]
 
 
 # class ImageSerializer(serializers.ModelSerializer):

@@ -7,6 +7,7 @@ from .serializers import ImageSerializer, ServiceImageSerializer, ProductSeriali
 from django.contrib.contenttypes.models import ContentType
 from apps.product.models import Product
 from apps.category.models import Category
+from apps.service.models import Service
 from rest_framework.views import APIView
 
 """
@@ -56,7 +57,7 @@ def add_image(request):
 
 '''
 @api_view(["POST"])
-def UploadImageView(request):
+def UploadCategoryImageView(request):
         serializer = ImageSerializer(data=request.data)
         print(request.data)
         if serializer.is_valid():
@@ -74,7 +75,7 @@ def UploadImageView(request):
 '''
 
 @api_view(["POST"])
-def UploadImageView(request):
+def UploadCategoryImageView(request):
     serializer = ImageSerializer(data=request.data)
     if serializer.is_valid():
         image = serializer.save()
@@ -92,6 +93,34 @@ def UploadImageView(request):
         else:
             # Caso não tenha sido fornecido um ID de categoria, retorne um erro
             return Response({"error": "Category ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["POST"])
+def UploadServiceImageView(request):
+    serializer = ImageSerializer(data=request.data)
+    if serializer.is_valid():
+        image = serializer.save()
+        
+        # Verifique se o ID do serviço foi fornecido na requisição
+        service_id = request.data.get('service_id')
+        if service_id is not None:
+            # Tente obter o serviço com o ID fornecido
+            service = get_object_or_404(Service, pk=service_id)
+            
+            # Verifique se o campo "cover" está presente na requisição e é True
+            if request.data.get('cover', False):
+                cover = True
+            else:
+                cover = False
+            
+            # Criando a relação entre a imagem e o serviço
+            ServiceImage.objects.create(service=service, image=image, cover=cover)
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            # Caso não tenha sido fornecido um ID de serviço, retorne um erro
+            return Response({"error": "Service ID is required"}, status=status.HTTP_400_BAD_REQUEST)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

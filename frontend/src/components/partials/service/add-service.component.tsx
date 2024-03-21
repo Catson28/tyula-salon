@@ -39,6 +39,7 @@ export default class AddService extends Component<Props, State> {
       selectedCategory: "",
       subcategories: [],
       selectedSubcategory: "",
+      images: [], // Add the images property here
       submitted: false,
     };
   }
@@ -97,7 +98,8 @@ export default class AddService extends Component<Props, State> {
       description: this.state.description,
       price: this.state.price,
       category: this.state.selectedCategory,
-      subcategory: this.state.selectedSubcategory
+      subcategory: this.state.selectedSubcategory,
+      images: this.state.images // Assuming images is of type array
     };
 
     ServiceDataService.create(data)
@@ -141,6 +143,7 @@ export default class AddService extends Component<Props, State> {
       price: 0,
       category: "", // Adjust if needed
       subcategory: "", // Adjust if needed
+      images: [], // Reset the images array
       submitted: false
     });
   } 

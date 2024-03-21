@@ -19,6 +19,7 @@ const WholeService: React.FC = () => {
     handleServicesListClick,
     handleAddServiceClick,
     handleEditService,
+    handleImageService,
     handleDeleteService,
     handleUpdateService
   } = useServiceState();
@@ -44,7 +45,7 @@ const WholeService: React.FC = () => {
           <AddService onClose={() => setShowServiceForm(false)} />
         )}
         {showServicesList && (
-          <ServicesList onClose={() => setShowServicesList(false)} onEditService={handleEditService} />
+          <ServicesList onClose={() => setShowServicesList(false)} onEditService={handleEditService} onImgService={handleImageService} />
         )}
         {showService && currentService && (
           <Service id={currentService.id} onEdit={handleUpdateService} onDelete={handleDeleteService} />

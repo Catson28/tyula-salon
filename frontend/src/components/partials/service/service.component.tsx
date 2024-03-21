@@ -20,6 +20,7 @@ const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
     price: 0,
     category: "",
     subcategory: "",
+    images: [], // Adicione a propriedade images ao objeto
   });
   const [categories, setCategories] = useState<ICategoryData[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");

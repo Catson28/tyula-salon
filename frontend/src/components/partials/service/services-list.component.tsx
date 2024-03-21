@@ -1,9 +1,13 @@
 import React, { Component, ChangeEvent } from "react";
 import ServiceDataService from "../../../services/net/ServiceDataService";
 import IServiceData from '../../../services/types/service.type';
+import ServiceImageGalleryComplex from "./ServiceImageGalleryComplex"; 
+import styled from 'styled-components';
+
 
 type Props = {
   onClose: () => void;
+  onImgService: (service: IServiceData) => void;
   onEditService: (service: IServiceData) => void; // Adding property to handle service edit in the parent
 };
 
@@ -13,6 +17,30 @@ type State = {
   currentIndex: number,
   searchName: string
 };
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* Para que os itens se ajustem automaticamente em uma nova linha quando não houver espaço suficiente */
+`;
+
+
+const CardContainer = styled.div`
+  width: 100%;
+  padding: 20px;
+  background-image: url('http://localhost:8000/media/images/8515cd56b16ebe3b2f41af8091762ec3.JPEG');
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  min-height: 200px; /* Defina uma altura mínima inicial para o card */
+`;
+
+const CardTitle = styled.h4`
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+`;
+
 
 export default class ServicesList extends Component<Props, State> {
   constructor(props: Props) {
@@ -156,23 +184,41 @@ export default class ServicesList extends Component<Props, State> {
           {currentService ? (
             <div>
               <h4>Service</h4>
+
+              <FlexContainer>
+                <div className="col-md-6">
+                  <div>
+                    <label>
+                      <strong>Name:</strong>
+                    </label>{" "}
+                    {currentService.name}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Description:</strong>
+                    </label>{" "}
+                    {currentService.description}
+                  </div>
+                  <div>
+                    <label>
+                      <strong>Price:</strong>
+                    </label>{" "}
+                    {currentService.price}
+                    
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <CardContainer>
+                    <CardTitle>Titulo do Card</CardTitle>
+                  </CardContainer>
+                </div>
+              </FlexContainer>
+
               <div>
                 <label>
-                  <strong>Name:</strong>
+                  <strong>Images:</strong>
                 </label>{" "}
-                {currentService.name}
-              </div>
-              <div>
-                <label>
-                  <strong>Description:</strong>
-                </label>{" "}
-                {currentService.description}
-              </div>
-              <div>
-                <label>
-                  <strong>Price:</strong>
-                </label>{" "}
-                {currentService.price}
+                <ServiceImageGalleryComplex images={currentService.images} />
               </div>
                   {/* Button to edit the service */}
                   <button
@@ -181,6 +227,13 @@ export default class ServicesList extends Component<Props, State> {
                   >
                     Edit
                   </button>
+
+              <button
+                  className="btn btn-sm badge btn-primary ml-2"
+                  onClick={() => this.props.onImgService(currentService)}
+                >
+                  Upload Photo
+                </button>
 
             </div>
           ) : (

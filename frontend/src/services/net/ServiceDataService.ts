@@ -10,6 +10,28 @@ class ServiceDataService {
     return http.get<IServiceData>(`api/services/retrieve/${id}/`);
   }
 
+  uploadImg(
+    file: File,
+    contentType: string,
+    objectId: number,
+    serviceId: number,
+    onUploadProgress: any
+  ) {
+    let formData = new FormData();
+    formData.append("Path", file);
+    formData.append("content_type", contentType);
+    formData.append("object_id", objectId.toString());
+    formData.append("service_id", serviceId.toString()); // Change categoryId to serviceId
+  
+    return http.post<any>("api/images/upload-image/service/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      onUploadProgress,
+    });
+  }
+  
+
   create(data: IServiceData) {
     return http.post<IServiceData>("api/services/add/", data);
   }
