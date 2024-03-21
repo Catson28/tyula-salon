@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaChevronRight, FaShoppingCart, FaCubes, FaWrench, FaUsers, FaChartLine, FaBoxes  } from 'react-icons/fa';
 import DynamicContent from '../../partials/DynamicContent';
+
 interface SidebarProps {
   collapsed: boolean;
 }
@@ -44,38 +45,6 @@ const Nav = styled.nav`
   flex-direction: column;
 `;
 
-/*
-const NavLink = styled.a`
-  display: block;
-  align-items: center;
-  padding: 10px 20px;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #555;
-  }
-`;
-
-
-const NavSubLink = styled.a<{ visible: boolean }>`
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
-  align-items: center;
-  padding: 10px 20px;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #555;
-  }
-`;
-
-*/
-
-/*
-*/
 
 const NavLink = styled.a<{ active: boolean }>`
   display: block;
@@ -301,8 +270,9 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
             </Sidebar>
 
             <DynamicContent sidebarWidth={sidebarWidth} >
-            {children} {/* Renderizando o conteúdo dinâmico aqui */}
+              {children} {/* Renderizando o conteúdo dinâmico aqui */}
             </DynamicContent>
+
             </>
             )}
     </>

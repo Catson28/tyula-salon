@@ -9,6 +9,8 @@ import ComponentSlider from '../../partials/carrocel/ComponentSlider';
 import TelaDoNavegador from '../../partials/HelperResposnve/TelaDoNavegador';
 import ParentWithDynamicChild from '../../partials/HelperResposnve/ParentWithDynamicChild';
 import NavbarComponent from './NavbarComponent'
+
+
 const TestAllBeauty: React.FC = () => {
 
   const components = [<WholeCategory />, <WholeSubcategory />, <WholeProduct />, <WholeService />];
