@@ -13,4 +13,9 @@ urlpatterns = [
     path("select-cover-image/<int:service_id>/", views.select_service_cover_image),  # Seleciona a imagem de capa de um serviço
     path("select-or-upload-raw-material/<int:service_id>/", views.select_or_upload_raw_material),  # Seleciona ou faz o upload de matéria-prima para um serviço
     path("select-or-upload-categories/<int:service_id>/", views.select_or_upload_categories),  # Seleciona ou faz o upload de categorias ou subcategorias para um serviço
+    path("list-products/<int:service_id>/", views.list_products),  # Lista todos os produtos relacionados a um serviço
+    path("add-product/<int:service_id>/", views.add_product),  # Adiciona um novo produto relacionado a um serviço
+    path("update-product/<int:product_id>/", views.update_product),  # Atualiza um produto relacionado a um serviço
+    path("retrieve-product/<int:product_id>/", views.retrieve_product),  # Recupera os detalhes de um produto relacionado a um serviço
+    path("delete-product/<int:product_id>/", views.delete_product),  # Deleta um produto relacionado a um serviço
 ]

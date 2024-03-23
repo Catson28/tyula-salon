@@ -9,6 +9,7 @@ import styled from 'styled-components';
 type Props = {
   onClose: () => void;
   onImgService: (service: IServiceData) => void;
+  onListProductService: (service: IServiceData) => void;
   onEditService: (service: IServiceData) => void; // Adding property to handle service edit in the parent
 };
 
@@ -25,7 +26,7 @@ const FlexContainer = styled.div`
 `;
 
 
-export default class ServicesList extends Component<Props, State> {
+export default class ListServices extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.onChangeSearchName = this.onChangeSearchName.bind(this);
@@ -209,12 +210,19 @@ export default class ServicesList extends Component<Props, State> {
                     Edit
                   </button>
 
-              <button
-                  className="btn btn-sm badge btn-primary ml-2"
-                  onClick={() => this.props.onImgService(currentService)}
-                >
-                  Upload Photo
-                </button>
+                  <button
+                    className="btn btn-sm badge btn-primary ml-2"
+                    onClick={() => this.props.onImgService(currentService)}
+                  >
+                    Upload Photo
+                  </button>
+
+                  <button
+                    className="btn btn-sm badge btn-success ml-2" 
+                    onClick={() => this.props.onListProductService(currentService)}
+                  >
+                    Products
+                  </button>
 
             </div>
           ) : (

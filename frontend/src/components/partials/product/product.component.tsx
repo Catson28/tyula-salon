@@ -17,6 +17,8 @@ const Product: React.FC<Props> = ({ id, onEdit, onDelete }) => {
     id: "",
     name: "",
     description: "",
+    cost: "",
+    quantity: "",
     category: "",
   });
   const [categories, setCategories] = useState<ICategoryData[]>([]);

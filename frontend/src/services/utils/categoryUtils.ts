@@ -9,6 +9,8 @@ export const useCategoryState = () => {
   const [showImgCategory, setShowImgCategory] = useState<boolean>(false);
   const [showCategoriesList, setShowCategoriesList] = useState<boolean>(false);
   const [deletedCategoryId, setDeletedCategoryId] = useState<string | null>(null);
+  const categoriesButtonViewText = showCategory || showCategoriesList ? "Fechar" : "Abrir";
+  const categoriesButtonAddText = showCategoryForm ? "Fechar" : "Adicionar";
 
   const handleCategoryClose = () => {
     setShowCategoryForm(false);
@@ -89,6 +91,8 @@ export const useCategoryState = () => {
     handleEditCategory,
     handleImageCategory,
     handleDeleteCategory,
-    handleUpdateCategory
+    handleUpdateCategory,
+    categoriesButtonViewText,
+    categoriesButtonAddText
   };
 };

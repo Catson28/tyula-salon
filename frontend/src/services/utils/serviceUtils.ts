@@ -7,21 +7,28 @@ export const useServiceState = () => {
   const [showServiceForm, setShowServiceForm] = useState<boolean>(false);
   const [showService, setShowService] = useState<boolean>(false);
   const [showImgService, setShowImgService] = useState<boolean>(false);
-  const [showServicesList, setShowServicesList] = useState<boolean>(false);
+  const [showListServices, setShowListServices] = useState<boolean>(false);
   const [deletedServiceId, setDeletedServiceId] = useState<string | null>(null);
+  const [showAddProductService, setShowAddProductService] = useState<boolean>(false);
+  const [showListProductService, setShowListProductService] = useState<boolean>(false);
+
+
 
   const handleServiceClose = () => {
     setShowServiceForm(false);
-    setShowServicesList(false);
+    setShowListServices(false);
     setShowService(false);
+    setShowImgService(false);
+    setShowAddProductService(false);
+    setShowListProductService(false);
   };
 
-  const handleServicesListClick = () => {
-    if (showServicesList) {
+  const handleListServicesClick = () => {
+    if (showListServices) {
       handleServiceClose();
     } else {
       handleServiceClose();
-      setShowServicesList(true);
+      setShowListServices(true);
     }
   };
 
@@ -39,6 +46,22 @@ export const useServiceState = () => {
       setCurrentService(service);
       handleServiceClose();
       setShowService(true);
+    }
+  };
+
+  const handleAddProductService = (service: IServiceData) => {
+    if (service) {
+      setCurrentService(service);
+      handleServiceClose();
+      setShowAddProductService(true);
+    }
+  };
+
+  const handleListProductService = (service: IServiceData) => {
+    if (service) {
+      setCurrentService(service);
+      handleServiceClose();
+      setShowListProductService(true);
     }
   };
 
@@ -77,15 +100,21 @@ export const useServiceState = () => {
     currentService,
     showServiceForm,
     showService,
-    showServicesList,
+    showListServices,
     deletedServiceId,
+    showImgService,
+    showAddProductService,
+    showListProductService,
+    
     setShowServiceForm,
     setShowService,
-    setShowServicesList,
+    setShowListServices,
     setShowImgService,
-    handleServicesListClick,
+    handleListServicesClick,
     handleAddServiceClick,
     handleEditService,
+    handleAddProductService,
+    handleListProductService,
     handleImageService,
     handleDeleteService,
     handleUpdateService

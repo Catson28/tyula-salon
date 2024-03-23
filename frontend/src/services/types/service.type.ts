@@ -7,7 +7,6 @@ type IServiceData = {
   name: string;
   description: string;
   price?: string; // Adicione o campo price opcional, caso necessário
-  category: number | string; // Altere para number se for o tipo correto
   subcategory: number | string; // Altere para number se for o tipo correto
   cover?: {
     ImageID: number;

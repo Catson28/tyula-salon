@@ -51,6 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Adicione a seguinte linha para evitar conflitos com os grupos e permissões do Django
     groups = None
     user_permissions = None
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.email
@@ -84,6 +86,8 @@ class Roles(models.Model):
     # Adicione a seguinte linha para evitar conflitos com os grupos e permissões do Django
     groups = None
     permissions = None
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.display
@@ -108,6 +112,8 @@ class Permission(models.Model):
     # Adicione a seguinte linha para evitar conflitos com os grupos e permissões do Django
     user_set = None
     group_set = None
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name

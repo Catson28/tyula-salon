@@ -9,6 +9,7 @@ import ComponentSlider from '../../partials/carrocel/ComponentSlider';
 import TelaDoNavegador from '../../partials/HelperResposnve/TelaDoNavegador';
 import ParentWithDynamicChild from '../../partials/HelperResposnve/ParentWithDynamicChild';
 import NavbarComponent from './NavbarComponent'
+import CollButt from './CollButt'
 
 
 const TestAllBeauty: React.FC = () => {
@@ -24,6 +25,7 @@ const TestAllBeauty: React.FC = () => {
             <WholeService />
             <ParentWithDynamicChild />
             <TelaDoNavegador />
+            <CollButt />
         </div>        
       </NavbarComponent>
 

@@ -9,17 +9,31 @@ interface Props {
   id: number;
 };
 
+
+// Styled Components
+const CheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const CheckboxLabel = styled.label`
+  margin-right: 8px;
+`;
+
+const CheckboxInput = styled.input`
+  margin-right: 4px;
+`;
+
 const FormImgUploadService: React.FC<Props> = ({ id }) => {
   const [currentImage, setCurrentImage] = useState<File>();
   const [previewImage, setPreviewImage] = useState<string>("");
   const [progress, setProgress] = useState<number>(0);
   const [message, setMessage] = useState<string>("");
   const [imageInfos, setImageInfos] = useState<Array<IFile>>([]);
-  const [contentType, setContentType] = useState<string>(String(id)); // Assuming contentType is of type string
-  const [objectId, setObjectId] = useState<number>(id); // Assuming objectId is of type number
   const [serviceId, setServiceId] = useState<number>(id); // Assuming serviceId is of type number
   const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
   const [uploadError, setUploadError] = useState<boolean>(false);
+  const [cover, setCover] = useState<boolean>(false); // New state for checkbox
 
   useEffect(() => {
     UploadService.getFiles().then((response) => {
@@ -34,18 +48,19 @@ const FormImgUploadService: React.FC<Props> = ({ id }) => {
     setProgress(0);
   };
 
+  const handleCoverChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCover(event.target.checked);
+  };
+
   const upload = () => {
     setProgress(0);
-    if (!currentImage || !contentType || !objectId || !serviceId) return;
+    if (!currentImage || !serviceId) return;
 
-    const contentTypeString = String(contentType);
-    const objectIdNumber = Number(objectId);
     const serviceIdNumber = Number(serviceId);
 
     ServiceDataService.uploadImg(
       currentImage,
-      contentTypeString,
-      objectIdNumber,
+      cover,
       serviceIdNumber,
       (event: any) => {
         setProgress(Math.round((100 * event.loaded) / event.total));
@@ -83,7 +98,7 @@ const FormImgUploadService: React.FC<Props> = ({ id }) => {
     <div>
       {id && (
         <div className="edit-form">
-          <h4>Upload Image</h4>
+          <h4>Carregar a Imagem</h4>
           <form>
             <div className="form-group">
               <label htmlFor="image">Select Image</label>
@@ -95,11 +110,28 @@ const FormImgUploadService: React.FC<Props> = ({ id }) => {
                 onChange={selectImage}
               />
             </div>
+
+            {/* Checkbox Container */}
+            <div className="form-group">
+              <CheckboxContainer>
+                <CheckboxLabel htmlFor="cover">Imagem para Capa?</CheckboxLabel>
+                <CheckboxInput
+                  type="checkbox"
+                  id="cover"
+                  checked={cover}
+                  
+                  onChange={handleCoverChange}
+                  // {/*onChange={(e) => setCover(e.target.checked)}*/}
+                  name="cover"
+                />
+              </CheckboxContainer>
+            </div>
+            
             <div className="form-group">
               <button
                 type="button"
                 className="btn btn-success"
-                disabled={!currentImage || !contentType || !objectId || !serviceId || uploadSuccess}
+                disabled={!currentImage || !serviceId || uploadSuccess}
                 onClick={upload}
               >
                 Upload

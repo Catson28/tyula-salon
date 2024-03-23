@@ -11,14 +11,13 @@ interface Props {
   onDelete: (serviceId: string) => void;
 }
 
-const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
+const EditService: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   const navigate = useNavigate();
   const [currentService, setCurrentService] = useState<IServiceData>({
     id: 0, // Use null em vez de uma string vazia para id
     name: "",
     description: "",
     price: undefined,
-    category: "",
     subcategory: "",
     images: [],
     products: [],
@@ -79,7 +78,6 @@ const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   const updateService = () => {
     const updatedService: IServiceData = {
       ...currentService,
-      category: selectedCategory,
     };
 
     ServiceDataService.update(updatedService, currentService.id)
@@ -129,20 +127,6 @@ const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
                 onChange={onChangeDescription}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="category">Category</label>
-              <select
-                className="form-control"
-                id="category"
-                value={selectedCategory}
-                onChange={onChangeCategory}
-              >
-                <option value="">Select a category</option>
-                {categories.map((category: ICategoryData) => (
-                  <option key={category.id} value={category.id}>{category.name}</option>
-                ))}
-              </select>
-            </div>
           </form>
           <button
             className="badge badge-danger mr-2"
@@ -169,4 +153,4 @@ const Service: React.FC<Props> = ({ id, onEdit, onDelete }) => {
   );
 };
 
-export default Service;
+export default EditService;

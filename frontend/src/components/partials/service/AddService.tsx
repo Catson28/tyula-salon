@@ -102,7 +102,6 @@ export default class AddService extends Component<Props, State> {
       name: this.state.name,
       description: this.state.description,
       price: this.state.price,
-      category: this.state.selectedCategory,
       subcategory: this.state.selectedSubcategory,
       images: this.state.images,
       products: [], // Adicione uma array vazia para products
@@ -142,7 +141,7 @@ export default class AddService extends Component<Props, State> {
   };
 
   render() {
-    const { submitted, name, description, price, categories, selectedCategory, subcategories, selectedSubcategory } = this.state;
+    const { submitted, name, description, price, subcategories, selectedSubcategory } = this.state;
 
     return (
       <div className="submit-form">
@@ -192,23 +191,6 @@ export default class AddService extends Component<Props, State> {
                 onChange={(e) => this.setState({ price: e.target.value })}
                 name="price"
               />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="category">Category</label>
-              <select
-                className="form-control"
-                id="category"
-                required
-                value={selectedCategory}
-                onChange={this.onChangeCategory}
-                name="category"
-              >
-                <option value="">Select a category</option>
-                {categories.map((category: ICategoryData, index: number) => (
-                  <option key={index} value={category.id}>{category.name}</option>
-                ))}
-              </select>
             </div>
 
             <div className="form-group">

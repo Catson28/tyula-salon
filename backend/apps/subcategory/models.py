@@ -8,3 +8,5 @@ class Subcategory(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="category_child"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

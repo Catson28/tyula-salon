@@ -20,4 +20,5 @@ urlpatterns = [
     ),  # Atualiza a descrição de uma imagem
     path('upload-image/category/', views.UploadCategoryImageView, name='upload_category_image'),
     path('upload-image/service/', views.UploadServiceImageView, name='upload_service_image'),
+    path('upload-image/product/', views.UploadProductImageView, name='upload_product_image'),
 ]

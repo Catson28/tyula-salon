@@ -20,6 +20,8 @@ export default class AddProduct extends Component<Props, State> {
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
+    this.onChangeCost = this.onChangeCost.bind(this);
+    this.onChangeQuantity = this.onChangeQuantity.bind(this);
     this.saveProduct = this.saveProduct.bind(this);
     this.newProduct = this.newProduct.bind(this);
 
@@ -27,6 +29,8 @@ export default class AddProduct extends Component<Props, State> {
       id: null,
       name: "",
       description: "",
+      cost: "",
+      quantity: "",
       category: "", // Assuming category is a string here, adjust if it's supposed to be an object
       submitted: false,
       categories: [],
@@ -65,12 +69,26 @@ export default class AddProduct extends Component<Props, State> {
     });
   }
 
+  onChangeCost(e: ChangeEvent<HTMLInputElement>) {
+    this.setState({
+      cost: e.target.value
+    });
+  }
+
+  onChangeQuantity(e: ChangeEvent<HTMLInputElement>) {
+    this.setState({
+      quantity: e.target.value
+    });
+  }
+
 
 
   saveProduct() {
     const data: IProductData = {
       name: this.state.name,
       description: this.state.description,
+      cost: this.state.cost,
+      quantity: this.state.quantity,
       category: this.state.selectedCategory
     };
 
@@ -80,6 +98,8 @@ export default class AddProduct extends Component<Props, State> {
           id: response.data.id,
           name: response.data.name,
           description: response.data.description,
+          cost: response.data.cost,
+          quantity: response.data.quantity,
           category: response.data.category,
           submitted: true
         });
@@ -95,13 +115,15 @@ export default class AddProduct extends Component<Props, State> {
       id: null,
       name: "",
       description: "",
+      cost: "",
+      quantity: "",
       category: "", // Adjust if needed
       submitted: false
     });
   }
 
   render() {
-    const { submitted, name, description, categories, selectedCategory } = this.state;
+    const { submitted, name, description, cost, quantity, categories, selectedCategory } = this.state;
 
     return (
       <div className="submit-form">
@@ -137,6 +159,31 @@ export default class AddProduct extends Component<Props, State> {
                 value={description}
                 onChange={this.onChangeDescription}
                 name="description"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cost">Cost</label>
+              <input
+                type="text"
+                className="form-control"
+                id="cost"
+                required
+                value={cost}
+                onChange={this.onChangeCost}
+                name="cost"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="quantity">Stock Quantity</label>
+              <input
+                type="text"
+                className="form-control"
+                id="quantity"
+                required
+                value={quantity}
+                onChange={this.onChangeQuantity}
+                name="quantity"
               />
             </div>
 

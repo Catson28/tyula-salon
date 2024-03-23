@@ -12,15 +12,13 @@ class ServiceDataService {
 
   uploadImg(
     file: File,
-    contentType: string,
-    objectId: number,
+    cover: boolean,
     serviceId: number,
     onUploadProgress: any
   ) {
     let formData = new FormData();
     formData.append("Path", file);
-    formData.append("content_type", contentType);
-    formData.append("object_id", objectId.toString());
+    formData.append("cover", cover.toString());
     formData.append("service_id", serviceId.toString()); // Change categoryId to serviceId
   
     return http.post<any>("api/images/upload-image/service/", formData, {
@@ -71,6 +69,28 @@ class ServiceDataService {
   selectOrUploadCategories(serviceId: any, categoryData: any) {
     return http.put<any>(`api/services/select-or-upload-categories/${serviceId}/`, categoryData);
   }
+
+
+  listProducts(serviceId: any) {
+    return http.get<Array<any>>(`api/services/list-products/${serviceId}/`);
+  }
+
+  addProduct(serviceId: any, data: any) {
+    return http.post<any>(`api/services/add-product/${serviceId}/`, data);
+  }
+
+  updateProduct(productId: any, data: any) {
+    return http.put<any>(`api/services/update-product/${productId}/`, data);
+  }
+
+  retrieveProduct(productId: any) {
+    return http.get<any>(`api/services/retrieve-product/${productId}/`);
+  }
+
+  deleteProduct(productId: any) {
+    return http.delete<any>(`api/services/delete-product/${productId}/`);
+  }
+
 }
 
 export default new ServiceDataService();

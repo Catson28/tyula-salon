@@ -24,7 +24,9 @@ const WholeCategory: React.FC = () => {
     handleEditCategory,
     handleImageCategory,
     handleDeleteCategory,
-    handleUpdateCategory
+    handleUpdateCategory,
+    categoriesButtonViewText,
+    categoriesButtonAddText
   } = useCategoryState();
 
   useEffect(() => {
@@ -34,8 +36,6 @@ const WholeCategory: React.FC = () => {
     }
   }, [currentCategory, deletedCategoryId]);
 
-  const categoriesButtonViewText = showCategory || showCategoriesList ? "Fechar" : "Abrir";
-  const categoriesButtonAddText = showCategoryForm ? "Fechar" : "Adicionar";
 
   return (
       <>
