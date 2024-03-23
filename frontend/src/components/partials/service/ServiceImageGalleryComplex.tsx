@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import  {CustomNextArrow, CustomPrevArrow} from "./buttomSlide"
 
 import { CustomImageData } from '../../../services/types/image.type';
 
@@ -12,7 +13,7 @@ type Props = {
 
 const GalleryContainer = styled.div<{ showSlider: boolean }>`
   position: relative; /* Adicione position relative para GalleryContainer */
-  ${props => props.showSlider ? 'width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999; background-color: rgba(0, 0, 0, 0.5); display:block;' : 'display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; display:flex; '}
+  ${props => props.showSlider ? 'width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999; background-color: rgba(0, 0, 0, 0.5); display:block;' : 'display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; '}
 `;
 
 const ServiceCard = styled.div`
@@ -50,15 +51,25 @@ ${props => props.showSlider ? `width: ${props.comprimento}vh; height: ${props.al
 `;
 
 
-
 const CustomGrid = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 900;
 `;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background-color: rgba(0, 0, 0, 0.5);
+`;
+
+
+
 
 const ServiceImageGalleryComplex: React.FC<Props> = ({ images }) => {
   const [showSlider, setShowSlider] = useState(false);
@@ -78,6 +89,8 @@ const ServiceImageGalleryComplex: React.FC<Props> = ({ images }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <CustomNextArrow  style={{ right: 0 }} />, // Adicione um componente personalizado para o botão Next
+    prevArrow: <CustomPrevArrow />, // Adicione um componente personalizado para o botão Prev
   };
 
   return (
@@ -97,6 +110,8 @@ const ServiceImageGalleryComplex: React.FC<Props> = ({ images }) => {
               <CustomGrid >
                 <ToggleButton onClick={toggleCloseSlider}>X</ToggleButton> {/* Botão para fechar o slider */}
                 <ServiceImage  comprimento={80} altura={80} src={`http://localhost:8000${serviceData.image.Path}`} alt={`Service Image ${index + 1}`} showSlider={showSlider} />
+
+                <Overlay onClick={toggleCloseSlider} />
               </CustomGrid>
             </div>
           ))}
