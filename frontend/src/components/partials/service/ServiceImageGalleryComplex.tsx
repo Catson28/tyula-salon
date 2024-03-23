@@ -39,7 +39,7 @@ const ToggleButton = styled.button`
 `;
 
 const ServiceImage = styled.img<{ showSlider: boolean; comprimento?: number; altura?: number }>`
-${props => props.showSlider ? `width: ${props.comprimento}vh; height: ${props.altura}vh; z-index: 500; object-fit: contain; object-position: center;`: 'width: 100%; height: 100%; object-fit: cover;'}
+${props => props.showSlider ? `width: ${props.comprimento}vh; height: ${props.altura}vh; z-index: 500; object-fit: contain; object-position: center;`: `width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; ${ServiceCard}:hover & { transform: scale(1.2); // Aumenta o tamanho da imagem em 20% ao passar o mouse }`}
 
 
   ${props => props.showSlider && `

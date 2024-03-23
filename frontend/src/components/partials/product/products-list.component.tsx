@@ -4,6 +4,7 @@ import IProductData from '../../../services/types/product.type';
 
 type Props = {
   onClose: () => void;
+  onImgProduct: (product: IProductData) => void;
   onEditProduct: (product: IProductData) => void; // Adding property to handle product edit in the parent
 };
 
@@ -174,6 +175,13 @@ export default class ProductsList extends Component<Props, State> {
                     onClick={() => this.props.onEditProduct(currentProduct)}
                   >
                     Edit
+                  </button>
+
+                  <button
+                    className="btn btn-sm badge btn-primary ml-2"
+                    onClick={() => this.props.onImgProduct(currentProduct)}
+                  >
+                    Upload Photo
                   </button>
 
             </div>

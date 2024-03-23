@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 
 import AddProduct from './add-product.component';
-import ProductsList from './products-list.component'; // Importando o componente de listagem de produtos
-import Product from './product.component'; // Importando o componente de exibição de produto
-import { useProductState } from '../../../services/utils/productUtils'; // Importando o hook de estado para produtos
+import ProductsList from './products-list.component';
+import Product from './product.component';
+import ImgUpdateProduct from './ImgUpdateProduct'; // Importando o componente para upload de imagem de produto
+import { useProductState } from '../../../services/utils/productUtils';
 
 const WholeProduct: React.FC = () => {
   const {
@@ -11,11 +12,14 @@ const WholeProduct: React.FC = () => {
     showProductForm,
     showProduct,
     showProductsList,
+    showImgProduct, // Adicionando o estado para mostrar o componente de upload de imagem de produto
     deletedProductId,
+    handleImageProduct,
 
-    setShowProductForm, // Adicionando as funções de configuração ao objeto de retorno
+    setShowProductForm,
     setShowProduct,
     setShowProductsList,
+    setShowImgProduct, // Adicionando a função para mostrar o componente de upload de imagem de produto
     handleProductsListClick,
     handleAddProductClick,
     handleEditProduct,
@@ -27,8 +31,9 @@ const WholeProduct: React.FC = () => {
     if (!currentProduct && deletedProductId) {
       setShowProduct(false);
       setShowProductsList(false);
+      setShowImgProduct(false); // Escondendo o componente de upload de imagem quando necessário
     }
-  }, [currentProduct, deletedProductId]);
+  }, [currentProduct, deletedProductId, setShowImgProduct]);
 
   const productsButtonViewText = showProduct || showProductsList ? "Fechar" : "Abrir";
   const productsButtonAddText = showProductForm ? "Fechar" : "Adicionar";
@@ -36,7 +41,7 @@ const WholeProduct: React.FC = () => {
   return (
       <>
         <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
-          <h2 id="vertical-variation">Lista de Productos<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
+          <h2 id="vertical-variation">Lista de Produtos<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
           <button type="button" className="btn btn-primary" onClick={handleProductsListClick}>{productsButtonViewText}</button>
           <button type="button" className="btn btn-primary" onClick={handleAddProductClick}>{productsButtonAddText}</button>
         </div>
@@ -44,10 +49,13 @@ const WholeProduct: React.FC = () => {
           <AddProduct onClose={() => setShowProductForm(false)} />
         )}
         {showProductsList && (
-          <ProductsList onClose={() => setShowProductsList(false)} onEditProduct={handleEditProduct} />
+          <ProductsList onClose={() => setShowProductsList(false)} onEditProduct={handleEditProduct} onImgProduct={handleImageProduct} />
         )}
         {showProduct && currentProduct && (
           <Product id={currentProduct.id} onEdit={handleUpdateProduct} onDelete={handleDeleteProduct} />
+        )}
+        {showImgProduct && currentProduct && (
+          <ImgUpdateProduct id={currentProduct.id} /> // Mostrando o componente de upload de imagem de produto quando necessário
         )}
       </>
   );
