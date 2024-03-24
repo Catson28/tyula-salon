@@ -318,32 +318,27 @@ These tables represent the entities and attributes in English, following normali
 from django.db import models
 
 class Seller(models.Model):# Representa um vendedor que pode realizar vendas.
-    seller_id = models.AutoField(primary_key=True)
     seller_name = models.CharField(max_length=100)
 
     
 
 class Client(models.Model):# Representa um cliente que pode fazer compras ou contratar serviços.
-    client_id = models.AutoField(primary_key=True)
     client_name = models.CharField(max_length=100)
 
     
 
 class Product(models.Model):# Representa um produto que pode ser vendido.
-    product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=100)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     
 
 class Service(models.Model):# Representa um serviço que pode ser prestado.
-    service_id = models.AutoField(primary_key=True)
     service_description = models.TextField()
     hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)
 
 
 class Invoice(models.Model):# Representa uma fatura emitida para um cliente.
-    invoice_id = models.AutoField(primary_key=True)
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     invoice_date = models.DateField()
@@ -352,7 +347,6 @@ class Invoice(models.Model):# Representa uma fatura emitida para um cliente.
     
 
 class SoldItem(models.Model):# Representa um item vendido em uma fatura de venda de produtos.
-    item_id = models.AutoField(primary_key=True)
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
@@ -361,7 +355,6 @@ class SoldItem(models.Model):# Representa um item vendido em uma fatura de venda
 
 class ProvidedService(models.Model):# Representa um serviço prestado em uma fatura de serviços.
 
-    service_provided_id = models.AutoField(primary_key=True)
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     service_date_duration = models.CharField(max_length=100)
