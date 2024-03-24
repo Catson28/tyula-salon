@@ -55,3 +55,8 @@ class Advance(models.Model):
     advanced_value = models.DecimalField(max_digits=10, decimal_places=2)  # Valor do adiantamento
     advance_date = models.DateField()  # Data do adiantamento
     advance_details = models.TextField()  # Detalhes do adiantamento
+
+# Representa um tipo de desconto aplicado ao salário
+class Deduction(models.Model):
+    deduction_type = models.CharField(max_length=100)  # Tipo de desconto (por exemplo, Segurança Social, IRS)
+    deduction_value = models.DecimalField(max_digits=10, decimal_places=2)  # Valor do desconto

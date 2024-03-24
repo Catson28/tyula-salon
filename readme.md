@@ -328,11 +328,6 @@ class Client(models.Model):  # Define um modelo para representar um cliente.
 
 
 
-# Representa um tipo de desconto aplicado ao salário
-class Deduction(models.Model):
-    deduction_type = models.CharField(max_length=100)  # Tipo de desconto (por exemplo, Segurança Social, IRS)
-    deduction_value = models.DecimalField(max_digits=10, decimal_places=2)  # Valor do desconto
-
 
 
 ```
