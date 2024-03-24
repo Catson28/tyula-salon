@@ -323,13 +323,9 @@ class Seller(models.Model):  # Define um modelo para representar um vendedor.
 class Client(models.Model):  # Define um modelo para representar um cliente.
     client_name = models.CharField(max_length=100)  # Define um campo para o nome do cliente.
 
-class Product(models.Model):  # Define um modelo para representar um produto.
-    product_name = models.CharField(max_length=100)  # Define um campo para o nome do produto.
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o preço unitário do produto.
 
-class Service(models.Model):  # Define um modelo para representar um serviço.
-    service_description = models.TextField()  # Define um campo para a descrição do serviço.
-    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para a taxa horária do serviço.
+
+
 
 class Invoice(models.Model):  # Define um modelo para representar uma fatura.
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.
@@ -366,13 +362,8 @@ class Seller(models.Model):  # Define um modelo para representar um vendedor.
 class Client(models.Model):  # Define um modelo para representar um cliente.
     client_name = models.CharField(max_length=100)  # Define um campo para o nome do cliente.
 
-class Product(models.Model):  # Define um modelo para representar um produto.
-    product_name = models.CharField(max_length=100)  # Define um campo para o nome do produto.
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o preço unitário do produto.
 
-class Service(models.Model):  # Define um modelo para representar um serviço.
-    service_description = models.TextField()  # Define um campo para a descrição do serviço.
-    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para a taxa horária do serviço.
+
 
 class Invoice(models.Model):  # Define um modelo para representar uma fatura.
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.

@@ -1,30 +1,30 @@
-from django.db import models
+from django.db import models  # Importa o módulo de modelos do Django.
 
 # Modelo de categoria de fatura
-class CategoriaFatura(models.Model):
-    nome = models.CharField(max_length=255)  # Nome da categoria
+class InvoiceCategory(models.Model):
+    name = models.CharField(max_length=255)  # Nome da categoria
 
     def __str__(self):
-        return self.nome
+        return self.name
 
 # Modelo de fatura
-class Fatura(models.Model):
-    numero_fatura = models.CharField(max_length=255)  # Número da fatura
-    categoria = models.ForeignKey(CategoriaFatura, on_delete=models.CASCADE)  # Categoria da fatura
-    data_emissao = models.DateField()  # Data de emissão da fatura
-    data_vencimento = models.DateField()  # Data de vencimento da fatura
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2)  # Valor total da fatura
+class Invoice(models.Model):
+    invoice_number = models.CharField(max_length=255)  # Número da fatura
+    category = models.ForeignKey(InvoiceCategory, on_delete=models.CASCADE)  # Categoria da fatura
+    issuance_date = models.DateField()  # Data de emissão da fatura
+    due_date = models.DateField()  # Data de vencimento da fatura
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)  # Valor total da fatura
 
 # Modelo de item de fatura
-class ItemFatura(models.Model):
-    fatura = models.ForeignKey(Fatura, related_name='itens', on_delete=models.CASCADE)  # Fatura associada ao item
-    descricao = models.TextField()  # Descrição do item
-    quantidade = models.IntegerField()  # Quantidade do item
-    preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)  # Preço unitário do item
-    total_linha = models.DecimalField(max_digits=10, decimal_places=2)  # Total da linha para o item
+class InvoiceItem(models.Model):
+    invoice = models.ForeignKey(Invoice, related_name='items', on_delete=models.CASCADE)  # Fatura associada ao item
+    description = models.TextField()  # Descrição do item
+    quantity = models.IntegerField()  # Quantidade do item
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Preço unitário do item
+    line_total = models.DecimalField(max_digits=10, decimal_places=2)  # Total da linha para o item
 
 # Modelo de pagamento
-class Pagamento(models.Model):
-    fatura = models.ForeignKey(Fatura, related_name='pagamentos', on_delete=models.CASCADE)  # Fatura associada ao pagamento
-    data_pagamento = models.DateField()  # Data do pagamento
-    valor_pago = models.DecimalField(max_digits=10, decimal_places=2)  # Valor pago
+class Payment(models.Model):
+    invoice = models.ForeignKey(Invoice, related_name='payments', on_delete=models.CASCADE)  # Fatura associada ao pagamento
+    payment_date = models.DateField()  # Data do pagamento
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)  # Valor pago

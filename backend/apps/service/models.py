@@ -11,6 +11,7 @@ class Service(models.Model):
     subcategory = models.ForeignKey(
         Subcategory, on_delete=models.CASCADE, related_name="subcat_prod")
     products = models.ManyToManyField(Product, through='ServiceProduct', related_name='services') 
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para a taxa horária do serviço.
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
