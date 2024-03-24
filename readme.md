@@ -312,6 +312,49 @@ These tables represent the entities and attributes in English, following normali
 
 
 
+# Usaremos
+
+```py
+from django.db import models  # Importa o módulo de modelos do Django.
+
+class Seller(models.Model):  # Define um modelo para representar um vendedor.
+    seller_name = models.CharField(max_length=100)  # Define um campo para o nome do vendedor.
+
+class Client(models.Model):  # Define um modelo para representar um cliente.
+    client_name = models.CharField(max_length=100)  # Define um campo para o nome do cliente.
+
+class Product(models.Model):  # Define um modelo para representar um produto.
+    product_name = models.CharField(max_length=100)  # Define um campo para o nome do produto.
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o preço unitário do produto.
+
+class Service(models.Model):  # Define um modelo para representar um serviço.
+    service_description = models.TextField()  # Define um campo para a descrição do serviço.
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para a taxa horária do serviço.
+
+class Invoice(models.Model):  # Define um modelo para representar uma fatura.
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Define uma relação com o cliente da fatura.
+    invoice_date = models.DateField()  # Define um campo para a data da fatura.
+    total_payable = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o total a pagar na fatura.
+
+class SoldItem(models.Model):  # Define um modelo para representar um item vendido.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do item.
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # Define uma relação com o produto vendido.
+    quantity = models.IntegerField()  # Define um campo para a quantidade do produto vendido.
+
+class ProvidedService(models.Model):  # Define um modelo para representar um serviço prestado.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do serviço.
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)  # Define uma relação com o serviço prestado.
+    service_date_duration = models.CharField(max_length=100)  # Define um campo para a duração do serviço.
+    total_service_value = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o valor total do serviço.
+
+# As linhas a seguir definem modelos adicionais com funcionalidades semelhantes, mas com diferentes detalhes e relações.
+```
+
+
+
+
+
 
 
 ```py
@@ -449,6 +492,45 @@ class Payment(models.Model):
 ```
 
 
+
+Vamos comparar cada um dos modelos adicionais com os modelos originais e destacar suas semelhanças e diferenças:
+
+1. `ProductCategory` com `Product` e `Service`:
+   - **Semelhanças**:
+     - Todos são modelos que representam entidades do sistema (categoria de produto, produto e serviço).
+     - Cada um possui um campo para nome/descrição da entidade (`name` para `ProductCategory`, `product_name` para `Product`, `service_description` para `Service`).
+   - **Diferenças**:
+     - `ProductCategory` não possui campos relacionados a preço ou taxa como `Product` e `Service`.
+
+2. `Employee` com `Seller`:
+   - **Semelhanças**:
+     - Ambos são modelos que representam entidades relacionadas à atividade comercial (funcionário e vendedor).
+     - Cada um possui um campo para nome da entidade (`name` para `Employee`, `seller_name` para `Seller`).
+   - **Diferenças**:
+     - `Employee` possui campos adicionais como `position` e `work_schedule` que não são relevantes para `Seller`.
+
+3. `Sale` com `SoldItem` e `ProvidedService`:
+   - **Semelhanças**:
+     - Todos são modelos relacionados a transações ou registros de atividades comerciais (venda, item vendido e serviço prestado).
+     - Cada um possui campos para data da transação ou registro (`sale_date` para `Sale`, `invoice` com `service_date_duration` para `ProvidedService`, `invoice` com `product` e `quantity` para `SoldItem`).
+   - **Diferenças**:
+     - `Sale` possui um campo para o valor total da venda (`total_value`) que não está presente em `SoldItem` e `ProvidedService`.
+
+4. `Absence` com `Invoice`:
+   - **Semelhanças**:
+     - Ambos são modelos que representam registros relacionados a atividades comerciais (ausência de funcionário e fatura emitida).
+     - Cada um possui um campo para data do registro (`absence_date` para `Absence`, `invoice_date` para `Invoice`).
+   - **Diferenças**:
+     - `Absence` possui um campo para o motivo da ausência (`reason`) que não está presente em `Invoice`.
+
+5. `Salary` com `Invoice` e `Payment`:
+   - **Semelhanças**:
+     - Todos são modelos relacionados a pagamentos ou registros financeiros (salário, fatura e pagamento).
+     - Cada um possui campos para data do registro (`payment_date` para `Salary` e `Payment`, `invoice_date` para `Invoice`).
+   - **Diferenças**:
+     - `Salary` possui campos específicos para informações salariais como `payment_period`, `base_salary`, `deductions` e `net_salary`, que não estão presentes em `Invoice` e `Payment`.
+
+Essas comparações destacam como cada modelo representa uma entidade específica no sistema, com campos e funcionalidades adaptados às necessidades dessa entidade.
 
 ​	
 
