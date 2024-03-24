@@ -31,6 +31,8 @@ export default class AddProduct extends Component<Props, State> {
       description: "",
       cost: "",
       quantity: "",
+      cover: null,
+      images: [],
       category: "", // Assuming category is a string here, adjust if it's supposed to be an object
       submitted: false,
       categories: [],
@@ -89,6 +91,7 @@ export default class AddProduct extends Component<Props, State> {
       description: this.state.description,
       cost: this.state.cost,
       quantity: this.state.quantity,
+      images: this.state.images,
       category: this.state.selectedCategory
     };
 

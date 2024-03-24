@@ -64,21 +64,18 @@ Here's the translation and Django models for the given entities:
    - Select product cover image
    - Select or upload raw material
    - Select or upload categories or subcategories
-
 2. **Category:**
    - List categories
    - Add category
    - Update category
    - Read category
    - Delete category
-
 3. **Subcategory:**
    - List subcategories
    - Add subcategory
    - Update subcategory
    - Read subcategory
    - Delete subcategory
-
 4. **Raw material:**
    - List raw materials
    - Add raw material
@@ -88,14 +85,12 @@ Here's the translation and Django models for the given entities:
    - Upload raw material images
    - Delete raw material image
    - Upload raw material cover image
-
 5. **Professional:**
    - Create professional
    - Edit professional
    - Delete professional
    - Show professional
    - List professionals
-
 6. **Sale:**
    - Create sale
    - Select or register professional
@@ -103,7 +98,6 @@ Here's the translation and Django models for the given entities:
    - Select payment type
    - Search product
    - List product with cover
-
 7. **Image:**
    - Add image
    - View image
@@ -112,7 +106,6 @@ Here's the translation and Django models for the given entities:
    - Associate image with raw material
    - List images by type (Product or Raw material)
    - Update image description
-
 8. **Customer:**
    - Add customer
    - Edit customer
@@ -121,6 +114,315 @@ Here's the translation and Django models for the given entities:
    - List customers
    - Search customer
    - Associate customer with sale
+
+
+
+### Entidades e Atributos:
+
+1. **Vendedores**:
+   - ID_Vendedor (PK)
+   - Nome_Vendedor
+2. **Clientes**:
+   - ID_Cliente (PK)
+   - Nome_Cliente
+3. **Produtos**:
+   - ID_Produto (PK)
+   - Nome_Produto
+   - Preco_Unitario
+4. **Servicos**:
+   - ID_Servico (PK)
+   - Descricao_Servico
+   - Valor_Por_Hora
+5. **Faturas**:
+   - ID_Fatura (PK)
+   - ID_Vendedor (FK)
+   - ID_Cliente (FK)
+   - Data_Fatura
+   - Total_Pagar
+6. **Itens_Vendidos** (para faturas de venda de produtos):
+   - ID_Item (PK)
+   - ID_Fatura (FK)
+   - ID_Produto (FK)
+   - Quantidade
+7. **Servicos_Prestados** (para faturas de serviços prestados):
+   - ID_Servico_Prestado (PK)
+   - ID_Fatura (FK)
+   - ID_Servico (FK)
+   - Data_Duracao_Servico
+   - Valor_Total_Servico
+8. **Adiantamentos**:
+   - ID_Adiantamento (PK)
+   - ID_Vendedor (FK)
+   - ID_Cliente (FK)
+   - Valor_Adiantamento
+   - Data_Adiantamento
+   - Saldo_Restante
+9. **Creditos**:
+   - ID_Credito (PK)
+   - ID_Vendedor (FK)
+   - ID_Cliente (FK)
+   - Motivo_Credito
+   - Valor_Credito
+   - Data_Credito
+10. **Debitos**:
+    - ID_Debito (PK)
+    - ID_Vendedor (FK)
+    - ID_Cliente (FK)
+    - Motivo_Debito
+    - Valor_Debito
+    - Data_Debito
+11. **Relatorios_Vendas**:
+    - ID_Relatorio_Vendas (PK)
+    - Data_Venda
+    - ID_Cliente (FK)
+    - Total_Venda
+12. **Relatorios_Faturamento**:
+    - ID_Relatorio_Faturamento (PK)
+    - Periodo
+    - Total_Faturas_Emitidas
+    - Total_Faturas_Pagas
+    - Total_Faturas_Pendentes
+13. **Relatorios_Clientes_Frequentes**:
+    - ID_Relatorio_Clientes (PK)
+    - ID_Cliente (FK)
+    - Num_Compras
+    - Valor_Total_Compras
+14. **Relatorios_Estoque**:
+    - ID_Relatorio_Estoque (PK)
+    - Produtos_Disponiveis
+    - Quantidade_Vendida
+    - Quantidade_Reposicao
+    - Alertas_Estoque_Baixo
+15. **Contas_Receber**:
+    - ID_Conta_Receber (PK)
+    - ID_Cliente (FK)
+    - Valor_Total_Pendente
+16. **Detalhes_Faturas_Pendentes**:
+    - ID_Detalhe_Fatura_Pendente (PK)
+    - ID_Conta_Receber (FK)
+    - ID_Fatura (FK)
+    - Data_Vencimento
+    - Valor_Fatura
+
+​			
+
+Sure, here are the entities and attributes translated into English:
+
+1. **Sellers**:
+   - Seller_ID (PK)
+   - Seller_Name
+
+2. **Clients**:
+   - Client_ID (PK)
+   - Client_Name
+
+3. **Products**:
+   - Product_ID (PK)
+   - Product_Name
+   - Unit_Price
+
+4. **Services**:
+   - Service_ID (PK)
+   - Service_Description
+   - Hourly_Rate
+
+5. **Invoices**:
+   - Invoice_ID (PK)
+   - Seller_ID (FK)
+   - Client_ID (FK)
+   - Invoice_Date
+   - Total_Payable
+
+6. **Items_Sold** (for product sales invoices):
+   - Item_ID (PK)
+   - Invoice_ID (FK)
+   - Product_ID (FK)
+   - Quantity
+
+7. **Services_Provided** (for service invoices):
+   - Service_Provided_ID (PK)
+   - Invoice_ID (FK)
+   - Service_ID (FK)
+   - Service_Date_Duration
+   - Total_Service_Value
+
+8. **Advances**:
+   - Advance_ID (PK)
+   - Seller_ID (FK)
+   - Client_ID (FK)
+   - Advance_Amount
+   - Advance_Date
+   - Remaining_Balance
+
+9. **Credits**:
+   - Credit_ID (PK)
+   - Seller_ID (FK)
+   - Client_ID (FK)
+   - Credit_Reason
+   - Credit_Amount
+   - Credit_Date
+
+10. **Debits**:
+    - Debit_ID (PK)
+    - Seller_ID (FK)
+    - Client_ID (FK)
+    - Debit_Reason
+    - Debit_Amount
+    - Debit_Date
+
+11. **Sales_Reports**:
+    - Sales_Report_ID (PK)
+    - Sale_Date
+    - Client_ID (FK)
+    - Total_Sale
+
+12. **Billing_Reports**:
+    - Billing_Report_ID (PK)
+    - Period
+    - Total_Invoices_Issued
+    - Total_Invoices_Paid
+    - Total_Invoices_Pending
+
+13. **Frequent_Customers_Reports**:
+    - Frequent_Customers_Report_ID (PK)
+    - Client_ID (FK)
+    - Num_Purchases
+    - Total_Purchase_Value
+
+14. **Inventory_Reports**:
+    - Inventory_Report_ID (PK)
+    - Available_Products
+    - Quantity_Sold
+    - Replenishment_Quantity
+    - Low_Stock_Alerts
+
+15. **Accounts_Receivable**:
+    - Receivable_Account_ID (PK)
+    - Client_ID (FK)
+    - Total_Amount_Pending
+
+16. **Pending_Invoice_Details**:
+    - Pending_Invoice_Detail_ID (PK)
+    - Receivable_Account_ID (FK)
+    - Invoice_ID (FK)
+    - Due_Date
+    - Invoice_Amount
+
+These tables represent the entities and attributes in English, following normalization up to the third normal form for the proposed billing system.
+
+
+
+
+
+```py
+from django.db import models
+
+class Seller(models.Model):# Representa um vendedor que pode realizar vendas.
+    seller_id = models.AutoField(primary_key=True)
+    seller_name = models.CharField(max_length=100)
+
+    
+
+class Client(models.Model):# Representa um cliente que pode fazer compras ou contratar serviços.
+    client_id = models.AutoField(primary_key=True)
+    client_name = models.CharField(max_length=100)
+
+    
+
+class Product(models.Model):# Representa um produto que pode ser vendido.
+    product_id = models.AutoField(primary_key=True)
+    product_name = models.CharField(max_length=100)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+
+class Service(models.Model):# Representa um serviço que pode ser prestado.
+    service_id = models.AutoField(primary_key=True)
+    service_description = models.TextField()
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+
+class Invoice(models.Model):# Representa uma fatura emitida para um cliente.
+    invoice_id = models.AutoField(primary_key=True)
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    invoice_date = models.DateField()
+    total_payable = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+
+class SoldItem(models.Model):# Representa um item vendido em uma fatura de venda de produtos.
+    item_id = models.AutoField(primary_key=True)
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+    
+
+class ProvidedService(models.Model):# Representa um serviço prestado em uma fatura de serviços.
+
+    service_provided_id = models.AutoField(primary_key=True)
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service_date_duration = models.CharField(max_length=100)
+    total_service_value = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    
+
+from django.db import models
+
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
+
+class Employee(models.Model):
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    work_schedule = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Sale(models.Model):
+    sale_date = models.DateField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity_sold = models.IntegerField()
+    total_value = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Absence(models.Model):
+    absence_date = models.DateField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    reason = models.TextField()
+
+class Salary(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    payment_period = models.CharField(max_length=255)
+    base_salary = models.DecimalField(max_digits=10, decimal_places=2)
+    deductions = models.DecimalField(max_digits=10, decimal_places=2)
+    net_salary = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Payment(models.Model):
+    payment_date = models.DateField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+```
+
+
+
+​	
 
 ### Django Models:
 

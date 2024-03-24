@@ -5,10 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import  {CustomNextArrow, CustomPrevArrow} from "../../../services/utils/styled-components/buttomSlide"
 
-import { CustomImageData } from '../../../services/types/image.type';
+import { CustomImageData } from '../../../services/types/image.type'
 
 type Props = {
-    images: CustomImageData[]; // Array de objetos ServiceData
+    images: CustomImageData[]; // Array de objetos ProductData
 };
 
 const GalleryContainer = styled.div<{ showSlider: boolean }>`
@@ -16,8 +16,8 @@ const GalleryContainer = styled.div<{ showSlider: boolean }>`
   ${props => props.showSlider ? 'width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999; background-color: rgba(0, 0, 0, 0.5); display:block;' : 'display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; '}
 `;
 
-const ServiceCard = styled.div`
-  position: relative; /* Adicione position relative para ServiceCard */
+const ProductCard = styled.div`
+  position: relative; /* Adicione position relative para ProductCard */
   width: 100%;
   height: 120px;
   overflow: hidden;
@@ -38,13 +38,13 @@ const ToggleButton = styled.button`
   cursor: pointer;
 `;
 
-const ServiceImage = styled.img<{ showSlider: boolean; comprimento?: number; altura?: number }>`
-${props => props.showSlider ? `width: ${props.comprimento}vh; height: ${props.altura}vh; z-index: 500; object-fit: contain; object-position: center;`: `width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; ${ServiceCard}:hover & { transform: scale(1.2); // Aumenta o tamanho da imagem em 20% ao passar o mouse }`}
+const ProductImage = styled.img<{ showSlider: boolean; comprimento?: number; altura?: number }>`
+${props => props.showSlider ? `width: ${props.comprimento}vh; height: ${props.altura}vh; z-index: 500; object-fit: contain; object-position: center;`: `width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; ${ProductCard}:hover & { transform: scale(1.2); // Aumenta o tamanho da imagem em 20% ao passar o mouse }`}
 
 
   ${props => props.showSlider && `
     transition: transform 0.3s ease;
-    ${ServiceCard}:hover & {
+    ${ProductCard}:hover & {
       transform: scale(1.2); // Aumenta o tamanho da imagem em 20% ao passar o mouse
     }
   `}
@@ -71,7 +71,7 @@ const Overlay = styled.div`
 
 
 
-const ServiceImageGalleryComplex: React.FC<Props> = ({ images }) => {
+const ProductImageGalleryComplex: React.FC<Props> = ({ images }) => {
   const [showSlider, setShowSlider] = useState(false);
 
   const toggleSlider = () => {
@@ -97,19 +97,19 @@ const ServiceImageGalleryComplex: React.FC<Props> = ({ images }) => {
     <GalleryContainer showSlider={showSlider}>
       {!showSlider ? (
         <>
-          {images.map((serviceData, index) => (
-            <ServiceCard key={index} onClick={toggleSlider}>
-              <ServiceImage src={`http://localhost:8000${serviceData.image.Path}`} alt={`Service Image ${index + 1}`} showSlider={showSlider} />
-            </ServiceCard>
+          {images.map((productData, index) => (
+            <ProductCard key={index} onClick={toggleSlider}>
+              <ProductImage src={`http://localhost:8000${productData.image.Path}`} alt={`Product Image ${index + 1}`} showSlider={showSlider} />
+            </ProductCard>
           ))}
         </>
       ) : (
         <Slider {...settings}>
-          {images.map((serviceData, index) => (
+          {images.map((productData, index) => (
             <div key={index}>
               <CustomGrid >
                 <ToggleButton onClick={toggleCloseSlider}>X</ToggleButton> {/* Botão para fechar o slider */}
-                <ServiceImage  comprimento={80} altura={80} src={`http://localhost:8000${serviceData.image.Path}`} alt={`Service Image ${index + 1}`} showSlider={showSlider} />
+                <ProductImage  comprimento={80} altura={80} src={`http://localhost:8000${productData.image.Path}`} alt={`Product Image ${index + 1}`} showSlider={showSlider} />
 
                 <Overlay onClick={toggleCloseSlider} />
               </CustomGrid>
@@ -121,4 +121,4 @@ const ServiceImageGalleryComplex: React.FC<Props> = ({ images }) => {
   );
 };
 
-export default ServiceImageGalleryComplex;
+export default ProductImageGalleryComplex;

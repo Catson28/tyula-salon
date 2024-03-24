@@ -20,6 +20,8 @@ const Product: React.FC<Props> = ({ id, onEdit, onDelete }) => {
     cost: "",
     quantity: "",
     category: "",
+    images: [],
+    cover: null, // Use null em vez de uma string vazia para cover
   });
   const [categories, setCategories] = useState<ICategoryData[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");

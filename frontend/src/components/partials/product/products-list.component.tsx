@@ -1,6 +1,9 @@
 import React, { Component, ChangeEvent } from "react";
 import ProductDataService from "../../../services/net/ProductDataService";
+import ProductImageGalleryComplex from "./ProductImageGalleryComplex"; 
+import ProductImageCover from "./ProductImageCover"; 
 import IProductData from '../../../services/types/product.type';
+import styled from 'styled-components';
 
 type Props = {
   onClose: () => void;
@@ -14,6 +17,11 @@ type State = {
   currentIndex: number,
   searchName: string
 };
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* Para que os itens se ajustem automaticamente em uma nova linha quando não houver espaço suficiente */
+`;
 
 export default class ProductsList extends Component<Props, State> {
   constructor(props: Props) {
@@ -157,18 +165,36 @@ export default class ProductsList extends Component<Props, State> {
           {currentProduct ? (
             <div>
               <h4>Product</h4>
+
+
+              <FlexContainer>
+                <div className="col-md-6">
+                <div>
+                  <label>
+                    <strong>Name:</strong>
+                  </label>{" "}
+                  {currentProduct.name}
+                </div>
+                <div>
+                  <label>
+                    <strong>Description:</strong>
+                  </label>{" "}
+                  {currentProduct.description}
+                </div>
+                </div>
+                <div className="col-md-6">
+                  <ProductImageCover cover={currentProduct.cover}  title={currentProduct.name}  cost={currentProduct.cost} />
+                </div>
+              </FlexContainer>
+
+
               <div>
                 <label>
-                  <strong>Name:</strong>
+                  <strong>Images:</strong>
                 </label>{" "}
-                {currentProduct.name}
+                <ProductImageGalleryComplex images={currentProduct.images} />
               </div>
-              <div>
-                <label>
-                  <strong>Description:</strong>
-                </label>{" "}
-                {currentProduct.description}
-              </div>
+
                   {/* Button to edit the product */}
                   <button
                     className="btn btn-sm badge badge-warning btn-warning ml-2"
