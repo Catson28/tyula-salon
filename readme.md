@@ -315,100 +315,40 @@ These tables represent the entities and attributes in English, following normali
 
 
 ```py
-from django.db import models
+from django.db import models  # Importa o módulo de modelos do Django.
 
-class Seller(models.Model):# Representa um vendedor que pode realizar vendas.
-    seller_name = models.CharField(max_length=100)
+class Seller(models.Model):  # Define um modelo para representar um vendedor.
+    seller_name = models.CharField(max_length=100)  # Define um campo para o nome do vendedor.
 
-    
+class Client(models.Model):  # Define um modelo para representar um cliente.
+    client_name = models.CharField(max_length=100)  # Define um campo para o nome do cliente.
 
-class Client(models.Model):# Representa um cliente que pode fazer compras ou contratar serviços.
-    client_name = models.CharField(max_length=100)
+class Product(models.Model):  # Define um modelo para representar um produto.
+    product_name = models.CharField(max_length=100)  # Define um campo para o nome do produto.
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o preço unitário do produto.
 
-    
+class Service(models.Model):  # Define um modelo para representar um serviço.
+    service_description = models.TextField()  # Define um campo para a descrição do serviço.
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para a taxa horária do serviço.
 
-class Product(models.Model):# Representa um produto que pode ser vendido.
-    product_name = models.CharField(max_length=100)
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+class Invoice(models.Model):  # Define um modelo para representar uma fatura.
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Define uma relação com o cliente da fatura.
+    invoice_date = models.DateField()  # Define um campo para a data da fatura.
+    total_payable = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o total a pagar na fatura.
 
-    
+class SoldItem(models.Model):  # Define um modelo para representar um item vendido.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do item.
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # Define uma relação com o produto vendido.
+    quantity = models.IntegerField()  # Define um campo para a quantidade do produto vendido.
 
-class Service(models.Model):# Representa um serviço que pode ser prestado.
-    service_description = models.TextField()
-    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)
+class ProvidedService(models.Model):  # Define um modelo para representar um serviço prestado.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do serviço.
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)  # Define uma relação com o serviço prestado.
+    service_date_duration = models.CharField(max_length=100)  # Define um campo para a duração do serviço.
+    total_service_value = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o valor total do serviço.
 
-
-class Invoice(models.Model):# Representa uma fatura emitida para um cliente.
-    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    invoice_date = models.DateField()
-    total_payable = models.DecimalField(max_digits=10, decimal_places=2)
-
-    
-
-class SoldItem(models.Model):# Representa um item vendido em uma fatura de venda de produtos.
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-
-    
-
-class ProvidedService(models.Model):# Representa um serviço prestado em uma fatura de serviços.
-
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    service_date_duration = models.CharField(max_length=100)
-    total_service_value = models.DecimalField(max_digits=10, decimal_places=2)
-    
-    
-
-from django.db import models
-
-class ProductCategory(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-class Product(models.Model):
-    name = models.CharField(max_length=255)
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return self.name
-
-class Employee(models.Model):
-    name = models.CharField(max_length=255)
-    position = models.CharField(max_length=255)
-    work_schedule = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-class Sale(models.Model):
-    sale_date = models.DateField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity_sold = models.IntegerField()
-    total_value = models.DecimalField(max_digits=10, decimal_places=2)
-
-class Absence(models.Model):
-    absence_date = models.DateField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    reason = models.TextField()
-
-class Salary(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    payment_period = models.CharField(max_length=255)
-    base_salary = models.DecimalField(max_digits=10, decimal_places=2)
-    deductions = models.DecimalField(max_digits=10, decimal_places=2)
-    net_salary = models.DecimalField(max_digits=10, decimal_places=2)
-
-class Payment(models.Model):
-    payment_date = models.DateField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
-
+# As linhas a seguir definem modelos adicionais com funcionalidades semelhantes, mas com diferentes detalhes e relações.
 
 ```
 
