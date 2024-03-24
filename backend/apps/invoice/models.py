@@ -26,7 +26,7 @@ class InvoiceItem(models.Model):
     line_total = models.DecimalField(max_digits=10, decimal_places=2)  # Total da linha para o item
 
 # Modelo de pagamento
-class Payment(models.Model):
+class InvoicePayment(models.Model):
     invoice = models.ForeignKey(Invoice, related_name='payments', on_delete=models.CASCADE)  # Fatura associada ao pagamento
     payment_date = models.DateField()  # Data do pagamento
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)  # Valor pago

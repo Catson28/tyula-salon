@@ -366,16 +366,7 @@ class Advance(models.Model):
     advance_date = models.DateField()  # Data do adiantamento
     advance_details = models.TextField()  # Detalhes do adiantamento
 
-# Representa um relatório de pagamento
-class PaymentReport(models.Model):
-    REPORT_TYPES = (
-        ('monthly_summary', 'Monthly Summary'),  # Resumo mensal
-        ('individual_payment_details', 'Individual Payment Details'),  # Detalhes de pagamento individual
-        ('tax_statements', 'Tax Statements'),  # Declarações fiscais
-        ('payment_history', 'Payment History'),  # Histórico de pagamentos
-    )
-    report_type = models.CharField(max_length=100, choices=REPORT_TYPES)  # Tipo de relatório
-    # Adicione outros campos conforme necessário para tipos específicos de relatórios
+
 ```
 
 

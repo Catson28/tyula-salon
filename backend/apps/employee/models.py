@@ -22,7 +22,7 @@ class Salary(models.Model):
     deductions = models.DecimalField(max_digits=10, decimal_places=2)  # Deduções
     net_salary = models.DecimalField(max_digits=10, decimal_places=2)  # Salário líquido
 
-class Payment(models.Model):
+class EmployeePayment(models.Model):
     payment_date = models.DateField()  # Data do pagamento
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Funcionário associado ao pagamento
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)  # Valor pago
