@@ -350,6 +350,102 @@ class ProvidedService(models.Model):  # Define um modelo para representar um ser
 
 # As linhas a seguir definem modelos adicionais com funcionalidades semelhantes, mas com diferentes detalhes e relações.
 
+
+from django.db import models
+
+class Seller(models.Model):# Representa um vendedor que pode realizar vendas.
+    seller_name = models.CharField(max_length=100)
+
+    
+
+class Client(models.Model):# Representa um cliente que pode fazer compras ou contratar serviços.
+    client_name = models.CharField(max_length=100)
+
+    
+
+class Product(models.Model):# Representa um produto que pode ser vendido.
+    product_name = models.CharField(max_length=100)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+
+class Service(models.Model):# Representa um serviço que pode ser prestado.
+    service_description = models.TextField()
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class Invoice(models.Model):# Representa uma fatura emitida para um cliente.
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    invoice_date = models.DateField()
+    total_payable = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+
+class SoldItem(models.Model):# Representa um item vendido em uma fatura de venda de produtos.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+    
+
+class ProvidedService(models.Model):# Representa um serviço prestado em uma fatura de serviços.
+
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service_date_duration = models.CharField(max_length=100)
+    total_service_value = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    
+
+from django.db import models
+
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
+
+class Employee(models.Model):
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    work_schedule = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Sale(models.Model):
+    sale_date = models.DateField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity_sold = models.IntegerField()
+    total_value = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Absence(models.Model):
+    absence_date = models.DateField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    reason = models.TextField()
+
+class Salary(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    payment_period = models.CharField(max_length=255)
+    base_salary = models.DecimalField(max_digits=10, decimal_places=2)
+    deductions = models.DecimalField(max_digits=10, decimal_places=2)
+    net_salary = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Payment(models.Model):
+    payment_date = models.DateField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
+
+
 ```
 
 
