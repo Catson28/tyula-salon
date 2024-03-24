@@ -372,51 +372,57 @@ class ProvidedService(models.Model):# Representa um serviço prestado em uma fat
 
 from django.db import models
 
+# Modelo para categorias de produtos
 class ProductCategory(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)  # Nome da categoria
 
     def __str__(self):
         return self.name
 
+# Modelo para produtos
 class Product(models.Model):
-    name = models.CharField(max_length=255)
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    name = models.CharField(max_length=255)  # Nome do produto
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)  # Categoria do produto
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Preço unitário do produto
 
     def __str__(self):
         return self.name
 
+# Modelo para funcionários
 class Employee(models.Model):
-    name = models.CharField(max_length=255)
-    position = models.CharField(max_length=255)
-    work_schedule = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)  # Nome do funcionário
+    position = models.CharField(max_length=255)  # Cargo do funcionário
+    work_schedule = models.CharField(max_length=255)  # Horário de trabalho do funcionário
 
     def __str__(self):
         return self.name
 
+# Modelo para vendas
 class Sale(models.Model):
-    sale_date = models.DateField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity_sold = models.IntegerField()
-    total_value = models.DecimalField(max_digits=10, decimal_places=2)
+    sale_date = models.DateField()  # Data da venda
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # Produto vendido
+    quantity_sold = models.IntegerField()  # Quantidade vendida
+    total_value = models.DecimalField(max_digits=10, decimal_places=2)  # Valor total da venda
 
+# Modelo para faltas
 class Absence(models.Model):
-    absence_date = models.DateField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    reason = models.TextField()
+    absence_date = models.DateField()  # Data da falta
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Funcionário ausente
+    reason = models.TextField()  # Motivo da falta
 
+# Modelo para salários
 class Salary(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    payment_period = models.CharField(max_length=255)
-    base_salary = models.DecimalField(max_digits=10, decimal_places=2)
-    deductions = models.DecimalField(max_digits=10, decimal_places=2)
-    net_salary = models.DecimalField(max_digits=10, decimal_places=2)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Funcionário
+    payment_period = models.CharField(max_length=255)  # Período de pagamento
+    base_salary = models.DecimalField(max_digits=10, decimal_places=2)  # Salário base
+    deductions = models.DecimalField(max_digits=10, decimal_places=2)  # Descontos
+    net_salary = models.DecimalField(max_digits=10, decimal_places=2)  # Salário líquido
 
+# Modelo para pagamentos
 class Payment(models.Model):
-    payment_date = models.DateField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
-
+    payment_date = models.DateField()  # Data do pagamento
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Funcionário
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)  # Valor pago
 
 ```
 
