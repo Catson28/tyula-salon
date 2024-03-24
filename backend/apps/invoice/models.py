@@ -30,3 +30,15 @@ class Payment(models.Model):
     invoice = models.ForeignKey(Invoice, related_name='payments', on_delete=models.CASCADE)  # Fatura associada ao pagamento
     payment_date = models.DateField()  # Data do pagamento
     amount_paid = models.DecimalField(max_digits=10, decimal_places=2)  # Valor pago
+
+
+class SoldItem(models.Model):  # Define um modelo para representar um item vendido.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do item.
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # Define uma relação com o produto vendido.
+    quantity = models.IntegerField()  # Define um campo para a quantidade do produto vendido.
+
+class ProvidedService(models.Model):  # Define um modelo para representar um serviço prestado.
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do serviço.
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)  # Define uma relação com o serviço prestado.
+    service_date_duration = models.CharField(max_length=100)  # Define um campo para a duração do serviço.
+    total_service_value = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o valor total do serviço.
