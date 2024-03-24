@@ -42,3 +42,5 @@ class ProvidedService(models.Model):  # Define um modelo para representar um ser
     service = models.ForeignKey(Service, on_delete=models.CASCADE)  # Define uma relação com o serviço prestado.
     service_date_duration = models.CharField(max_length=100)  # Define um campo para a duração do serviço.
     total_service_value = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o valor total do serviço.
+
+# criar tabela de relacionamento de muitos para muitos de ProvidedService com trabalhadores

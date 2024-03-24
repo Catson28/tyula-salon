@@ -322,13 +322,6 @@ class Seller(models.Model):  # Define um modelo para representar um vendedor.
 
 class Client(models.Model):  # Define um modelo para representar um cliente.
     client_name = models.CharField(max_length=100)  # Define um campo para o nome do cliente.
-
-
-
-
-
-
-
 # As linhas a seguir definem modelos adicionais com funcionalidades semelhantes, mas com diferentes detalhes e relações.
 ```
 
@@ -346,12 +339,7 @@ class Seller(models.Model):  # Define um modelo para representar um vendedor.
 
 class Client(models.Model):  # Define um modelo para representar um cliente.
     client_name = models.CharField(max_length=100)  # Define um campo para o nome do cliente.
-
-
-
-
-
-
+    
 # As linhas a seguir definem modelos adicionais com funcionalidades semelhantes, mas com diferentes detalhes e relações.
 
 
