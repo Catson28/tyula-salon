@@ -327,11 +327,6 @@ class Client(models.Model):  # Define um modelo para representar um cliente.
 
 
 
-class Invoice(models.Model):  # Define um modelo para representar uma fatura.
-    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Define uma relação com o cliente da fatura.
-    invoice_date = models.DateField()  # Define um campo para a data da fatura.
-    total_payable = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o total a pagar na fatura.
 
 class SoldItem(models.Model):  # Define um modelo para representar um item vendido.
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do item.
@@ -365,11 +360,6 @@ class Client(models.Model):  # Define um modelo para representar um cliente.
 
 
 
-class Invoice(models.Model):  # Define um modelo para representar uma fatura.
-    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Define uma relação com o cliente da fatura.
-    invoice_date = models.DateField()  # Define um campo para a data da fatura.
-    total_payable = models.DecimalField(max_digits=10, decimal_places=2)  # Define um campo para o total a pagar na fatura.
 
 class SoldItem(models.Model):  # Define um modelo para representar um item vendido.
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)  # Define uma relação com a fatura do item.

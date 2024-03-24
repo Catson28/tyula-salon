@@ -9,6 +9,8 @@ class InvoiceCategory(models.Model):
 
 # Modelo de fatura
 class Invoice(models.Model):
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)  # Define uma relação com o vendedor da fatura.
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Define uma relação com o cliente da fatura.
     invoice_number = models.CharField(max_length=255)  # Número da fatura
     category = models.ForeignKey(InvoiceCategory, on_delete=models.CASCADE)  # Categoria da fatura
     issuance_date = models.DateField()  # Data de emissão da fatura
