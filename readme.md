@@ -312,6 +312,213 @@ These tables represent the entities and attributes in English, following normali
 
 
 
+##	sequencia de tabelas Importantes
+
+```bash
+Person
+Seller
+InvoiceCategory
+Customer
+Invoice
+InvoiceItem
+InvoicePayment
+	para a venda de produto -> Category
+							-> Product
+							-> SoldItem #	Produto vendido
+
+	para a Prestacao de servico -> Category
+								-> Product
+								-> Subcategory
+								-> Service
+								-> ProvidedService #	Servico prestado
+
+	Servico que o trabalhador prestou	-> Person
+									 	-> Employee
+										-> ProvidedServiceEnpl
+```
+
+
+
+###	So informacoes da fatura
+
+**Person**
+
+```
+http://localhost:8000/api/person/add_person/
+```
+Corpo da Requisicao
+```json
+```
+
+**Seller**
+
+```
+http://localhost:8000/api/sales/add_seller/
+```
+Corpo da Requisicao
+```json
+```
+
+**InvoiceCategory**
+
+```
+http://localhost:8000/api/sales/add_invoice_category/
+```
+Corpo da Requisicao
+```json
+```
+
+**Customer**
+
+```
+http://localhost:8000/api/customer/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**Invoice**
+
+```
+http://localhost:8000/api/sales/add_invoice/
+```
+Corpo da Requisicao
+```json
+
+```
+
+**InvoiceItem** baseando-se em copiar o sevico ou produto e colar aqui
+
+```
+http://localhost:8000/api/sales/add_invoice_item/
+```
+Corpo da Requisicao
+```json
+```
+
+**InvoicePayment**
+
+```
+http://localhost:8000/api/sales/add_invoice_payment/
+```
+Corpo da Requisicao
+```json
+```
+
+
+
+###	do Produto Vendido
+
+**Category**
+
+```
+http://localhost:8000/api/category/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**Product**
+
+```
+http://localhost:8000/api/product/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**SoldItem** Item Vendido
+
+```
+http://localhost:8000/api/person/add_person/
+```
+Corpo da Requisicao
+```json
+```
+
+
+
+###	do Servico prestado
+
+**Category**
+
+```
+http://localhost:8000/api/category/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**Product**
+
+```
+http://localhost:8000/api/product/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**Subcategory**  
+
+```
+http://localhost:8000/api/subcategory/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**Service** 
+
+```
+http://localhost:8000/api/service/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**ProvidedService** Servico prestado
+
+```
+http://localhost:8000/api/sales/add_provided_service/
+```
+Corpo da Requisicao
+```json
+```
+
+
+###	
+
+###	do Servico que o trabalhador prestou
+
+**Person**
+
+```
+http://localhost:8000/api/category/add/
+```
+Corpo da Requisicao
+```json
+```
+
+**Employee**
+
+```
+http://localhost:8000/api/employee/add_employee/
+```
+Corpo da Requisicao
+```json
+```
+
+**ProvidedServiceEnpl**
+
+```
+http://localhost:8000/api/sales/add_provided_service_enpl/
+```
+Corpo da Requisicao
+```json
+```
+
+
+
 # Usaremos
 ```bash
 python manage.py makemigrations category

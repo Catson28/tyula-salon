@@ -1,7 +1,6 @@
 from django.db import models
 from apps.category.models import Category
 
-
 class Product(models.Model):
     name = models.CharField(max_length=100)
     cost = models.CharField(max_length=100) #   Preco da compra do produto
