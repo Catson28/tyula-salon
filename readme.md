@@ -348,6 +348,13 @@ http://localhost:8000/api/person/add_person/
 ```
 Corpo da Requisicao
 ```json
+{
+	"name": "Paulo Manuel",
+	"address": "Luanda",
+	"contact": "923349809",
+	"email": "pm@gmail.com",
+	"phone": "000000000"
+}
 ```
 
 **Seller**
@@ -357,6 +364,10 @@ http://localhost:8000/api/sales/add_seller/
 ```
 Corpo da Requisicao
 ```json
+{
+    "type": "Gerente",
+    "person": 1
+}
 ```
 
 **InvoiceCategory**
@@ -366,6 +377,9 @@ http://localhost:8000/api/sales/add_invoice_category/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "servico prestado"
+}
 ```
 
 **Customer**
@@ -375,6 +389,9 @@ http://localhost:8000/api/customer/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "person": 1
+}
 ```
 
 **Invoice**
@@ -384,7 +401,16 @@ http://localhost:8000/api/sales/add_invoice/
 ```
 Corpo da Requisicao
 ```json
-
+{
+    "invoice_number": 1,
+    "issuance_date": "2024-03-02",
+    "due_date": "2024-03-02",
+    "payment_type": "Cartao",
+    "total_amount": 50000,
+    "seller": 1,
+    "client": 1,
+    "category": 1
+}
 ```
 
 **InvoiceItem** baseando-se em copiar o sevico ou produto e colar aqui
@@ -394,6 +420,13 @@ http://localhost:8000/api/sales/add_invoice_item/
 ```
 Corpo da Requisicao
 ```json
+{
+    "description": "Product description",
+    "quantity": 1,
+    "unit_price": 100,
+    "line_total": 100,
+    "invoice": 1
+}
 ```
 
 **InvoicePayment**
@@ -403,6 +436,11 @@ http://localhost:8000/api/sales/add_invoice_payment/
 ```
 Corpo da Requisicao
 ```json
+{
+    "payment_date": "2024-03-25",
+    "amount_paid": 500,
+    "invoice": 1
+}
 ```
 
 
@@ -412,10 +450,14 @@ Corpo da Requisicao
 **Category**
 
 ```
-http://localhost:8000/api/category/add/
+http://localhost:8000/api/categories/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "Perucas"
+    "description": "Perucas Brasileiras",
+}
 ```
 
 **Product**
@@ -425,15 +467,27 @@ http://localhost:8000/api/product/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "Product Name",
+    "cost": 50,
+    "description": "Product Description",
+    "quantity": 10,
+    "category": 1
+}
 ```
 
 **SoldItem** Item Vendido
 
 ```
-http://localhost:8000/api/person/add_person/
+http://localhost:8000/api/sales/add_sold_item/
 ```
 Corpo da Requisicao
 ```json
+{
+    "quantity": 1,
+    "invoice": 1,
+    "product": 1
+}
 ```
 
 
@@ -443,19 +497,30 @@ Corpo da Requisicao
 **Category**
 
 ```
-http://localhost:8000/api/category/add/
+http://localhost:8000/api/categories/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "Cabelereiro",
+    "description": "Produtopar o trabalho de Cabelereiro"
+}
 ```
 
 **Product**
 
 ```
-http://localhost:8000/api/product/add/
+http://localhost:8000/api/products/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "Product Name",
+    "cost": 50,
+    "description": "Product Description",
+    "quantity": 10,
+    "category": 2
+}
 ```
 
 **Subcategory**  
@@ -465,15 +530,27 @@ http://localhost:8000/api/subcategory/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "Product Name",
+    "description": "Product Description",
+    "category": 2
+}
 ```
 
 **Service** 
 
 ```
-http://localhost:8000/api/service/add/
+http://localhost:8000/api/services/add/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "Service Name",
+    "description": "Service Description",
+    "price": 50,
+    "subcategory": 1,
+    "hourly_rate": 25
+}
 ```
 
 **ProvidedService** Servico prestado
@@ -483,6 +560,13 @@ http://localhost:8000/api/sales/add_provided_service/
 ```
 Corpo da Requisicao
 ```json
+{
+    "service_date_duration": "2024-03-25 to 2024-03-27",
+    "alternative_price": 200,
+    "total_service_value": 500,
+    "invoice": 1,
+    "service": 1
+}
 ```
 
 
@@ -493,10 +577,17 @@ Corpo da Requisicao
 **Person**
 
 ```
-http://localhost:8000/api/category/add/
+http://localhost:8000/api/person/add_person/
 ```
 Corpo da Requisicao
 ```json
+{
+    "name": "John Doe",
+    "address": "123 Main Street",
+    "contact": "John Doe",
+    "email": "johndoe@example.com",
+    "phone": "123-456-7890"
+}
 ```
 
 **Employee**
@@ -506,6 +597,11 @@ http://localhost:8000/api/employee/add_employee/
 ```
 Corpo da Requisicao
 ```json
+{
+    "position": "Developer",
+    "work_schedule": "Full-time",
+    "person": 2
+}
 ```
 
 **ProvidedServiceEnpl**
@@ -515,6 +611,10 @@ http://localhost:8000/api/sales/add_provided_service_enpl/
 ```
 Corpo da Requisicao
 ```json
+{
+    "employee": 1,
+    "provided_service": 1
+}
 ```
 
 
