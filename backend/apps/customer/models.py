@@ -1,10 +1,7 @@
 from django.db import models
-
+from apps.employee.models import Employee
 
 class Customer(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
-    address = models.TextField()
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)  # Referência à pessoa associada
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

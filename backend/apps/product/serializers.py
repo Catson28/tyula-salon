@@ -25,7 +25,7 @@ class ProductSerializer(serializers.ModelSerializer):
         return None  # Retorna None se nenhuma imagem de capa for encontrada
     class Meta:
         model = Product
-        fields = ["id", "name", "cost", "description", "quantity", "category", "cover", "images"]
+        fields = ["id", "name", "cost", "description", "quantity", "category", "cover", "unit_price", "images"]
 
 
 class ImagSerializer(serializers.ModelSerializer):

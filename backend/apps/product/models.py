@@ -7,7 +7,7 @@ class Product(models.Model):
     cost = models.CharField(max_length=100) #   Preco da compra do produto
     description = models.TextField()
     quantity = models.FloatField(max_length=100) # quantidade de produtos em estoque
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2) #Preco unitario / Se tivermos que vender
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # Preço unitário / Se tivermos que vender
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="category_material"
     )

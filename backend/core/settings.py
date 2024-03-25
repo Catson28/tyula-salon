@@ -31,18 +31,23 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Django REST framework 
     'rest_framework',
+    'django_extensions',    #   python manage.py show_urls
     'corsheaders',
     "apps.service",
     "apps.category",
     "apps.subcategory",
     "apps.product",
-    "apps.professional",
-    "apps.sale",
     "apps.image",
     "apps.customer",
     "apps.authentication",
     "apps.polimorph",
-    "apps.users"
+    # "apps.users",
+    "apps.reports", #App de Relatórios (reports):
+    "apps.finance", #   App de Finanças (finance):
+    "apps.sales", # App de Vendas (sales):
+    "apps.payment",
+    "apps.employee",
+    "apps.person",
 ]
 
 MIDDLEWARE = [

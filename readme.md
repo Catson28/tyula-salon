@@ -313,6 +313,235 @@ These tables represent the entities and attributes in English, following normali
 
 
 # Usaremos
+```bash
+python manage.py makemigrations category
+python manage.py makemigrations image
+python manage.py makemigrations polimorph
+python manage.py makemigrations seller
+python manage.py makemigrations customer
+python manage.py makemigrations payment
+python manage.py makemigrations product
+python manage.py makemigrations service
+python manage.py makemigrations employee
+python manage.py makemigrations invoice
+python manage.py makemigrations person
+python manage.py makemigrations subcategory
+python manage.py migrate
+python manage.py runserver
+```
+
+#	Todas as routas
+
+```bash
+/api/categories/        rest_framework.routers.APIRootView      api-root
+/api/categories/<category_id>/list/img/ apps.category.views.CategoryImageViewSet        category-images-list
+/api/categories/<category_id>/list/img\.<format>/       apps.category.views.CategoryImageViewSet        category-images-list
+/api/categories/\.<format>/     rest_framework.routers.APIRootView      api-root
+/api/categories/add/    apps.category.views.add_category
+/api/categories/delete/<int:category_id>/       apps.category.views.delete_category
+/api/categories/deleteAll/      apps.category.views.delete_categories
+/api/categories/list/   apps.category.views.list_categories
+/api/categories/read/<int:category_id>/ apps.category.views.read_category
+/api/categories/search  apps.category.views.search_category_by_name
+/api/categories/update/<int:category_id>/       apps.category.views.update_category
+/api/customers/add/     apps.customer.views.add_customer
+/api/customers/associate-with-sale/     apps.customer.views.associate_customer_with_sale
+/api/customers/delete/<int:customer_id>/        apps.customer.views.delete_customer
+/api/customers/edit/<int:customer_id>/  apps.customer.views.edit_customer
+/api/customers/list/    apps.customer.views.list_customers
+/api/customers/search/  apps.customer.views.search_customer
+/api/customers/show/<int:customer_id>/  apps.customer.views.show_customer
+/api/employee/absence/<int:pk>/ apps.employee.views.AbsenceDetailView   absence-detail
+/api/employee/absences/ apps.employee.views.absence_list        absence-list
+/api/employee/add_absence/      apps.employee.views.create_absence      create_absence
+/api/employee/add_advance/      apps.employee.views.create_advance      create_advance
+/api/employee/add_bonus/        apps.employee.views.create_bonus        create_bonus
+/api/employee/add_commission/   apps.employee.views.create_commission   create_commission
+/api/employee/add_deduction/    apps.employee.views.create_deduction    create_deduction
+/api/employee/add_employee/     apps.employee.views.create_employee     create_employee
+/api/employee/add_employee_payment/     apps.employee.views.create_employee_payment     create_employee_payment
+/api/employee/add_overtime_hours/       apps.employee.views.create_overtime_hours       create_overtime_hours
+/api/employee/add_salary/       apps.employee.views.create_salary       create_salary
+/api/employee/add_subsidy/      apps.employee.views.create_subsidy      create_subsidy
+/api/employee/advance/<int:pk>/ apps.employee.views.AdvanceDetailView   advance-detail
+/api/employee/advances/ apps.employee.views.advance_list        advance-list
+/api/employee/bonus/<int:pk>/   apps.employee.views.BonusDetailView     bonus-detail
+/api/employee/bonuses/  apps.employee.views.bonus_list  bonus-list
+/api/employee/commission/<int:pk>/      apps.employee.views.CommissionDetailView        commission-detail
+/api/employee/commissions/      apps.employee.views.commission_list     commission-list
+/api/employee/deduction/<int:pk>/       apps.employee.views.DeductionDetailView deduction-detail
+/api/employee/deductions/       apps.employee.views.deduction_list      deduction-list
+/api/employee/employee-payment/<int:pk>/        apps.employee.views.EmployeePaymentDetailView   employee-payment-detail
+/api/employee/employee-payments/        apps.employee.views.employee_payment_list       employee-payment-list
+/api/employee/employee/<int:pk>/        apps.employee.views.EmployeeDetailView  employee-detail
+/api/employee/employees/        apps.employee.views.employee_list       employee-list
+/api/employee/overtime-hours/   apps.employee.views.overtime_hours_list overtime-hours-list
+/api/employee/overtime-hours/<int:pk>/  apps.employee.views.OvertimeHoursDetailView     overtime-hours-detail
+/api/employee/salaries/ apps.employee.views.salary_list salary-list
+/api/employee/salary/<int:pk>/  apps.employee.views.SalaryDetailView    salary-detail
+/api/employee/subsidies/        apps.employee.views.subsidy_list        subsidy-list
+/api/employee/subsidy/<int:pk>/ apps.employee.views.SubsidyDetailView   subsidy-detail
+/api/finance/accounts-receivable/       apps.finance.views.accounts_receivable_list     accounts-receivable-list
+/api/finance/accounts-receivable/<int:pk>/      apps.finance.views.AccountsReceivableDetailView accounts-receivable-detail
+/api/finance/add_accounts_receivable/   apps.finance.views.create_accounts_receivable   create_accounts_receivable
+/api/finance/add_credit/        apps.finance.views.create_credit        create_credit
+/api/finance/add_debit/ apps.finance.views.create_debit create_debit
+/api/finance/add_pending_invoice_details/       apps.finance.views.create_pending_invoice_details       create_pending_invoice_details
+/api/finance/credit/<int:pk>/   apps.finance.views.CreditDetailView     credit-detail
+/api/finance/credits/   apps.finance.views.credit_list  credit-list
+/api/finance/debit/<int:pk>/    apps.finance.views.DebitDetailView      debit-detail
+/api/finance/debits/    apps.finance.views.debit_list   debit-list
+/api/finance/pending-invoice-details/   apps.finance.views.pending_invoice_details_list pending-invoice-details-list
+/api/finance/pending-invoice-details/<int:pk>/  apps.finance.views.PendingInvoiceDetailsDetailView      pending-invoice-details-detail
+/api/images/add/        apps.image.views.add_image
+/api/images/associate-with-raw-material/        apps.image.views.associate_image_with_raw_material
+/api/images/associate-with-service/     apps.image.views.associate_image_with_service
+/api/images/delete/<int:image_id>/      apps.image.views.delete_image
+/api/images/list-by-type/       apps.image.views.list_images_by_type
+/api/images/update-description/<int:image_id>/  apps.image.views.update_image_description
+/api/images/upload-image/category/      apps.image.views.UploadCategoryImageView        upload_category_image
+/api/images/upload-image/product/       apps.image.views.UploadProductImageView upload_product_image
+/api/images/upload-image/service/       apps.image.views.UploadServiceImageView upload_service_image
+/api/images/view/<int:image_id>/        apps.image.views.view_image
+/api/payment/add_payment/       apps.payment.views.create_payment       create_payment
+/api/payment/add_payment_report/        apps.payment.views.create_payment_report        create_payment_report
+/api/payment/payment-report/<int:pk>/   apps.payment.views.PaymentReportDetailView      payment-report-detail
+/api/payment/payment-reports/   apps.payment.views.payment_report_list  payment-report-list
+/api/payment/payment/<int:pk>/  apps.payment.views.PaymentDetailView    payment-detail
+/api/payment/payments/  apps.payment.views.payment_list payment-list
+/api/person/add_person/ apps.person.views.create_person create_person
+/api/person/people/     apps.person.views.person_list   person-list
+/api/person/person/<int:pk>/    apps.person.views.PersonDetailView      person-detail
+/api/poli/add/  apps.polimorph.views.FuncionarioCreate  comentario-list-create
+/api/poli/comentarios/  apps.polimorph.views.ComentarioListCreate       comentario-list-create
+/api/poli/fotos/        apps.polimorph.views.FotoListCreate     foto-list-create
+/api/products/add/      apps.product.views.add_product
+/api/products/delete-image/<int:image_id>/      apps.product.views.delete_product_image
+/api/products/delete/<int:product_id>/  apps.product.views.delete_product
+/api/products/list/     apps.product.views.list_products
+/api/products/read/<int:product_id>/    apps.product.views.read_product
+/api/products/update/<int:product_id>/  apps.product.views.update_product
+/api/products/upload-cover-image/       apps.product.views.upload_product_cover_image
+/api/products/upload-image/     apps.product.views.upload_product_image
+/api/reports/add_billing_report/        apps.reports.views.create_billing_report        create_billing_report
+/api/reports/add_frequent_customers_report/     apps.reports.views.create_frequent_customers_report     create_frequent_customers_report
+/api/reports/add_inventory_report/      apps.reports.views.create_inventory_report      create_inventory_report
+/api/reports/add_sales_report/  apps.reports.views.create_sales_report  create_sales_report
+/api/reports/billing-report/<int:pk>/   apps.reports.views.BillingReportDetailView      billing-report-detail
+/api/reports/billing-reports/   apps.reports.views.billing_report_list  billing-report-list
+/api/reports/frequent-customers-report/<int:pk>/        apps.reports.views.FrequentCustomersReportDetailView    frequent-customers-report-detail
+/api/reports/frequent-customers-reports/        apps.reports.views.frequent_customers_report_list       frequent-customers-report-list
+/api/reports/inventory-report/<int:pk>/ apps.reports.views.InventoryReportDetailView    inventory-report-detail
+/api/reports/inventory-reports/ apps.reports.views.inventory_report_list        inventory-report-list
+/api/reports/sales-report/<int:pk>/     apps.reports.views.SalesReportDetailView        sales-report-detail
+/api/reports/sales-reports/     apps.reports.views.sales_report_list    sales-report-list
+/api/services/add-product/<int:service_id>/     apps.service.views.add_product
+/api/services/add/      apps.service.views.create_service
+/api/services/delete-image/<int:image_id>/      apps.service.views.delete_service_image
+/api/services/delete-product/<int:product_id>/  apps.service.views.delete_product
+/api/services/delete/<int:service_id>/  apps.service.views.delete_service
+/api/services/deleteAll/        apps.service.views.delete_all_services
+/api/services/list-products/<int:service_id>/   apps.service.views.list_products
+/api/services/list/     apps.service.views.list_services
+/api/services/retrieve-product/<int:product_id>/        apps.service.views.retrieve_product
+/api/services/retrieve/<int:service_id>/        apps.service.views.retrieve_service
+/api/services/select-cover-image/<int:service_id>/      apps.service.views.select_service_cover_image
+/api/services/select-or-upload-categories/<int:service_id>/     apps.service.views.select_or_upload_categories
+/api/services/select-or-upload-raw-material/<int:service_id>/   apps.service.views.select_or_upload_raw_material
+/api/services/update-product/<int:product_id>/  apps.service.views.update_product
+/api/services/update/<int:service_id>/  apps.service.views.update_service
+/api/services/upload-image/<int:service_id>/    apps.service.views.upload_service_image
+/api/subcategories/add/ apps.subcategory.views.add_subcategory
+/api/subcategories/delete/<int:subcategory_id>/ apps.subcategory.views.delete_subcategory
+/api/subcategories/deleteAll/   apps.subcategory.views.delete_subcategories
+/api/subcategories/list/        apps.subcategory.views.list_subcategories
+/api/subcategories/read/<int:subcategory_id>/   apps.subcategory.views.read_subcategory
+/api/subcategories/search       apps.subcategory.views.search_subcategory_by_name
+/api/subcategories/update/<int:subcategory_id>/ apps.subcategory.views.update_subcategory
+/media/<path>   django.views.static.serve
+```
+
+**Rotas Importantes**
+
+Listar
+
+```bash
+/api/employee/absence/
+/api/employee/advance/
+/api/employee/bonus/
+/api/employee/commission/
+/api/employee/deduction/
+/api/employee/employee-payment/
+/api/employee/employee/
+/api/employee/overtime-hours/
+/api/employee/salary/
+/api/employee/subsidy/
+/api/finance/accounts-receivable/
+/api/finance/credit/
+/api/finance/debit/
+/api/finance/pending-invoice-details/
+/api/payment/payment-report/
+/api/payment/payment/
+/api/person/person/
+/api/reports/billing-report/
+/api/reports/frequent-customers-report/
+/api/reports/inventory-report/
+/api/reports/sales-report/
+```
+
+Adicionar
+
+```bash
+/api/employee/add_absence/
+/api/employee/add_advance/
+/api/employee/add_bonus/
+/api/employee/add_commission/
+/api/employee/add_deduction/
+/api/employee/add_employee/
+/api/employee/add_employee_payment/
+/api/employee/add_overtime_hours/
+/api/employee/add_salary/
+/api/employee/add_subsidy/
+/api/finance/add_accounts_receivable/
+/api/finance/add_credit/
+/api/finance/add_debit/
+/api/finance/add_pending_invoice_details/
+/api/payment/add_payment/
+/api/payment/add_payment_report/
+/api/person/add_person/
+/api/reports/add_billing_report/
+/api/reports/add_frequent_customers_report/
+/api/reports/add_inventory_report/
+/api/reports/add_sales_report/
+```
+
+
+
+Ver Detalhe
+
+```bash
+/api/employee/absence/<int:pk>/
+/api/employee/advance/<int:pk>/
+/api/employee/bonus/<int:pk>/
+/api/employee/commission/<int:pk>/
+/api/employee/deduction/<int:pk>/
+/api/employee/employee-payment/<int:pk>/
+/api/employee/employee/<int:pk>/
+/api/employee/overtime-hours/<int:pk>/
+/api/employee/salary/<int:pk>/
+/api/employee/subsidy/<int:pk>/
+/api/finance/accounts-receivable/<int:pk>/
+/api/finance/credit/<int:pk>/
+/api/finance/debit/<int:pk>/
+/api/finance/pending-invoice-details/<int:pk>/
+/api/payment/payment-report/<int:pk>/
+/api/payment/payment/<int:pk>/
+/api/person/person/<int:pk>/
+/api/reports/billing-report/<int:pk>/
+/api/reports/frequent-customers-report/<int:pk>/
+/api/reports/inventory-report/<int:pk>/
+/api/reports/sales-report/<int:pk>/
+```
 
 
 
