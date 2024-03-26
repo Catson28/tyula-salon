@@ -184,9 +184,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
     <>
       {loading ? (
         <SkeletonLoader>
-          <NavbarSkelet>
             <h1>Loading...</h1>
-          </NavbarSkelet>
         </SkeletonLoader>
       ) : (<>
             <Navbar sidebarWidth={sidebarWidth}>

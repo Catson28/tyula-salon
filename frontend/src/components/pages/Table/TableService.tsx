@@ -37,7 +37,7 @@ const TableCell = styled.td`
   max-width: 200px;
 `;
 
-const Costele: React.FC = () => {
+const TableService: React.FC = () => {
   const [servicesData, setServicesData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -98,4 +98,4 @@ const Costele: React.FC = () => {
   );
 };
 
-export default Costele;
+export default TableService;
