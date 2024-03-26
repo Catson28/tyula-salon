@@ -42,13 +42,12 @@ const WholeCategory: React.FC = () => {
         <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
           <h2 id="vertical-variation">Lista de Categorias<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
           <button type="button" className="btn btn-primary" onClick={handleCategoriesListClick}>{categoriesButtonViewText}</button>
-          <button type="button" className="btn btn-primary" onClick={handleAddCategoryClick}>{categoriesButtonAddText}</button>
         </div>
         {showCategoryForm && (
           <AddCategory onClose={() => setShowCategoryForm(false)} />
         )}
         {showCategoriesList && (
-          <CategoriesList onClose={() => setShowCategoriesList(false)}  onEditCategory={handleEditCategory} onImgCategory={handleImageCategory} />
+          <CategoriesList onClose={() => setShowCategoriesList(false)}  onEditCategory={handleEditCategory} onImgCategory={handleImageCategory}  onCategoriesListClick={handleCategoriesListClick} />
         )}
         {showCategory && currentCategory && (
           <CategoryEdit id={currentCategory.id} onEdit={handleUpdateCategory}  onDelete={handleDeleteCategory} />

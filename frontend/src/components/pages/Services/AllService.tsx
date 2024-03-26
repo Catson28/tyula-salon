@@ -8,11 +8,11 @@ import WholeService from '../../partials/service/WholeService';
 import ComponentSlider from '../../partials/carrocel/ComponentSlider';
 import TelaDoNavegador from '../../partials/HelperResposnve/TelaDoNavegador';
 import ParentWithDynamicChild from '../../partials/HelperResposnve/ParentWithDynamicChild';
-import NavbarComponent from './NavbarComponent'
-import CollButt from './CollButt'
+import NavbarComponent from '../../partials/NavbarComponent'
+import CollButt from '../../../services/utils/CollButt'
 
 
-const TestAllBeauty: React.FC = () => {
+const AllService: React.FC = () => {
 
   const components = [<WholeCategory />, <WholeSubcategory />, <WholeProduct />, <WholeService />];
   return (
@@ -32,4 +32,4 @@ const TestAllBeauty: React.FC = () => {
   );
 };
 
-export default TestAllBeauty;
+export default AllService;

@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import Navbar from "../../partials/Navbar";
-import NavbarComponent from "../../partials/NavbarComponent";
+import IndexNavbarComponent from "../../partials/IndexNavbarComponent";
 import Carousel from "../../partials/Carousel";
 import Caroutusel from "../../partials/carrocel/Caroutusel";
 
@@ -73,7 +73,7 @@ const HomePage: React.FC = () => {
   ];
   return (
     <>
-      <NavbarComponent />
+      <IndexNavbarComponent />
       <Carousel />
       <Navbar />
 
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
               <LinkStyled to="/items">CRUDS CONTEXT API</LinkStyled>
             </Col>
             <Col>
-              <LinkStyled to="/TestAllBeauty">CRUDS Test</LinkStyled>
+              <LinkStyled to="/services">CRUDS Test</LinkStyled>
             </Col>
             <Col>
               <LinkStyled to="/estilo">estilos</LinkStyled>

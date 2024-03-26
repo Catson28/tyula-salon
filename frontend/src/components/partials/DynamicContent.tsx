@@ -12,22 +12,22 @@ const ContentContainer = styled.div<ContentProps>`
 `;
 
 const Content = styled.div`
-  padding: 20px;
+  // padding: 20px;
   background-color: #fff;
 `;
 
 const FooterContainer = styled.div<ContentProps>`
   position: fixed;
-  bottom: 0;
-  right: 0;
   width: calc(100% - ${({ sidebarWidth }) => sidebarWidth});
   transition: margin-left 0.5s;
+  bottom: 0;
+  right: 0;
   // width: 100%;
   background-color: #333;
   color: #fff;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  // align-items: center;
   padding: 10px 20px;
 `;
 

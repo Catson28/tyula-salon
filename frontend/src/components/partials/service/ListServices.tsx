@@ -8,6 +8,8 @@ import styled from 'styled-components';
 
 type Props = {
   onClose: () => void;
+  onAddServiceClick: () => void;
+  // onServicesButtonAdd: string;
   onImgService: (service: IServiceData) => void;
   onListProductService: (service: IServiceData) => void;
   onEditService: (service: IServiceData) => void; // Adding property to handle service edit in the parent
@@ -162,6 +164,13 @@ export default class ListServices extends Component<Props, State> {
             onClick={this.removeAllServices}
           >
             Remove All
+          </button>
+
+          <button
+            className="m-3 btn btn-sm btn-primary"
+            onClick={this.props.onAddServiceClick}
+          >
+            Adicionar
           </button>
         </div>
         <div className="col-md-6">

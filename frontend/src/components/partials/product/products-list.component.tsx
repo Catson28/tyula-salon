@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 type Props = {
   onClose: () => void;
+  onAddProductClick: () => void;
   onImgProduct: (product: IProductData) => void;
   onEditProduct: (product: IProductData) => void; // Adding property to handle product edit in the parent
 };
@@ -159,6 +160,13 @@ export default class ProductsList extends Component<Props, State> {
             onClick={this.removeAllProducts}
           >
             Remove All
+          </button>
+
+          <button
+            className="m-3 btn btn-sm btn-danger"
+            onClick={this.props.onAddProductClick}
+          >
+            Adicionar
           </button>
         </div>
         <div className="col-md-6">

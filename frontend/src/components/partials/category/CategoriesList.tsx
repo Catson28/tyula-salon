@@ -5,6 +5,7 @@ import CategoryImageGalleryComplex from "./CategoryImageGalleryComplex"; // Impo
 
 type Props = {
   onClose: () => void;
+  onCategoriesListClick: () => void;
   onImgCategory: (category: ICategoryData) => void;
   onEditCategory: (category: ICategoryData) => void; // Adicionando propriedade para manipular a edição da categoria no pai
 };
@@ -152,6 +153,13 @@ export default class CategoriesList extends Component<Props, State>{
             onClick={this.removeAllCategories}
           >
             Remove All
+          </button>
+
+          <button
+            className="m-3 btn btn-sm btn-primary"
+            onClick={this.props.onCategoriesListClick}
+          >
+            Adicionar
           </button>
         </div>
         <div className="col-md-6">

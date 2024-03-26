@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from .models import Employee, Absence, Salary, EmployeePayment, Subsidy, OvertimeHours, Commission, Bonus, Advance, Deduction
+from apps.person.serializers import PersonSerializer
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    person = PersonSerializer(read_only=True)
     class Meta:
         model = Employee
         fields = ['id', 'position', 'work_schedule', 'person']  

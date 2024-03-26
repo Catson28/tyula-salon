@@ -4,6 +4,7 @@ import ISubcategoryData from '../../../services/types/subcategory.type';
 
 type Props = {
   onClose: () => void;
+  onAddSubcategoryClick: () => void;
   onEditSubcategory: (subcategory: ISubcategoryData) => void; // Adicionando propriedade para manipular a edição da subcategoria no pai
 };
 
@@ -150,6 +151,13 @@ export default class SubcategoriesList extends Component<Props, State>{
             onClick={this.removeAllSubcategories}
           >
             Remove All
+          </button>
+
+          <button
+            className="m-3 btn btn-sm btn-primary"
+            onClick={this.props.onAddSubcategoryClick}
+          >
+            Adicionar
           </button>
         </div>
         <div className="col-md-6">

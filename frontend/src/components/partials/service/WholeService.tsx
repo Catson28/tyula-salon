@@ -39,21 +39,20 @@ const WholeService: React.FC = () => {
     }
   }, [currentService, deletedServiceId]);
 
-  const servicesButtonViewText = showService || showListServices ? "Fechar" : "Abrir";
-  const servicesButtonAddText = showServiceForm ? "Fechar" : "Adicionar";
+  // const servicesButtonViewText = showService || showListServices ? "Fechar" : "Abrir";
+  const servicesButtonViewText = showServiceForm || showListServices || showService || showImgService || showListProductService || showAddProductService ? "Fechar" : "Abrir";
 
   return (
     <>
       <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
         <h2 id="vertical-variation">Lista de Servicos<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
         <button type="button" className="btn btn-primary" onClick={handleListServicesClick}>{servicesButtonViewText}</button>
-        <button type="button" className="btn btn-primary" onClick={handleAddServiceClick}>{servicesButtonAddText}</button>
       </div>
       {showServiceForm && (
         <AddService onClose={() => setShowServiceForm(false)} />
       )}
       {showListServices && (
-        <ListServices onClose={() => setShowListServices(false)} onEditService={handleEditService} onImgService={handleImageService} onListProductService={handleListProductService} />
+        <ListServices onClose={() => setShowListServices(false)} onEditService={handleEditService} onImgService={handleImageService} onListProductService={handleListProductService} onAddServiceClick={handleAddServiceClick} />
       )}
       {showService && currentService && (
         <Service id={currentService.id.toString()} onEdit={handleUpdateService} onDelete={handleDeleteService} />

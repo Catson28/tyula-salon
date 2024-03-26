@@ -30,21 +30,19 @@ const WholeSubcategory: React.FC = () => {
     }
   }, [currentSubcategory, deletedSubcategoryId]);
 
-  const subcategoriesButtonViewText = showSubcategory || showSubcategoriesList ? "Fechar" : "Abrir";
-  const subcategoriesButtonAddText = showSubcategoryForm ? "Fechar" : "Adicionar";
+  const subcategoriesButtonViewText = showSubcategory || showSubcategoriesList || showSubcategoryForm ? "Fechar" : "Abrir";
 
   return (
       <>
         <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
           <h2 id="vertical-variation">Lista de Subcategorias<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
           <button type="button" className="btn btn-primary" onClick={handleSubcategoriesListClick}>{subcategoriesButtonViewText}</button>
-          <button type="button" className="btn btn-primary" onClick={handleAddSubcategoryClick}>{subcategoriesButtonAddText}</button>
         </div>
         {showSubcategoryForm && (
           <AddSubcategory onClose={() => setShowSubcategoryForm(false)} />
         )}
         {showSubcategoriesList && (
-          <SubcategoriesList onClose={() => setShowSubcategoriesList(false)} onEditSubcategory={handleEditSubcategory} />
+          <SubcategoriesList onClose={() => setShowSubcategoriesList(false)} onEditSubcategory={handleEditSubcategory}  onAddSubcategoryClick={handleAddSubcategoryClick}/>
         )}
         {showSubcategory && currentSubcategory && (
           <Subcategory id={currentSubcategory.id} onEdit={handleUpdateSubcategory} onDelete={handleDeleteSubcategory} />

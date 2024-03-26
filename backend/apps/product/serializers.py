@@ -2,13 +2,14 @@ from rest_framework import serializers
 from .models import Product 
 from apps.image.models import Image, ProductImage
 from apps.image.serializers import ImageSerializer
+from apps.category.serializers import CategorySerializer
 
 
 class ProductSerializer(serializers.ModelSerializer):
-
-
     images = serializers.SerializerMethodField()
     cover = serializers.SerializerMethodField()
+    category = CategorySerializer(read_only=True)
+
     # products = serializers.SerializerMethodField() # ProductSerializer((many=True, read_only=True)
 
     def get_images(self, obj):

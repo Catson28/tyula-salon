@@ -35,21 +35,19 @@ const WholeProduct: React.FC = () => {
     }
   }, [currentProduct, deletedProductId, setShowImgProduct]);
 
-  const productsButtonViewText = showProduct || showProductsList ? "Fechar" : "Abrir";
-  const productsButtonAddText = showProductForm ? "Fechar" : "Adicionar";
+  const productsButtonViewText = showImgProduct || showProductForm || showProduct || showProductsList ? "Fechar" : "Abrir";
 
   return (
       <>
         <div className="btn-toolbar justify-content-between p-2" role="toolbar" aria-label="Toolbar with button groups">
           <h2 id="vertical-variation">Lista de Produtos<a className="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#vertical-variation"></a></h2>
           <button type="button" className="btn btn-primary" onClick={handleProductsListClick}>{productsButtonViewText}</button>
-          <button type="button" className="btn btn-primary" onClick={handleAddProductClick}>{productsButtonAddText}</button>
         </div>
         {showProductForm && (
           <AddProduct onClose={() => setShowProductForm(false)} />
         )}
         {showProductsList && (
-          <ProductsList onClose={() => setShowProductsList(false)} onEditProduct={handleEditProduct} onImgProduct={handleImageProduct} />
+          <ProductsList onClose={() => setShowProductsList(false)} onEditProduct={handleEditProduct} onImgProduct={handleImageProduct} onAddProductClick={handleAddProductClick} />
         )}
         {showProduct && currentProduct && (
           <Product id={currentProduct.id} onEdit={handleUpdateProduct} onDelete={handleDeleteProduct} />

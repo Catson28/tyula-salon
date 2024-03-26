@@ -7,9 +7,11 @@ import LumeIt from '../../components/pages/LumeIt';
 import HomePage from '../../components/pages/AllRoutes/HomePage';
 import SaleBeauty from '../../components/pages/SaleBeauty';
 import AllBeauty from '../../../lixo/AllBeauty';
-import TestAllBeauty from '../../components/pages/SaleBeauty/TestAllBeauty';
+import TestAllBeauty from '../../components/pages/Services/AllService';
 import Palavras from '../../components/pages/Palavras/Palavras';
-import NavbarComponent from '../../components/pages/SaleBeauty/NavbarComponent';
+import NavbarComponent from '../../components/partials/NavbarCompone';
+import Table1 from '../../components/pages/Table/Table1';
+import Table2 from '../../components/pages/Table/Table12';
 // import ComponentSlider from '../../components/partials/carrocel/ComponentSlider';
 
 // import AboutPage from '../../components/pages/AboutPage';
@@ -44,12 +46,20 @@ const routes: RouteConfig[] = [
     element: <SaleBeauty />,
   },
   {
-    path: '/TestAllBeauty',
+    path: '/services',
     element: <TestAllBeauty />,
   },
   {
     path: '/estilo',
     element: <NavbarComponent />,
+  },
+  {
+    path: '/sales-reports',
+    element: <Table1 />,
+  },
+  {
+    path: '/inventory-control',
+    element: <Table2 />,
   },
   {
     path: '/palavras',

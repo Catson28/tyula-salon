@@ -356,6 +356,10 @@ Corpo da Requisicao
 	"phone": "000000000"
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/person/people/
+```
 
 **Seller**
 
@@ -369,6 +373,10 @@ Corpo da Requisicao
     "person": 1
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/sales/sellers/
+```
 
 **InvoiceCategory**
 
@@ -381,17 +389,25 @@ Corpo da Requisicao
     "name": "servico prestado"
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/sales/invoice-categories/
+```
 
 **Customer**
 
 ```
-http://localhost:8000/api/customer/add/
+http://localhost:8000/api/customers/add/
 ```
 Corpo da Requisicao
 ```json
 {
     "person": 1
 }
+```
+Rota para listar
+```
+http://localhost:8000/api/customers/list/
 ```
 
 **Invoice**
@@ -412,6 +428,10 @@ Corpo da Requisicao
     "category": 1
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/sales/invoices/
+```
 
 **InvoiceItem** baseando-se em copiar o sevico ou produto e colar aqui
 
@@ -428,6 +448,10 @@ Corpo da Requisicao
     "invoice": 1
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/sales/invoice-items/
+```
 
 **InvoicePayment**
 
@@ -441,6 +465,10 @@ Corpo da Requisicao
     "amount_paid": 500,
     "invoice": 1
 }
+```
+Rota para listar
+```
+http://localhost:8000/api/sales/invoice-payments/
 ```
 
 
@@ -459,11 +487,15 @@ Corpo da Requisicao
     "description": "Perucas Brasileiras",
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/categories/list/
+```
 
 **Product**
 
 ```
-http://localhost:8000/api/product/add/
+http://localhost:8000/api/products/add/
 ```
 Corpo da Requisicao
 ```json
@@ -474,6 +506,10 @@ Corpo da Requisicao
     "quantity": 10,
     "category": 1
 }
+```
+Rota para listar
+```
+http://localhost:8000/api/products/list/
 ```
 
 **SoldItem** Item Vendido
@@ -488,6 +524,10 @@ Corpo da Requisicao
     "invoice": 1,
     "product": 1
 }
+```
+Rota para listar
+```
+http://localhost:8000/api/sales/sold-items/
 ```
 
 
@@ -506,6 +546,10 @@ Corpo da Requisicao
     "description": "Produtopar o trabalho de Cabelereiro"
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/categories/list/
+```
 
 **Product**
 
@@ -522,11 +566,15 @@ Corpo da Requisicao
     "category": 2
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/products/list/
+```
 
 **Subcategory**  
 
 ```
-http://localhost:8000/api/subcategory/add/
+http://localhost:8000/api/subcategories/add/
 ```
 Corpo da Requisicao
 ```json
@@ -535,6 +583,10 @@ Corpo da Requisicao
     "description": "Product Description",
     "category": 2
 }
+```
+Rota para listar
+```
+http://localhost:8000/api/subcategories/list/
 ```
 
 **Service** 
@@ -552,6 +604,10 @@ Corpo da Requisicao
     "hourly_rate": 25
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/services/list/
+```
 
 **ProvidedService** Servico prestado
 
@@ -567,6 +623,10 @@ Corpo da Requisicao
     "invoice": 1,
     "service": 1
 }
+```
+Rota para listar
+```
+http://localhost:8000/api/sales/provided-services/
 ```
 
 
@@ -589,6 +649,10 @@ Corpo da Requisicao
     "phone": "123-456-7890"
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/person/people/
+```
 
 **Employee**
 
@@ -603,6 +667,10 @@ Corpo da Requisicao
     "person": 2
 }
 ```
+Rota para listar
+```
+http://localhost:8000/api/employee/employees/
+```
 
 **ProvidedServiceEnpl**
 
@@ -616,9 +684,11 @@ Corpo da Requisicao
     "provided_service": 1
 }
 ```
-
-
-
+Rota para listar
+```
+http://localhost:8000/api/sales/provided-service-enpl/
+```
+```
 # Usaremos
 ```bash
 python manage.py makemigrations category
