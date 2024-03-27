@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Subcategory
-from .serializers import SubcategorySerializer
+from .serializers import SubcategorySerializer, SubcategoryCreateSerializer
 
 
 @api_view(["GET"])
@@ -15,7 +15,7 @@ def list_subcategories(request):
 @api_view(["POST"])
 def add_subcategory(request):
     print(request.data)
-    serializer = SubcategorySerializer(data=request.data)
+    serializer = SubcategoryCreateSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)

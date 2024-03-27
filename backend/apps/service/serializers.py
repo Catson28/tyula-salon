@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from .models import Service, ServiceImage, ServiceProduct, FinancialAnalysis
 from apps.image.models import Image
-from apps.image.serializers import ImageSerializer
 from apps.product.serializers import ProductSerializer
+from apps.image.serializers import ImageSerializer
+from apps.subcategory.serializers import SubcategorySerializer
 
 
 class ServiceProductSerializer(serializers.ModelSerializer):
@@ -23,6 +24,7 @@ class ServiceSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
     cover = serializers.SerializerMethodField()
     products = ProductSerializer(many=True, read_only=True)
+    subcategory = SubcategorySerializer(read_only=True)
     # products = serializers.SerializerMethodField() # ProductSerializer((many=True, read_only=True)
 
     def get_images(self, obj):

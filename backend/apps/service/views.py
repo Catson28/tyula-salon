@@ -17,8 +17,8 @@ def list_services(request):
 
 @api_view(["POST"])
 def create_service(request):
-    serializer = ServiceSerializer(data=request.data)
     print(request.data)
+    serializer = ServiceSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

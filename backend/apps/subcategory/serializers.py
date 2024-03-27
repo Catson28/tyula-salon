@@ -8,3 +8,9 @@ class SubcategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Subcategory
         fields = ["id", "name", "description", "category"]
+
+
+class SubcategoryCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subcategory
+        fields = ["id", "name", "description", "category"]
