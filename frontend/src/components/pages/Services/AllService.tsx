@@ -10,7 +10,8 @@ import TelaDoNavegador from '../../partials/HelperResposnve/TelaDoNavegador';
 import ParentWithDynamicChild from '../../partials/HelperResposnve/ParentWithDynamicChild';
 import NavbarComponent from '../../partials/NavbarComponent'
 import HomeSale from '../sale/HomeSale';
-import CollButt from '../../../services/utils/CollButt'
+// import CollButt from '../../../services/utils/CollButt'
+import Graphs from '../../partials/graficos/Graphs'
 
 
 
@@ -55,9 +56,10 @@ const AllService: React.FC = () => {
             <ComponentSlider components={components} />
             <WholeCategory />
             <WholeSubcategory />
-            <WholeProduct />
             <WholeService />
+            <WholeProduct />
             <ParentWithDynamicChild />
+            <Graphs />
             <TelaDoNavegador />
             <HomeSale
               clients={clientsData}
@@ -67,7 +69,7 @@ const AllService: React.FC = () => {
               onCancel={cancelSale}
             />
 
-            <CollButt />
+            {/* <CollButt /> */}
         </div>        
       </NavbarComponent>
 
