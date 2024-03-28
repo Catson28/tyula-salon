@@ -1,7 +1,5 @@
 import React from 'react';
-import LineChart from './LineChart';
-import TwoColumnLayout from './TwoColumnLayout';
-
+import LineChart from '../graph/LineChart';
 
 const Graphs: React.FC = () => {
   // Função para gerar dados de vendas ao longo do tempo
@@ -37,12 +35,11 @@ const Graphs: React.FC = () => {
   const { data, labels } = generateSalesData();
 
   return (
-    <TwoColumnLayout>
+
         <div>
             <h1>Gráfico de Linha - Evolução das Vendas</h1>
             <LineChart data={data} labels={labels} />
         </div>
-    </TwoColumnLayout>
   );
 };
 

@@ -16,7 +16,7 @@ import TableService from '../../components/pages/Table/TableService';
 import TableServiceProvider from '../../components/pages/Table/TableServiceProvider';
 import TableServiceSoldItems from '../../components/pages/Table/TableServiceSoldItems';
 // import TableService from '../../components/pages/Table/TableService';
-import Graphs from '../../components/partials/graficos/Graphs';
+import AllGraphs from '../../components/partials/graficos/AllGraphs';
 // import ComponentSlider from '../../components/partials/carrocel/ComponentSlider';
 
 // import AboutPage from '../../components/pages/AboutPage';
@@ -72,7 +72,7 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/graficos',
-    element: <Graphs />,
+    element: <AllGraphs />,
   },
   {
     path: '/employees',

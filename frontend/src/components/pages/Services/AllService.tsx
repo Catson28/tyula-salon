@@ -11,7 +11,7 @@ import ParentWithDynamicChild from '../../partials/HelperResposnve/ParentWithDyn
 import NavbarComponent from '../../partials/NavbarComponent'
 import HomeSale from '../sale/HomeSale';
 // import CollButt from '../../../services/utils/CollButt'
-import Graphs from '../../partials/graficos/Graphs'
+import AllGraphs from '../../partials/graficos/AllGraphs'
 
 
 
@@ -59,7 +59,7 @@ const AllService: React.FC = () => {
             <WholeService />
             <WholeProduct />
             <ParentWithDynamicChild />
-            <Graphs />
+            <AllGraphs />
             <TelaDoNavegador />
             <HomeSale
               clients={clientsData}
