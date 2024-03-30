@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TwoColumnLayoutContainer = styled.div`
   display: inline-flex;
-  // display: grid;
+  display: grid;
   // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Use minmax para ajuste automático *
   grid-template-columns: 1fr 1fr;
   gap: 20px;

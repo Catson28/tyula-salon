@@ -17,6 +17,7 @@ import TableServiceProvider from '../../components/pages/Table/TableServiceProvi
 import TableServiceSoldItems from '../../components/pages/Table/TableServiceSoldItems';
 // import TableService from '../../components/pages/Table/TableService';
 import AllGraphs from '../../components/partials/graficos/AllGraphs';
+import HomeSale from '../../components/pages/sale/partSale';
 // import ComponentSlider from '../../components/partials/carrocel/ComponentSlider';
 
 // import AboutPage from '../../components/pages/AboutPage';
@@ -46,6 +47,10 @@ const routes: RouteConfig[] = [
     path: '/items',
     element: <ItemsPage />,
   },
+  {
+    path: '/sale',
+    element: <HomeSale />,
+  }, 
   {
     path: '/beauty',
     element: <SaleBeauty />,

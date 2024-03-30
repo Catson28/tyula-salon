@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scatter } from 'react-chartjs-2';
+import {  ChartOptions } from 'chart.js';
 
 const AssetManagementScatterChart: React.FC = () => {
   const data = {
@@ -20,7 +21,7 @@ const AssetManagementScatterChart: React.FC = () => {
     ],
   };
 
-  const options = {
+  const options: ChartOptions<'scatter'> = {
     scales: {
       x: {
         type: 'linear',

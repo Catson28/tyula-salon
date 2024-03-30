@@ -12,7 +12,7 @@ const ContentContainer = styled.div<ContentProps>`
 `;
 
 const Content = styled.div`
-  // padding: 20px;
+  padding: 60px 0;
   background-color: #fff;
 `;
 

@@ -1,13 +1,15 @@
 import React from 'react';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
+import {  ChartOptions } from 'chart.js';
 
-const AssetManagementPieChart: React.FC = () => {
+
+const HRPayrollDoughnutChart: React.FC = () => {
   const data = {
-    labels: ['Equipamentos', 'Veículos', 'Imóveis'],
+    labels: ['Salários', 'Benefícios', 'Impostos'],
     datasets: [
       {
-        label: 'Distribuição de Ativos',
-        data: [40, 30, 30],
+        label: 'Custos com Folha de Pagamento',
+        data: [60, 25, 15],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',
           'rgba(75, 192, 192, 0.6)',
@@ -23,7 +25,8 @@ const AssetManagementPieChart: React.FC = () => {
     ],
   };
 
-  const options = {
+
+  const options: ChartOptions<'doughnut'> = {
     plugins: {
       legend: {
         position: 'bottom',
@@ -33,10 +36,10 @@ const AssetManagementPieChart: React.FC = () => {
 
   return (
     <div>
-      <h1>Gráfico de Pizza - Distribuição de Ativos</h1>
-      <Pie data={data} options={options} />
+      <h1>Gráfico de Rosca - Custos com Folha de Pagamento por Tipo de Benefício</h1>
+      <Doughnut data={data} options={options} />
     </div>
   );
 };
 
-export default AssetManagementPieChart;
+export default HRPayrollDoughnutChart;

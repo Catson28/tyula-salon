@@ -93,4 +93,6 @@ class ServiceDataService {
 
 }
 
-export default new ServiceDataService();
+// export default new ServiceDataService();
+const ServiceDataServiceInstance = new ServiceDataService();
+export default ServiceDataServiceInstance;

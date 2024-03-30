@@ -4,6 +4,7 @@ import { FaHome, FaAddressBook, FaBriefcase, FaCogs, FaChevronRight, FaShoppingC
 import DynamicContent from './DynamicContent';
 import { Link } from 'react-router-dom'; // Importe o Link do react-router-dom
 import NavbarSkelet from './NavbarSkelety';
+import RouteLogger from '../partials/examples/RouteLogger';
 
 
 interface SidebarProps {
@@ -52,7 +53,7 @@ const Nav = styled.nav`
 const NavLink = styled(Link)<{ active: boolean }>`
   display: block;
   align-items: center;
-  padding: 10px 20px;
+  // padding: 10px 0px;
   color: ${({ active }) => (active ? 'red' : 'white')}; // Estilo para rota ativa
   text-decoration: none;
   transition: background-color 0.3s;
@@ -65,13 +66,13 @@ const NavLink = styled(Link)<{ active: boolean }>`
 const NavSubLink = styled.a<{ active: boolean; visible: boolean }>`
   display: ${({ visible }) => (visible ? 'block' : 'none')};
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 50px;
   color: ${({ active }) => (active ? 'red' : 'white')}; // Estilo para rota ativa
   text-decoration: none;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #555;
+    background-color: #303;
   }
 `;
 
@@ -87,9 +88,14 @@ const NavTitle = styled.span<{ collapsed: boolean }>`
   display: ${({ collapsed }) => (collapsed ? 'none' : 'inline')};
 `;
 
-const Navbar = styled.nav<{ sidebarWidth: string }>`
+const NavText = styled.div`
+  margin: 10px 20px;
+`;
 
+const Navbar = styled.nav<{ sidebarWidth: string }>`
+  position:fixed;
   margin-left: ${({ sidebarWidth }) => sidebarWidth};
+  width:100%;
   transition: margin-left 0.5s;
   background-color: #303;
   color: white;
@@ -179,6 +185,9 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
     setLoading(false); // Define o carregamento como concluído
   };
   
+  const handleNavLinkClick = (route: string) => {
+    setActiveRoute(route);
+  };
 
   return (
     <>
@@ -187,6 +196,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
             <h1>Loading...</h1>
         </SkeletonLoader>
       ) : (<>
+            <RouteLogger />
             <Navbar sidebarWidth={sidebarWidth}>
               <HideButton onClick={toggleSidebar}>
                 Hide
@@ -208,37 +218,37 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
                   <NavLink to="/"
                     active={activeRoute === 'home'} // Passa a rota ativa para NavSubLink
                   >
-                    <FaHome /> <NavTitle collapsed={collapsed}>Home</NavTitle>
+                    <NavText> <FaHome /><NavTitle collapsed={collapsed}>Home</NavTitle></NavText>
                   </NavLink>
 
                   <NavLink to="/sale" active={activeRoute === 'sale'}>
-                    <FaShoppingCart /> <NavTitle collapsed={collapsed}>Sale ou Vendas</NavTitle>
+                    <NavText> <FaShoppingCart /> <NavTitle collapsed={collapsed}>Sale ou Vendas</NavTitle></NavText>
                   </NavLink>
 
                   <NavLink to="/products" active={activeRoute === 'products'}>
-                    <FaCubes /> <NavTitle collapsed={collapsed}>Produtos</NavTitle>
+                    <NavText><FaCubes /> <NavTitle collapsed={collapsed}>Produtos</NavTitle></NavText>
                   </NavLink>
 
-                  <NavLink to="/services" active={activeRoute === 'services'}>
-                    <FaWrench /> <NavTitle collapsed={collapsed}>Serviços</NavTitle>
+                  <NavLink to="/services" active={activeRoute === 'services'} onClick={() => handleNavLinkClick('/services')}>
+                    <NavText><FaWrench /> <NavTitle collapsed={collapsed}>Serviços</NavTitle></NavText>
                   </NavLink>
 
                   <NavLink to="/employees" active={activeRoute === 'employees'}>
-                    <FaUsers /> <NavTitle collapsed={collapsed}>Funcionários</NavTitle>
+                    <NavText><FaUsers /> <NavTitle collapsed={collapsed}>Funcionários</NavTitle></NavText>
                   </NavLink>
 
                   <NavLink to="/sales-reports" active={activeRoute === 'sales-reports'}>
-                    <FaChartLine /> <NavTitle collapsed={collapsed}>Relatórios de Vendas</NavTitle>
+                    <NavText> <FaChartLine /> <NavTitle collapsed={collapsed}>Relatórios</NavTitle></NavText>
                   </NavLink>
 
                   <NavLink to="/inventory-control" active={activeRoute === 'inventory-control'}>
-                    <FaBoxes /> <NavTitle collapsed={collapsed}>Controle de Estoque</NavTitle>
+                    <NavText><FaBoxes /> <NavTitle collapsed={collapsed}>Controle de Estoque</NavTitle></NavText>
                   </NavLink>
 
                   <NavLink to="/contacts"
                     active={activeRoute === 'contacts'} // Passa a rota ativa para NavSubLink
                   >
-                    <FaAddressBook /> <NavTitle collapsed={collapsed}>Contacts</NavTitle>
+                  <NavText><FaAddressBook /> <NavTitle collapsed={collapsed}>Contacts</NavTitle></NavText>
                   </NavLink>
                   <NavLink
                     to="/works"
@@ -247,7 +257,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
                     active={activeRoute === 'work'} // Passa a rota ativa para NavSubLink
                   
                   >
-                    <FaBriefcase /> <NavTitle collapsed={collapsed}>Works <FaChevronRight /></NavTitle>
+                    <NavText><FaBriefcase /> <NavTitle collapsed={collapsed}>Works <FaChevronRight /></NavTitle></NavText>
                     {!collapsed && (
                       <Nav>
                         <NavSubLink visible={sublinkVisible.works} href="/works/sublink1"
@@ -266,7 +276,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
                     active={activeRoute === 'allfuncs'} // Passa a rota ativa para NavSubLink
                   
                   >
-                    <FaCogs /> <NavTitle collapsed={collapsed}>All Functions</NavTitle>
+                    <NavText><FaCogs /> <NavTitle collapsed={collapsed}>All Functions</NavTitle></NavText>
                   </NavLink>
                   <NavLink
                     to="/TestAllBeauty"
@@ -276,7 +286,7 @@ const NavbarComponent = ({  children }: React.PropsWithChildren) => {
                   
                   
                     >
-                    <FaBriefcase /><NavTitle collapsed={collapsed}>Services <FaChevronRight /></NavTitle>
+                    <NavText><FaBriefcase /><NavTitle collapsed={collapsed}>Services <FaChevronRight /></NavTitle></NavText>
                     {!collapsed && (
                       <Nav>
                         <NavSubLink visible={sublinkVisible.services} href="/works/sublink1"

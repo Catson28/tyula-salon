@@ -1,5 +1,5 @@
 import React from 'react';
-import LineChart from '../graph/LineChart';
+import LineChart from '../../graph/line/LineChart';
 
 const Graphs: React.FC = () => {
   // Função para gerar dados de vendas ao longo do tempo

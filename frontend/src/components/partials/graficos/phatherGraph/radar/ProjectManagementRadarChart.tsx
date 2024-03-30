@@ -3,34 +3,27 @@ import { Radar } from 'react-chartjs-2';
 
 const ProjectManagementRadarChart: React.FC = () => {
   const data = {
-    labels: ['Tempo', 'Custo', 'Qualidade'],
+    labels: ['Recurso 1', 'Recurso 2', 'Recurso 3', 'Recurso 4', 'Recurso 5'],
     datasets: [
       {
         label: 'Projeto A',
-        data: [7, 8, 9],
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        data: [80, 70, 90, 85, 75],
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
-        pointRadius: 4,
       },
       {
         label: 'Projeto B',
-        data: [8, 7, 8],
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        data: [70, 85, 80, 75, 90],
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
-        pointRadius: 4,
       },
     ],
   };
 
   const options = {
-    scales: {
-      r: {
-        beginAtZero: true,
-        max: 10,
-      },
-    },
+    // opções do gráfico de radar
   };
 
   return (

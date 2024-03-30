@@ -50,4 +50,6 @@ class CategoryDataService {
   }
 }
 
-export default new CategoryDataService();
+// export default new CategoryDataService();
+const CategoryDataServiceInstance = new CategoryDataService();
+export default CategoryDataServiceInstance;

@@ -1,6 +1,5 @@
 import React from 'react';
-import MultiLineChart from '../graph/MultiLineChart';
-import TwoColumnLayout from '../TwoColumnLayout';
+import MultiLineChart from '../../graph/line/MultiLineChart';
 
 const CostComparisonGraph: React.FC = () => {
   // Dados de exemplo para comparar custos ao longo do tempo
@@ -13,12 +12,10 @@ const CostComparisonGraph: React.FC = () => {
   const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'];
 
   return (
-    <TwoColumnLayout>
       <div>
         <h1>Gráfico de Linhas Múltiplas - Comparação de Custos ao Longo do Tempo</h1>
         <MultiLineChart datasets={costData} labels={labels} />
       </div>
-    </TwoColumnLayout>
   );
 };
 

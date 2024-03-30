@@ -3,34 +3,27 @@ import { Radar } from 'react-chartjs-2';
 
 const CRMRelationshipRadarChart: React.FC = () => {
   const data = {
-    labels: ['Atendimento', 'Suporte', 'Qualidade do Produto'],
+    labels: ['Atendimento', 'Qualidade do Produto', 'Preço', 'Comunicação', 'Feedback'],
     datasets: [
       {
         label: 'Cliente A',
-        data: [8, 9, 7],
-        backgroundColor: 'rgba(255, 206, 86, 0.6)',
-        borderColor: 'rgba(255, 206, 86, 1)',
-        borderWidth: 1,
-        pointRadius: 4,
-      },
-      {
-        label: 'Cliente B',
-        data: [9, 8, 9],
+        data: [80, 70, 90, 85, 75],
         backgroundColor: 'rgba(255, 99, 132, 0.6)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
-        pointRadius: 4,
+      },
+      {
+        label: 'Cliente B',
+        data: [70, 85, 80, 75, 90],
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
       },
     ],
   };
 
   const options = {
-    scales: {
-      r: {
-        beginAtZero: true,
-        max: 10,
-      },
-    },
+    // opções do gráfico de radar
   };
 
   return (

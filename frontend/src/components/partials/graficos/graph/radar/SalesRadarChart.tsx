@@ -1,5 +1,12 @@
 import React from 'react';
 import { Radar } from 'react-chartjs-2';
+import { Chart, ChartOptions } from 'chart.js'; // Importe o Chart do chart.js
+
+// Importe os elementos necessários do chart.js
+import { RadialLinearScale, PointElement, LineElement } from 'chart.js';
+
+// Registre os elementos
+Chart.register(RadialLinearScale, PointElement, LineElement);
 
 const SalesRadarChart: React.FC = () => {
   const data = {
@@ -24,9 +31,11 @@ const SalesRadarChart: React.FC = () => {
     ],
   };
 
-  const options = {
+  
+  const options: ChartOptions<'radar'> = {
     scales: {
       r: {
+        type: 'radialLinear', // Define o tipo de escala como radialLinear
         beginAtZero: true,
         max: 10,
       },

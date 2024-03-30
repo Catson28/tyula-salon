@@ -1,13 +1,17 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
+import { ChartOptions, Chart } from 'chart.js'; // Importe também o elemento Chart
 
-const MarketingPieChart: React.FC = () => {
+// Importe os elementos específicos necessários do Chart.js
+import { ArcElement, Title, Legend } from 'chart.js';
+
+const AssetManagementPieChart: React.FC = () => {
   const data = {
-    labels: ['Produto A', 'Produto B', 'Produto C'],
+    labels: ['Equipamentos', 'Veículos', 'Imóveis'],
     datasets: [
       {
-        label: 'Participação de Mercado',
-        data: [50, 30, 20],
+        label: 'Distribuição de Ativos',
+        data: [40, 30, 30],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',
           'rgba(75, 192, 192, 0.6)',
@@ -23,7 +27,7 @@ const MarketingPieChart: React.FC = () => {
     ],
   };
 
-  const options = {
+  const options: ChartOptions<'pie'> = {
     plugins: {
       legend: {
         position: 'bottom',
@@ -31,12 +35,15 @@ const MarketingPieChart: React.FC = () => {
     },
   };
 
+  // Adicione o elemento ArcElement ao Chart.js
+  Chart.register(ArcElement);
+
   return (
     <div>
-      <h1>Gráfico de Pizza - Participação de Mercado</h1>
+      <h1>Gráfico de Pizza - Distribuição de Ativos</h1>
       <Pie data={data} options={options} />
     </div>
   );
 };
 
-export default MarketingPieChart;
+export default AssetManagementPieChart;
