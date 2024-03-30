@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import NavbarComponent from '../../partials/NavbarComponent'
+import SaleTable from '../Table/SaleTable';
+import InvoiceComponent from './InvoiceComponent';
 
 const GridContainer = styled.div`
   display: grid;
@@ -25,42 +27,90 @@ const BottomLeftPane = styled.div`
 `;
 
 
-
 // Estilos para o container principal
 const FormControl = styled.div`
 padding: 10px;
-// display: flex;
-// flex-direction: row;
 align-items: center;
 gap: 10px;
 `;
-const FormColumn = styled.div`
-  width:100%;
-  // display: flex;
-  // flex-direction: row;
- flex: 1; /* Ocupa todo o espaço disponível */
-`;
+
+
 
 // Estilos para o container principal
+const FormClient = styled.div`
+width:100%;
+background-color:#fff;
+padding: 10px;
+align-items: center;
+gap: 10px;
+`;
+
+const FormColumn = styled.div`
+  width:100%;
+`;
+
+const FormServ = styled.div`
+  width:50%;
+`;
+
+const FormQuantity = styled.div`
+  width:50%;
+  // max-width: 150px; /* Ajuste o valor conforme necessário */
+`;
+
+const FormNote = styled.div`
+  max-width: 200px; /* Ajuste o valor conforme necessário */
+`;
+
 const GroupRowItems = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content:space-between;
+  align-items: center; /* Alinha os itens verticalmente */
+  justify-content: space-between; /* Distribui o espaço entre os itens */
+  gap: 10px; /* Adiciona espaçamento entre os itens */
 `;
+
+
+const GroupRowClient = styled.div`
+  display: flex;
+  flex-direction: row;
+  // align-items: center; /* Alinha os itens verticalmente */
+  justify-content: space-between; /* Distribui o espaço entre os itens */
+  // gap: 10px; /* Adiciona espaçamento entre os itens */
+`;
+
+const GroupRowNotes = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Alinha os itens verticalmente */
+  justify-content: space-between; /* Distribui o espaço entre os itens */
+  gap: 10px; /* Adiciona espaçamento entre os itens */
+`;
+
+
 
 // Estilos para o container principal
 const GroupRowContent = styled.div`
   display: flex;
   flex-direction: row;
-  grid-template-rows: 1fr 1fr;
+  // grid-template-rows: 1fr 1fr;
   // align-items: center;
   // justify-content:space-between;
+`;
+
+const GroupQuntNote = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  grid-template-rows: 1fr 1fr;
+  // flex-wrap: wrap; /* Adicionando flex-wrap para que os itens quebrem para a próxima linha */
 `;
 
 // Estilos para o título ou label
 const Titles = styled.h2`
   font-size: 18px;
+  margin: 0 5px;
 `;
 
 
@@ -78,6 +128,17 @@ const Select = styled.select`
   flex: 1; /* Ocupa todo o espaço disponível */
   padding: 8px;
   margin:5px;
+  // margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+// Estilos para o select dropdown
+const SelectNote = styled.select`
+  width: 80%;
+  // flex: 1; /* Ocupa todo o espaço disponível */
+  padding: 8px;
+  margin:5px;
   border-radius: 5px;
   border: 1px solid #ccc;
 `;
@@ -85,15 +146,26 @@ const Select = styled.select`
 // Estilos para o select dropdown
 const InputField = styled.input`
   flex: 1; /* Ocupa todo o espaço disponível */
+  // width:100%;
   padding: 4px;
-  margin:5px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+// Estilos para o select dropdown
+const InputQnt = styled.input`
+  flex: 1; /* Ocupa todo o espaço disponível */
+  width:100%;
+  padding: 4px;
+  margin: 5px ;
   border-radius: 5px;
   border: 1px solid #ccc;
 `;
 
 // Estilos para o botão "Adicionar"
 const Button = styled.button`
-  padding: 8px 12px; /* Ajuste o padding conforme necessário */
+  padding: 6px 12px; /* Ajuste o padding conforme necessário */
   border-radius: 5px;
   background-color: #007bff;
   color: #fff;
@@ -116,28 +188,81 @@ const GridComponent = () => {
     setSelectedCard(index);
   };
 
+
+  // Definindo o estado para o total e o troco
+  const [total, setTotal] = React.useState<number>(100);
+  const [change, setChange] = React.useState<number>(0);
+
+  // Função para lidar com o clique no botão de confirmação de pagamento
+  const handlePaymentConfirmation = () => {
+    // Lógica para finalizar o pagamento e calcular o troco
+    const paymentAmount = 120; // Exemplo de valor pago pelo cliente
+    const calculatedChange = paymentAmount - total;
+    setChange(calculatedChange > 0 ? calculatedChange : 0);
+  };
+
   return (
     <NavbarComponent>
         <GridContainer>
+          <TopLeftPane>  
+            <GroupRowClient>
+              <FormClient>
+                <Titles>Cliente:</Titles>
+                <GroupRowItems>
+                  <Select>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao2">Opção 2</option>
+                    <option value="opcao3">Opção 3</option>
+                  </Select>
+                  <Button>Novo</Button>
+                </GroupRowItems>
+              </FormClient>   
+              <FormClient>
+                <Titles>Tipo de Pagamento:</Titles>
+                <GroupRowItems>
+                  <Select>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao2">Opção 2</option>
+                    <option value="opcao3">Opção 3</option>
+                  </Select>
+                </GroupRowItems>
+              </FormClient>              
+            </GroupRowClient>
+            <SaleTable />
+            <InvoiceComponent total={total} change={change} onButtonClick={handlePaymentConfirmation} />
+          </TopLeftPane>
           <RightPane>
             <FormControl>
               <GroupRowContent>
-                <FormColumn>
+                <FormServ>
                   <Titles>Servico:</Titles>
-                  <InputField />
-                </FormColumn>
-                <FormColumn>
-                  <Titles>Nota:</Titles>
-                  <Select>
-                    <option value="opcao1">selecione o valor</option>
-                    <option value="opcao1">200</option>
-                    <option value="opcao2">500</option>
-                    <option value="opcao3">1000</option>
-                    <option value="opcao3">2000</option>
-                    <option value="opcao3">5000</option>
-                  </Select>
-                  <Button>Adicionar</Button>                
-                </FormColumn>                
+                  <GroupRowItems>
+                    <InputField />
+                  </GroupRowItems>
+                </FormServ>
+                <GroupQuntNote>
+                  <FormQuantity>
+                    <Titles>Quantidade:</Titles>
+                    <GroupRowItems>
+                      <InputQnt />
+                    </GroupRowItems>
+                  </FormQuantity>
+                  <FormNote>
+                    <Titles>Nota:</Titles>
+                    <GroupRowNotes>
+                      <SelectNote>
+                        <option value="opcao1">Valor</option>
+                        <option value="opcao1">200</option>
+                        <option value="opcao2">500</option>
+                        <option value="opcao3">1000</option>
+                        <option value="opcao3">2000</option>
+                        <option value="opcao3">5000</option>
+                      </SelectNote>
+                      <Button>+</Button>                      
+                    </GroupRowNotes>
+                  </FormNote>                    
+                </GroupQuntNote>
+              
               </GroupRowContent>
 
 
@@ -175,29 +300,7 @@ const GridComponent = () => {
             </FormControl>
 
 
-
-
           </RightPane>
-          <TopLeftPane>       
-
-
-
-
-          <FormControl>
-              <Titles>Selecione Cliente:</Titles>
-              <GroupRowItems>
-                <Select>
-                  <option value="opcao1">Opção 1</option>
-                  <option value="opcao2">Opção 2</option>
-                  <option value="opcao3">Opção 3</option>
-                </Select>
-                <Button>Adicionar</Button>
-              </GroupRowItems>
-            </FormControl>
-
-
-
-          </TopLeftPane>
           <BottomLeftPane>Bottom Left Pane</BottomLeftPane>
         </GridContainer>
     </NavbarComponent>

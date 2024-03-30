@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import Keyboard from './Keyboard';
+import { FaKeyboard } from 'react-icons/fa';
+
 
 interface ContentProps {
   sidebarWidth: string;
@@ -37,6 +39,21 @@ const CollapseButton = styled.button`
   color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
+
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // padding: 10px;
+  // background-color: #007bff;
+  // color: white;
+  // border: none;
+  // border-radius: 5px;
+  // cursor: pointer;
+  // transition: background-color 0.3s ease;
+
+  &:hover {
+    color: #0056b3;
+  }
 `;
 
 // const CollapsibleContent = styled.div<{ isOpen: boolean; sidebarWidth: string }>` /* Adicionando sidebarWidth ao tipo de props */
@@ -66,7 +83,7 @@ const DynamicContent = ({ sidebarWidth, children }: React.PropsWithChildren<Cont
 
 
         <FooterContainer sidebarWidth={sidebarWidth}>
-          <CollapseButton onClick={toggleCollapse}>Collapse</CollapseButton>
+          <CollapseButton onClick={toggleCollapse}><FaKeyboard /></CollapseButton>
           <CollapsibleContent isOpen={isOpen}> {/* Passando sidebarWidth como propriedade */}
             <Keyboard/>
           </CollapsibleContent>
