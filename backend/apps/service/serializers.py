@@ -44,6 +44,13 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = ["id", "name", "description", "price", "subcategory", "products", "images", "cover", "hourly_rate"]
 
+
+class ServiceCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = ["id", "name", "description", "price", "subcategory", "products", "hourly_rate"]
+
+
 class ImagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image

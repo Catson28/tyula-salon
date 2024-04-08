@@ -1522,3 +1522,17 @@ export const associateCustomerWithSale = (customerId: number, saleId: number) =>
 Isso deve criar funções Axios para cada rota especificada na sua API Django, permitindo que
 
  você faça solicitações HTTP a esses endpoints a partir do seu aplicativo React com TypeScript.
+
+![](/home/cand/Desktop/Atayene Space/img/Dicand-database.png)
+
+![asmaioresseguradorasdeangola-01](/home/cand/Desktop/Atayene Space/img/asmaioresseguradorasdeangola-01.jpg)
+
+![1711224077259](/home/cand/Desktop/Atayene Space/img/1711224077259.gif)
+
+![Aintercalar componente](/home/cand/Desktop/Atayene Space/img/Aintercalar componente.jpg)
+
+![adicionar no apicontext](/home/cand/Desktop/Atayene Space/img/adicionar no apicontext.jpg)
+
+![Flowchart](/home/cand/Desktop/Atayene Space/img/Flowchart.jpeg)
+
+![Flowchart(1)](/home/cand/Desktop/Atayene Space/img/Flowchart(1).jpeg)

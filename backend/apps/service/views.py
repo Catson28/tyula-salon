@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Service
-from .serializers import ServiceSerializer, ServiceProductSerializer
+from .serializers import ServiceSerializer, ServiceProductSerializer, ServiceCreateSerializer
 from apps.product.models import Product
 from apps.product.serializers import ProductSerializer
 
@@ -18,7 +18,7 @@ def list_services(request):
 @api_view(["POST"])
 def create_service(request):
     print(request.data)
-    serializer = ServiceSerializer(data=request.data)
+    serializer = ServiceCreateSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

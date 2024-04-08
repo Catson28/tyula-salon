@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import NavbarComponent from '../../partials/NavbarComponent'
 import SaleTable from '../Table/SaleTable';
 import InvoiceComponent from './InvoiceComponent';
+import ServiceDataService from "../../../services/net/ServiceDataService";
 
 const GridContainer = styled.div`
   display: grid;
@@ -180,6 +181,20 @@ const Button = styled.button`
 
 const GridComponent = () => {
 
+// export default class GridComponent extends Component<Props, State> {
+
+
+const [services, setServices] = useState([]);
+
+useEffect(() => {
+  ServiceDataService.getAll()
+    .then((response: any) => {
+      setServices(response.data);
+    })
+    .catch((e: Error) => {
+      console.log(e);
+    });
+}, []);
 
 
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
@@ -271,31 +286,15 @@ const GridComponent = () => {
             
             <FormControl>
               <GalleryContainer>
-                <ServiceCard selected={selectedCard === 0} onClick={() => handleCardClick(0)}>
-                  <Title selected={selectedCard === 0}>Atom</Title>
-                  <Subtitle>11.99</Subtitle>
-                  <ServiceImage src="http://localhost:8000/media/images/35652246.jpg" alt="Service Image" />
-                </ServiceCard>
-                <ServiceCard selected={selectedCard === 1} onClick={() => handleCardClick(1)}>
-                  <Title selected={selectedCard === 1}>Limon</Title>
-                  <Subtitle>110.99</Subtitle>
-                  <ServiceImage src="http://localhost:8000/media/images/D_NQ_NP_773592-MLB71333730379_082023-O.webp" alt="Service Image" />
-                </ServiceCard>
-                <ServiceCard selected={selectedCard === 2} onClick={() => handleCardClick(2)}>
-                  <Title selected={selectedCard === 2}>Limon</Title>
-                  <Subtitle>110.99</Subtitle>
-                  <ServiceImage src="http://localhost:8000/media/images/D_NQ_NP_773592-MLB71333730379_082023-O.webp" alt="Service Image" />
-                </ServiceCard>
-                <ServiceCard selected={selectedCard === 3} onClick={() => handleCardClick(3)}>
-                  <Title selected={selectedCard === 3}>Limon</Title>
-                  <Subtitle>110.99</Subtitle>
-                  <ServiceImage src="http://localhost:8000/media/images/D_NQ_NP_773592-MLB71333730379_082023-O.webp" alt="Service Image" />
-                </ServiceCard>
-                <ServiceCard selected={selectedCard === 4} onClick={() => handleCardClick(4)}>
-                  <Title selected={selectedCard === 4}>Limon</Title>
-                  <Subtitle>110.99</Subtitle>
-                  <ServiceImage src="http://localhost:8000/media/images/D_NQ_NP_773592-MLB71333730379_082023-O.webp" alt="Service Image" />
-                </ServiceCard>
+                {services.map((service: any, index: number) => (
+                  <ServiceCard key={service.id} selected={selectedCard === index} onClick={() => handleCardClick(index)}>
+                    <Title selected={selectedCard === index}>{service.name}</Title>
+                    <Subtitle>{service.price}</Subtitle>
+                    {service.cover && ( // Verifica se cover não é null
+                      <ServiceImage src={`http://localhost:8000${service.cover.Path}`} alt="Service Image" />
+                    )}
+                  </ServiceCard>
+                ))}
               </GalleryContainer>  
             </FormControl>
 

@@ -1,21 +1,22 @@
-// types/service.type.ts
 import { CustomImageData } from './image.type';
 import IProductData from './product.type';
+import Decimal from 'decimal.js'; // Importe o tipo Decimal
 
 type IServiceData = {
   id: number;
   name: string;
   description: string;
-  price?: string; // Adicione o campo price opcional, caso necessário
-  subcategory: number | string; // Altere para number se for o tipo correto
+  price?: string; // Campo price opcional
+  hourly_rate?: Decimal | null; // Adicione o campo hourly_rate opcional
+  subcategory: number | string;
   cover?: {
     ImageID: number;
     Path: string;
     object_id: number;
     content_type: number;
   } | null;
-  images: CustomImageData[]; // Adicione a propriedade images ao tipo ICategoryData
-  products: IProductData[]; // Adicione a propriedade products ao tipo ICategoryData
+  images: CustomImageData[];
+  products: IProductData[];
 };
 
 export default IServiceData;

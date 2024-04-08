@@ -5,6 +5,7 @@ import ICategoryData from '../../../services/types/category.type';
 import CategoryDataService from "../../../services/net/CategoryDataService";
 import ISubcategoryData from '../../../services/types/subcategory.type';
 import SubcategoryDataService from "../../../services/net/SubcategoryDataService";
+import Decimal from 'decimal.js'; // Importe o tipo Decimal
 
 type Props = {
   onClose: () => void;
@@ -24,6 +25,7 @@ type State = {
   selectedCategory: string;
   subcategories: ISubcategoryData[];
   selectedSubcategory: string;
+  hourlyRate: Decimal | null | undefined; // Adjust the type for hourly rate
   submitted: boolean;
 };
 
@@ -44,6 +46,7 @@ export default class AddService extends Component<Props, State> {
       selectedCategory: "",
       subcategories: [],
       selectedSubcategory: "",
+      hourlyRate: undefined, // Initialize hourly rate state
       submitted: false,
     };
   }
@@ -96,12 +99,23 @@ export default class AddService extends Component<Props, State> {
     });
   };
 
+
+
+  onChangeHourlyRate = (e: ChangeEvent<HTMLInputElement>) => {
+    // Parse the input value to Decimal
+    const value = e.target.value ? new Decimal(e.target.value) : null;
+    this.setState({
+      hourlyRate: value
+    });
+  };
+
   saveService = () => {
     const data: IServiceData = {
       id: this.state.id, // Adicione o id como null para a criação de um novo serviço
       name: this.state.name,
       description: this.state.description,
       price: this.state.price,
+      hourly_rate: this.state.hourlyRate, // Include hourly rate in data object
       subcategory: this.state.selectedSubcategory,
       images: this.state.images,
       products: [], // Adicione uma array vazia para products
@@ -141,7 +155,7 @@ export default class AddService extends Component<Props, State> {
   };
 
   render() {
-    const { submitted, name, description, price, subcategories, selectedSubcategory } = this.state;
+    const { submitted, name, description, price, subcategories, selectedSubcategory, hourlyRate } = this.state;
 
     return (
       <div className="submit-form">
@@ -190,6 +204,19 @@ export default class AddService extends Component<Props, State> {
                 value={price || ''}
                 onChange={(e) => this.setState({ price: e.target.value })}
                 name="price"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="hourlyRate">Hourly Rate</label>
+              <input
+                type="number"
+                className="form-control"
+                id="hourlyRate"
+                required
+                value={hourlyRate ? hourlyRate.toString() : ''}
+                onChange={this.onChangeHourlyRate}
+                name="hourlyRate"
               />
             </div>
 
